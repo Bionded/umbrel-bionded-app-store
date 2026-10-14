@@ -5,7 +5,7 @@ storage:
 category: media
 name: slskd
 tagline: Soulseek client with a web UI and API for your music apps
-version: "0.26.1"
+version: "0.26.1-patch.1"
 port: 5032
 description: >-
   slskd is a modern client for the Soulseek peer-to-peer network, with a web
@@ -25,8 +25,8 @@ description: >-
 
   slskd is the Soulseek download engine. Lidarr Nightly (via the Tubifarry
   plugin), Aurral, SoulSync and Explo all send requests to it through its API.
-  Finished files land in Home → Downloads → music → slskd → complete
-  (/downloads/music/slskd/complete). Each app then moves only the transfers it
+  Finished files land in Home → Downloads → slskd → complete
+  (/downloads/slskd/complete). Each app then moves only the transfers it
   requested. This app uses its own folder and ports, so it can coexist with
   other slskd apps.
 
@@ -37,8 +37,8 @@ description: >-
   SLSKD_SLSK_PASSWORD (your Soulseek account; any new name and password
   registers a free account on first login). Restart the app.
 
-  2. Sign in to the web UI as slskd with the password umbrelOS shows for this
-  app.
+  2. Sign in to the web UI with slskd / slskd and change the password under
+  Options → web → authentication.
 
   3. For best speed and reachability, forward TCP port 50310 on your router to
   your Umbrel.
@@ -46,10 +46,10 @@ description: >-
 
   🔑 API KEY FOR OTHER APPS
 
-  The API key is the same as the web password umbrelOS shows for this app
-  (unique to your Umbrel). Address from other apps:
+  Add a key under Options → web → authentication → api_keys (16+ characters)
+  and paste it in Lidarr, Aurral, SoulSync or Explo. Address from other apps:
   http://bionded-slskd_server_1:5030 — download folder
-  /downloads/music/slskd/complete.
+  /downloads/slskd/complete.
 
 
   Works on amd64 and arm64.
@@ -65,7 +65,7 @@ gallery:
   - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-slskd/gallery-3.jpg
 path: ""
 defaultUsername: "slskd"
-deterministicPassword: true
+defaultPassword: "slskd"
 folderAccess:
   - id: music
     name: Music
@@ -91,6 +91,9 @@ environment:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
+  Downloads now go to Home → Downloads → slskd. The web login is slskd's default (slskd / slskd, change it in Options), and other apps use an API key you add in slskd's options.
+
+
   First release in the Music Stack store. slskd 0.26.1 adds an option to set the
   MTU of the Soulseek server connection, enables logging to disk by default
   with 30 days of retention, and cancels downloads whose enqueue attempt times

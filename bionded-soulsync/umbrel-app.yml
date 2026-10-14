@@ -5,7 +5,7 @@ storage:
 category: media
 name: SoulSync
 tagline: Mirror your Spotify, Tidal and Deezer playlists into your own library
-version: "3.5.4-patch.2"
+version: "3.5.4-patch.3"
 port: 8018
 description: >-
   SoulSync keeps your streaming playlists in sync with your own music library.
@@ -19,9 +19,9 @@ description: >-
   🎵 WHERE IT FITS IN THE MUSIC STACK
 
   SoulSync handles playlist mirroring. It downloads through slskd and reads
-  slskd's finished files from Home → Downloads → music → slskd → complete
-  (/app/downloads inside SoulSync). Finished, tagged music goes to Home →
-  Downloads → music → soulsync (/app/Transfer); album and artist requests are
+  slskd's finished files from Home → Downloads → slskd → complete
+  (/app/downloads/slskd/complete inside SoulSync). Finished, tagged music goes
+  to Home → Downloads → soulsync (/app/Transfer); album and artist requests are
   left to Lidarr. Your library (Home → Music) is also available at /music.
 
 
@@ -30,8 +30,9 @@ description: >-
   1. Open the app and follow the setup wizard.
 
   2. Settings → Connections → Soulseek: URL http://bionded-slskd_server_1:5030,
-  API key = the password umbrelOS shows for slskd. Leave Downloads at
-  /app/downloads and Transfer at /app/Transfer.
+  API key = an API key you add in slskd (Options → web → authentication → api_keys). Settings → Downloads: set the
+  download folder to /app/downloads/slskd/complete and leave Transfer at
+  /app/Transfer.
 
   3. Optional media server: Navidrome at http://navidrome_server_1:4533 with your
   Navidrome user and password, so SoulSync skips tracks you already have.
@@ -75,12 +76,6 @@ path: ""
 defaultUsername: ""
 defaultPassword: ""
 folderAccess:
-  - id: slskd-downloads
-    name: slskd downloads
-    note: slskd's finished downloads, read by SoulSync at /app/downloads.
-    mounts:
-      - service: server
-        targetPath: /app/downloads
   - id: soulsync-output
     name: SoulSync output
     note: Where SoulSync files finished, tagged music (/app/Transfer).
@@ -96,6 +91,9 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
+  The whole Downloads folder is now available at /app/downloads (slskd files at /app/downloads/slskd/complete), and finished music goes to Home → Downloads → soulsync.
+
+
   No required apps any more: install it on its own and connect other apps in its settings.
 
 

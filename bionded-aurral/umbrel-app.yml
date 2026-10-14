@@ -5,7 +5,7 @@ storage:
 category: media
 name: Aurral
 tagline: Music discovery and requests that feed Lidarr and slskd
-version: "2.10.0"
+version: "2.10.0-patch.1"
 port: 3041
 description: >-
   Aurral is a self-hosted music discovery app. It recommends artists and albums
@@ -22,8 +22,8 @@ description: >-
   your library (Home → Music, /music). Aurral sees that library at the same
   /music path, reuses Lidarr's files instead of downloading copies, and never
   writes into it. Tracks Aurral fetches itself (flows, playlists, through
-  slskd or its built-in yt-dlp) go to Home → Downloads → music → aurral
-  (/downloads/music/aurral).
+  slskd or its built-in yt-dlp) go to Home → Downloads → aurral
+  (/downloads/aurral).
 
 
   🛠️ FIRST-RUN SETUP
@@ -34,10 +34,10 @@ description: >-
   Lidarr's API key (Lidarr → Settings → General), root folder /music.
 
   3. Settings → Download clients → slskd: URL http://bionded-slskd_server_1:5030,
-  API key = the password umbrelOS shows for slskd.
+  API key = an API key you add in slskd (Options → web → authentication → api_keys).
 
   4. Settings → Download clients → Downloads Folder is preset to
-  /downloads/music/aurral. Run Settings → Storage health → Run checks.
+  /downloads/aurral. Run Settings → Storage health → Run checks.
 
   5. Optional: Navidrome at http://navidrome_server_1:4533 to publish playlists
   (Navidrome must be able to see the folders above), Last.fm API key
@@ -76,6 +76,9 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
+  Aurral's Downloads Folder is now Home → Downloads → aurral (/downloads/aurral).
+
+
   First release in the Music Stack store, packaging Aurral 2.10.0.
 
 

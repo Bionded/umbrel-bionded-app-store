@@ -13,7 +13,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - DOWNLOAD_FOLDER=/downloads/music/aurral
+      - DOWNLOAD_FOLDER=/downloads/aurral
       - FILE_BROWSE_ROOTS=/music,/downloads,/config
     volumes:
       - ${APP_DATA_DIR}/data/config:/config

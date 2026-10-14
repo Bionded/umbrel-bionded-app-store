@@ -8,7 +8,7 @@ HOME_DIR="${UMBREL_ROOT}/home"
 DOWNLOADS="${HOME_DIR}/Downloads"
 [[ -d "${DOWNLOADS}" ]] || DOWNLOADS="${UMBREL_ROOT}/data/storage/downloads"
 
-for dir in "${HOME_DIR}/Music" "${DOWNLOADS}/music" "${DOWNLOADS}/music/explo" "${DOWNLOADS}/music/slskd" "${DOWNLOADS}/music/slskd/complete"; do
+for dir in "${HOME_DIR}/Music" "${DOWNLOADS}/explo" "${DOWNLOADS}/slskd" "${DOWNLOADS}/slskd/complete"; do
 	if [[ ! -d "${dir}" ]]; then
 		mkdir -p "${dir}"
 		chown 1000:1000 "${dir}"

@@ -5,7 +5,7 @@ storage:
 category: media
 name: Lidarr Nightly
 tagline: Plugin-ready Lidarr nightly that runs alongside the official Lidarr
-version: "3.1.6.5102-nightly.20261014-patch.1"
+version: "3.1.6.5102-nightly.20261014-patch.2"
 port: 8687
 description: >-
   Lidarr is a music collection manager: it monitors your artists, finds new and
@@ -25,7 +25,7 @@ description: >-
 
   Lidarr Nightly is the library manager. It is the only app that writes to your
   music library (Home → Music, /music in every app). Downloaders (slskd, Aurral,
-  SoulSync, Explo) write to Home → Downloads → music → <app>, and Lidarr imports
+  SoulSync, Explo) write to Home → Downloads → <app>, and Lidarr imports
   albums from there into /music. Aurral sends album and artist requests here,
   and Navidrome streams the result.
 
@@ -40,13 +40,12 @@ description: >-
   restart the app from umbrelOS.
 
   4. Settings → Download Clients → + → Slskd (Tubifarry): URL
-  http://bionded-slskd_server_1:5030, API key = the password umbrelOS shows for
-  the slskd app. Lidarr picks up slskd's finished files at
-  /downloads/music/slskd/complete automatically. slskd must be logged in to
+  http://bionded-slskd_server_1:5030, API key = an API key you add in slskd (Options → web → authentication → api_keys). Lidarr picks up slskd's finished files at
+  /downloads/slskd/complete automatically. slskd must be logged in to
   Soulseek before Lidarr accepts the client.
 
   5. For Tubifarry's other downloaders (YouTube, Deezer…) use the download path
-  /downloads/music/lidarr.
+  /downloads/lidarr.
 
 
   🔑 API KEY
@@ -79,6 +78,9 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
+  Downloads now go to Home → Downloads → lidarr (no longer Downloads → music).
+
+
   Clearer setup steps for the slskd download client.
 
 

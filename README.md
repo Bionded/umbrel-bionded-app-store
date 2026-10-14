@@ -27,7 +27,7 @@ Navidrome is the official Umbrel app (`navidrome`) and is configured by you.
  Aurral ──────────────┐                    Navidrome ──► Multi-Scrobbler ──► Koito
  Explo  ──┐           ▼                        ▲   ▲            └──► ListenBrainz ──► Explo / Aurral
  SoulSync ┼──► slskd  Lidarr Nightly ──► /music┘   └── AudioMuse-AI (Subsonic API, plugin)
-          └──(Soulseek)──► Downloads/music/<app> ──┘
+          └──(Soulseek)──► Downloads/<app> ───────┘
 ```
 
 ## Shared path convention
@@ -38,11 +38,11 @@ Every app sees the same two folders at the same container paths:
 |---|---|---|
 | **Home → Music** | **`/music`** | **Lidarr Nightly only** (its root folder). Others read it: Aurral (same path as Lidarr), slskd (shared read-only), SoulSync, Explo. |
 | **Home → Downloads** | **`/downloads`** | Every downloader can read all downloads, but each writes only to its own folder: |
-| ↳ `Downloads/music/slskd/complete`, `…/incomplete` | `/downloads/music/slskd/…` | slskd. Lidarr (Tubifarry), Aurral, SoulSync and Explo each move **only the transfers they started**. |
-| ↳ `Downloads/music/lidarr` | `/downloads/music/lidarr` | Lidarr's non-Soulseek Tubifarry downloads (YouTube, Deezer…) before import |
-| ↳ `Downloads/music/aurral` | `/downloads/music/aurral` | Aurral (flows, playlists, its own albums) |
-| ↳ `Downloads/music/soulsync` | `/app/Transfer` in SoulSync | SoulSync (mirrored playlists) |
-| ↳ `Downloads/music/explo` | `/data` in Explo | Explo (weekly playlists, rotated) |
+| ↳ `Downloads/slskd/complete`, `…/incomplete` | `/downloads/slskd/…` | slskd. Lidarr (Tubifarry), Aurral, SoulSync and Explo each move **only the transfers they started**. |
+| ↳ `Downloads/lidarr` | `/downloads/lidarr` | Lidarr's non-Soulseek Tubifarry downloads (YouTube, Deezer…) before import |
+| ↳ `Downloads/aurral` | `/downloads/aurral` | Aurral (flows, playlists, its own albums) |
+| ↳ `Downloads/soulsync` | `/app/Transfer` in SoulSync | SoulSync (mirrored playlists) |
+| ↳ `Downloads/explo` | `/data` in Explo | Explo (weekly playlists, rotated) |
 
 Rules that keep apps from fighting:
 
@@ -54,7 +54,7 @@ Rules that keep apps from fighting:
 
 ## Recommended install order
 
-1. **Navidrome** (official store). Point its library at Home → Music, and add `Downloads/music/aurral`, `…/soulsync` and `…/explo` as extra libraries if you want those playable.
+1. **Navidrome** (official store). Point its library at Home → Music, and add `Downloads/aurral`, `Downloads/soulsync` and `Downloads/explo` as extra libraries if you want those playable.
 2. **slskd**: set your Soulseek account under ⋯ → Settings → Advanced settings. Forward TCP 50310 on your router.
 3. **Lidarr Nightly**: add root folder `/music`, install the Tubifarry plugin, add slskd as a download client.
 4. **Koito**, then **Multi-Scrobbler** (Navidrome → Koito).
@@ -67,31 +67,31 @@ Use the internal container hostnames: they work between Umbrel apps without leav
 | In app | Setting | Value |
 |---|---|---|
 | Lidarr Nightly | Root folder | `/music` |
-| Lidarr Nightly | Download client "Slskd" (Tubifarry) | `http://bionded-slskd_server_1:5030`, API key = slskd password¹, path `/downloads/music/slskd/complete` |
+| Lidarr Nightly | Download client "Slskd" (Tubifarry) | `http://bionded-slskd_server_1:5030`, slskd API key¹ (files are picked up from `/downloads/slskd/complete`) |
 | Aurral | Lidarr | `http://bionded-lidarr-nightly_server_1:8686` + Lidarr API key² |
-| Aurral | slskd | `http://bionded-slskd_server_1:5030` + slskd password¹ |
-| Aurral | Downloads Folder | `/downloads/music/aurral` (preset) |
+| Aurral | slskd | `http://bionded-slskd_server_1:5030` + slskd API key¹ |
+| Aurral | Downloads Folder | `/downloads/aurral` (preset) |
 | Aurral | Navidrome | `http://navidrome_server_1:4533` + Navidrome user/password |
 | Aurral | Koito | `http://bionded-koito_server_1:4110` + Koito API key³ |
-| SoulSync | Soulseek | `http://bionded-slskd_server_1:5030` + slskd password¹; Downloads `/app/downloads`, Transfer `/app/Transfer` |
+| SoulSync | Soulseek | `http://bionded-slskd_server_1:5030` + slskd API key¹; download folder `/app/downloads/slskd/complete`, Transfer `/app/Transfer` |
 | SoulSync | Media server | `http://navidrome_server_1:4533` |
 | SoulSync | Spotify redirect URI | `http://127.0.0.1:8888/callback` (see the app description for the one-time address swap) |
 | Explo | Music system | Subsonic `http://navidrome_server_1:4533` (preset) |
-| Explo | slskd / Lidarr | preset URLs + slskd password¹ / Lidarr API key² |
+| Explo | slskd / Lidarr | preset URLs + slskd API key¹ / Lidarr API key² |
 | Explo | ListenBrainz | username + user token (listenbrainz.org → Settings) |
 | AudioMuse-AI | Setup Wizard → Navidrome | `http://navidrome_server_1:4533` |
 | Navidrome plugin | AudioMuse URL | `http://bionded-audiomuse-ai_flask_1:8000` + AudioMuse API token |
 | Multi-Scrobbler | App settings (env) | `SUBSONIC_*` (Navidrome), `KOITO_*` (URL preset, token³), optional `LZ_*` |
 | Any ListenBrainz scrobbler | Koito endpoint | `http://bionded-koito_server_1:4110/apis/listenbrainz/1` (LAN: `http://umbrel.local:4110/apis/listenbrainz/1`) |
 
-¹ slskd's web password, shown by umbrelOS for the slskd app, is also its API key (unique per Umbrel).
+¹ Add an API key in slskd: Options → web → authentication → api_keys (16+ characters). slskd's web login starts as slskd / slskd; change it there too.
 ² Lidarr → Settings → General → Security → API Key.
 ³ Koito → Settings → API Keys.
 
 ## Secrets
 
 No secrets are committed. Per-install secrets come from umbrelOS: `${APP_PASSWORD}` (shown to you as the
-app's password, `deterministicPassword: true`) for the slskd, Explo and Koito logins and the slskd API key,
+app's password, `deterministicPassword: true`) for the Explo and Koito logins,
 and `${APP_SEED}` for AudioMuse-AI's Postgres password.
 
 ## Development

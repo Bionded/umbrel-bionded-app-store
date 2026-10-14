@@ -14,12 +14,9 @@ services:
       - TZ=Etc/UTC
       - SLSKD_REMOTE_CONFIGURATION=true
       - SLSKD_HTTP_IP_ADDRESS=0.0.0.0
-      - SLSKD_USERNAME=slskd
-      - SLSKD_PASSWORD=${APP_PASSWORD}
-      - SLSKD_API_KEY=${APP_PASSWORD}
       - SLSKD_SLSK_LISTEN_PORT=50310
-      - SLSKD_DOWNLOADS_DIR=/downloads/music/slskd/complete
-      - SLSKD_INCOMPLETE_DIR=/downloads/music/slskd/incomplete
+      - SLSKD_DOWNLOADS_DIR=/downloads/slskd/complete
+      - SLSKD_INCOMPLETE_DIR=/downloads/slskd/incomplete
       - SLSKD_SHARED_DIR=/music
     ports:
       - "50310:50310/tcp"

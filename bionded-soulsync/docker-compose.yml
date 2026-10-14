@@ -22,8 +22,8 @@ services:
       - ${APP_DATA_DIR}/data/staging:/app/Staging
       - ${APP_DATA_DIR}/data/scripts:/app/scripts
       - ${APP_DATA_DIR}/data/music-videos:/app/MusicVideos
-      - ${UMBREL_ROOT}/data/storage/downloads/music/slskd/complete:/app/downloads
-      - ${UMBREL_ROOT}/data/storage/downloads/music/soulsync:/app/Transfer
+      - ${UMBREL_ROOT}/data/storage/downloads:/app/downloads
+      - ${UMBREL_ROOT}/data/storage/downloads/soulsync:/app/Transfer
       - ${UMBREL_ROOT}/data/storage/Music:/music
       - ${UMBREL_ROOT}/data/storage/downloads:/downloads
     restart: on-failure

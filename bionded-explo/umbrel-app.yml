@@ -5,7 +5,7 @@ storage:
 category: media
 name: Explo
 tagline: Weekly ListenBrainz discovery playlists, downloaded into your library
-version: "1.2.0-patch.2"
+version: "1.2.0-patch.3"
 port: 7288
 description: >-
   Explo brings Spotify-style "Discover Weekly" to your own server. Every week it
@@ -18,8 +18,8 @@ description: >-
 
   🎵 WHERE IT FITS IN THE MUSIC STACK
 
-  Explo handles ListenBrainz discovery. Tracks go to Home → Downloads → music →
-  explo (/data inside Explo). Point Navidrome at that folder (for example as an
+  Explo handles ListenBrainz discovery. Tracks go to Home → Downloads → explo
+  (/data inside Explo). Point Navidrome at that folder (for example as an
   extra library) so the playlists can play. Your main library (Home → Music) is
   mounted read-only at /music.
 
@@ -37,8 +37,8 @@ description: >-
   3. Settings → Music system: Subsonic at http://navidrome_server_1:4533 (preset)
   with your Navidrome username and password.
 
-  4. Download services: YouTube works out of the box. For slskd add the API key
-  (the password umbrelOS shows for slskd); the URL is preset. For Lidarr add
+  4. Download services: YouTube works out of the box. For slskd add an API key you add in slskd (Options → web → authentication → api_keys);
+  the URL is preset. For Lidarr add
   Lidarr Nightly's API key.
 
   5. Run a playlist once from the dashboard to test, then let the schedule take
@@ -81,6 +81,9 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
+  Tracks now go to Home → Downloads → explo.
+
+
   No required apps any more: install it on its own and connect other apps in its settings.
 
 

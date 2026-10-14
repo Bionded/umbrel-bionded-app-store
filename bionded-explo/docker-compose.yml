@@ -18,8 +18,8 @@ services:
       - UI_PASSWORD=${APP_PASSWORD}
     volumes:
       - ${APP_DATA_DIR}/data/config:/opt/explo/config
-      - ${UMBREL_ROOT}/data/storage/downloads/music/explo:/data
-      - ${UMBREL_ROOT}/data/storage/downloads/music/slskd/complete:/slskd
+      - ${UMBREL_ROOT}/data/storage/downloads/explo:/data
+      - ${UMBREL_ROOT}/data/storage/downloads/slskd/complete:/slskd
       - ${UMBREL_ROOT}/data/storage/Music:/music:ro
       - ${UMBREL_ROOT}/data/storage/downloads:/downloads
     restart: on-failure
