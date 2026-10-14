@@ -1,0 +1,76 @@
+# Upstream sources for scripts/check_updates.py.
+#
+# source: github_release  -> newest non-draft, non-prerelease GitHub release whose tag matches
+#                            `release_regex` (group 1 = version)
+# source: registry_tags   -> newest registry tag matching `tag_regex` (group 1 = version)
+# source: nightly_digest  -> follows the moving `track_tag`; resolves it to the versioned tag that
+#                            has the same digest (`tag_regex`, group 1 = upstream version)
+#
+# image_tag: how the image tag is built from the version ({version})
+# services:  compose services whose `image:` is bumped (all must use `image`)
+# hold: only updated when named explicitly with --app (review upstream first)
+# min_interval_days: minimum age of the current nightly before the next bump (--force overrides)
+
+defaults:
+  release_regex: '^v?(\d+\.\d+\.\d+)$'
+
+apps:
+  bionded-lidarr-nightly:
+    source: nightly_digest
+    image: linuxserver/lidarr
+    track_tag: nightly
+    tag_regex: '^nightly-(\d+\.\d+\.\d+\.\d+)-ls\d+$'
+    services: [server]
+    min_interval_days: 7
+    changelog: https://github.com/Lidarr/Lidarr/commits/develop
+
+  bionded-slskd:
+    source: github_release
+    repo: slskd/slskd
+    image: slskd/slskd
+    image_tag: "{version}"
+    services: [server]
+
+  bionded-aurral:
+    source: github_release
+    repo: lklynet/aurral
+    image: ghcr.io/lklynet/aurral
+    image_tag: "{version}"
+    services: [server]
+
+  bionded-soulsync:
+    source: github_release
+    repo: Nezreka/SoulSync
+    image: boulderbadgedad/soulsync
+    image_tag: "{version}"
+    services: [server]
+
+  bionded-audiomuse-ai:
+    source: github_release
+    repo: NeptuneHub/AudioMuse-AI
+    image: ghcr.io/neptunehub/audiomuse-ai
+    image_tag: "{version}"
+    services: [flask, worker]
+
+  bionded-explo:
+    source: github_release
+    repo: LumePart/Explo
+    image: ghcr.io/lumepart/explo
+    image_tag: "v{version}"
+    services: [server]
+
+  bionded-multi-scrobbler:
+    source: registry_tags
+    repo: FoxxMD/multi-scrobbler          # release notes only
+    image: foxxmd/multi-scrobbler
+    tag_regex: '^(\d+\.\d+\.\d+)$'
+    image_tag: "{version}"
+    services: [server]
+
+  bionded-koito:
+    source: github_release
+    repo: gabehf/Koito
+    image: gabehf/koito
+    image_tag: "v{version}"
+    services: [server]
+    hold: true                          # upstream is unstable: always review before updating

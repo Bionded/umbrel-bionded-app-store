@@ -105,3 +105,26 @@ python3 scripts/validate_store.py --official-store /tmp/umbrel-apps   # + port c
 
 A packaging-only change (no new upstream version) must bump `version` with a `-patch.N` suffix,
 or existing installs won't receive it. umbrelOS offers an update whenever the `version` string changes.
+
+### Updating apps
+
+`scripts/check_updates.py` is run by hand. It reads `updates.yml` (one entry per app: GitHub
+releases, registry tags, or a moving nightly tag) and for every app with a newer **stable** version:
+
+1. checks that the image publishes **linux/amd64 and linux/arm64** (otherwise the app is skipped and reported),
+2. pins `tag@sha256:digest` in `docker-compose.yml`,
+3. bumps `version` and writes short `releaseNotes` from the upstream release in `umbrel-app.yml`.
+
+It only edits files. Review with `git diff`, then commit and push.
+
+```sh
+pip install requests pyyaml
+python3 scripts/check_updates.py --dry-run              # what's new?
+python3 scripts/check_updates.py                        # update every app that has a new version
+python3 scripts/check_updates.py --app bionded-koito    # one app; Koito is `hold` and only updates this way
+```
+
+- **Koito** is marked `hold` (upstream warns it's unstable). It's reported but only updated when named with `--app`.
+- **Lidarr Nightly** follows the `nightly` tag by digest, at most once per 7 days (`--force` overrides), with
+  versions like `3.1.6.5102-nightly.20261014`. umbrelOS offers an update whenever the version string differs.
+- Set `GITHUB_TOKEN` if you hit GitHub API rate limits.
