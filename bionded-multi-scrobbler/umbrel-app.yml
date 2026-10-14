@@ -111,7 +111,7 @@ environment:
       - server
     note: Optional ListenBrainz username.
 releaseNotes: >-
-  First release in the Bionded Community store, packaging Multi-Scrobbler 0.19.2.
+  First release in the Bionded App Store, packaging Multi-Scrobbler 0.19.2.
 
 
   Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.19.2

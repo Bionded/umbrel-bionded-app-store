@@ -61,7 +61,7 @@ path: ""
 defaultUsername: "admin"
 deterministicPassword: true
 releaseNotes: >-
-  First release in the Bionded Community store, packaging Koito 0.3.2 (SQLite storage,
+  First release in the Bionded App Store, packaging Koito 0.3.2 (SQLite storage,
   no PostgreSQL needed).
 
 

@@ -1,6 +1,6 @@
-# Bionded Community — Umbrel Community App Store
+# Bionded App Store — Umbrel Community App Store
 
-Self-hosted apps for [umbrelOS](https://umbrel.com), shown in umbrelOS as the **Bionded Community app store**.
+Self-hosted apps for [umbrelOS](https://umbrel.com), shown in umbrelOS as the **Bionded App Store app store**.
 It started as a music stack (library management, Soulseek downloads, discovery, playlist mirroring, sonic
 analysis and listening stats) and now also carries other media apps such as Pinchflat-NGX. Every app runs on
 **linux/amd64 and linux/arm64**.

@@ -90,7 +90,7 @@ releaseNotes: >-
   Downloads now go to Home → Downloads → slskd. The web login is slskd's default (slskd / slskd, change it in Options), and other apps use an API key you add in slskd's options.
 
 
-  First release in the Bionded Community store. slskd 0.26.1 adds an option to set the
+  First release in the Bionded App Store. slskd 0.26.1 adds an option to set the
   MTU of the Soulseek server connection, enables logging to disk by default
   with 30 days of retention, and cancels downloads whose enqueue attempt times
   out.

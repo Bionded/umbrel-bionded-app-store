@@ -78,7 +78,7 @@ releaseNotes: >-
   No required apps any more: install it on its own and connect other apps in its settings.
 
 
-  First release in the Bionded Community store, packaging AudioMuse-AI 3.6.3 (web,
+  First release in the Bionded App Store, packaging AudioMuse-AI 3.6.3 (web,
   worker and PostgreSQL 15; the task queue runs in PostgreSQL, so there is no
   Redis).
 

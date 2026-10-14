@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the Bionded Community app store.
+"""Validate the Bionded App Store.
 
 Checks every app folder against the umbrelOS manifest schema and this store's
 conventions:
