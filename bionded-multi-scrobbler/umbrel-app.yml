@@ -1,0 +1,119 @@
+manifestVersion: 1
+id: bionded-multi-scrobbler
+storage:
+  dataRoot: data
+category: media
+name: Multi-Scrobbler
+tagline: Collect plays from every player and scrobble them everywhere
+version: "0.19.2"
+port: 9078
+description: >-
+  Multi-Scrobbler watches what you play on Navidrome and other Subsonic servers,
+  Jellyfin, Plex, Spotify, YouTube Music, Kodi, MPD, Chromecast and more. It
+  sends every play to the scrobblers you choose: Koito, ListenBrainz, Last.fm,
+  Maloja, Libre.fm and others. It removes duplicates, can fix and normalise
+  metadata, and shows everything on a live dashboard.
+
+
+  🎵 WHERE IT FITS IN THE MUSIC STACK
+
+  Multi-Scrobbler is the listening-history router. It reads your plays from
+  Navidrome and sends them to Koito (your private stats) and, if you like,
+  ListenBrainz. That ListenBrainz history is what Explo and Aurral use for
+  recommendations.
+
+
+  🛠️ FIRST-RUN SETUP (⋯ → Settings → Advanced settings, then restart)
+
+  1. Navidrome source: SUBSONIC_ID (any name, e.g. navidrome), SUBSONIC_URL
+  (preset http://navidrome_server_1:4533), SUBSONIC_USER and SUBSONIC_PASSWORD
+  of your Navidrome account.
+
+  2. Koito client: KOITO_ID (e.g. koito), KOITO_URL (preset
+  http://bionded-koito_server_1:4110), KOITO_USER (Koito username) and
+  KOITO_TOKEN (Koito → Settings → API Keys).
+
+  3. Optional ListenBrainz client: LZ_ID (e.g. listenbrainz), LZ_TOKEN (listenbrainz.org → Settings → User
+  token) and LZ_USER.
+
+  4. Open the dashboard and check that every source and client is green.
+  Advanced setups (several users, Spotify or Last.fm sources) use JSON files in
+  the app's config folder; see docs.multi-scrobbler.app.
+
+
+  The dashboard is protected by your Umbrel login. Scrobble endpoints for apps
+  that send plays to Multi-Scrobbler (ListenBrainz/Last.fm compatible) are open
+  at http://umbrel.local:9078.
+
+
+  Works on amd64 and arm64.
+developer: FoxxMD
+website: https://docs.multi-scrobbler.app/
+dependencies: []
+repo: https://github.com/FoxxMD/multi-scrobbler
+support: https://github.com/FoxxMD/multi-scrobbler/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-multi-scrobbler/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-multi-scrobbler/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-multi-scrobbler/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-multi-scrobbler/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-multi-scrobbler/gallery-4.jpg
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+environment:
+  - name: SUBSONIC_ID
+    services:
+      - server
+    default: navidrome
+    note: Name for the Navidrome/Subsonic source. Setting it (with URL, user and password) enables the source.
+  - name: SUBSONIC_URL
+    services:
+      - server
+    default: http://navidrome_server_1:4533
+    note: Address of Navidrome (or another Subsonic server) as seen from this app.
+  - name: SUBSONIC_USER
+    services:
+      - server
+    note: Navidrome username whose plays are scrobbled.
+  - name: SUBSONIC_PASSWORD
+    services:
+      - server
+    note: Password of that Navidrome user.
+  - name: KOITO_ID
+    services:
+      - server
+    default: koito
+    note: Name for the Koito client. Setting it (with URL, user and token) enables scrobbling to Koito.
+  - name: KOITO_URL
+    services:
+      - server
+    default: http://bionded-koito_server_1:4110
+    note: Base address of Koito as seen from this app (no /apis path).
+  - name: KOITO_USER
+    services:
+      - server
+    note: Your Koito username.
+  - name: KOITO_TOKEN
+    services:
+      - server
+    note: Koito API key (Koito → Settings → API Keys).
+  - name: LZ_ID
+    services:
+      - server
+    note: Optional. Name for the ListenBrainz client, e.g. listenbrainz. Setting it (with token and user) enables scrobbling to ListenBrainz.
+  - name: LZ_TOKEN
+    services:
+      - server
+    note: Optional ListenBrainz user token (listenbrainz.org → Settings → User token).
+  - name: LZ_USER
+    services:
+      - server
+    note: Optional ListenBrainz username.
+releaseNotes: >-
+  First release in the Music Stack store, packaging Multi-Scrobbler 0.19.2.
+
+
+  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.19.2
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-music-app-store

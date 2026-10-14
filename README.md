@@ -1,17 +1,107 @@
-## Umbrel Community App Store Template
+# Music Stack — Umbrel Community App Store
 
-This repository is a template to create an Umbrel Community App Store. These additional app stores allow developers to distribute applications without submitting to the [Official Umbrel App Store](https://github.com/getumbrel/umbrel-apps).
+A self-hosted music stack for [umbrelOS](https://umbrel.com): library management, Soulseek
+downloads, discovery, playlist mirroring, sonic analysis and listening stats. Every app runs on
+**linux/amd64 and linux/arm64**.
 
-## How to use:
+**Add the store:** umbrelOS → App Store → ⋯ (top right) → Community App Stores → paste
+`https://github.com/Bionded/umbrel-music-app-store` → Add.
 
-1. Start by clicking the "Use this template" button located above.
-2. Assign an ID and name to your app store within the `umbrel-app-store.yml` file. This file specifies two important attributes:
-    - `id` - Acts as a unique prefix for every app within your Community App Store. You must start your application's ID with your app store's ID. For instance, in this template, the app store ID is `sparkles`, and there's an app named `hello world`. Consequently, the app's ID should be: `sparkles-hello-world`.
-    - `name` - This is the name of the Community App Store displayed in the umbrelOS UI.
-3. Change the name of the `sparkles-hello-world` folder to match your app's ID. The app ID is for you to decide. For example, if your app store ID is `whistles`, and your app is named My Video Downloader, you could set its app ID to `whistles-my-video-downloader`, and rename the folder accordingly.
-4. Next, enter your app's listing details in the `whistles-my-video-downloader/umbrel-app.yml`. These are displayed in the umbrelOS UI.
-5. Include the necessary Docker services in `whistles-my-video-downloader/docker-compose.yml`.
-6. That's it! Your Community App Store, featuring your unique app, is now set up and ready to go. To use your Community App Store, you can add its GitHub url the umbrelOS user interface as shown in the following demo:
+## Apps
 
+| App | Id | Port | What it does |
+|---|---|---|---|
+| Lidarr Nightly | `bionded-lidarr-nightly` | 8687 | Library manager (nightly build with the plugin system, e.g. Tubifarry). Coexists with the official Lidarr. |
+| slskd | `bionded-slskd` | 5032 + **50310/tcp** | Soulseek client and API used by the other apps. Coexists with other slskd apps. |
+| Aurral | `bionded-aurral` | 3041 | Artist/album requests and discovery. Sends requests to Lidarr; can download through slskd. |
+| SoulSync | `bionded-soulsync` | 8018 | Mirrors Spotify/Tidal/Deezer playlists through slskd. |
+| AudioMuse-AI | `bionded-audiomuse-ai` | 8044 | Sonic analysis and smart playlists for Navidrome (needs AVX2 on amd64). |
+| Explo | `bionded-explo` | 7288 | Weekly ListenBrainz discovery playlists. |
+| Multi-Scrobbler | `bionded-multi-scrobbler` | 9078 | Routes plays from Navidrome and others to Koito, ListenBrainz and Last.fm. |
+| Koito | `bionded-koito` | 4110 | Private ListenBrainz-compatible scrobbler with stats. |
 
-https://user-images.githubusercontent.com/10330103/197889452-e5cd7e96-3233-4a09-b475-94b754adc7a3.mp4
+Navidrome is the official Umbrel app (`navidrome`) and is configured by you.
+
+```
+           requests / discovery                       listening history
+ Aurral ──────────────┐                    Navidrome ──► Multi-Scrobbler ──► Koito
+ Explo  ──┐           ▼                        ▲   ▲            └──► ListenBrainz ──► Explo / Aurral
+ SoulSync ┼──► slskd  Lidarr Nightly ──► /music┘   └── AudioMuse-AI (Subsonic API, plugin)
+          └──(Soulseek)──► Downloads/music/<app> ──┘
+```
+
+## Shared path convention
+
+Every app sees the same two folders at the same container paths:
+
+| Umbrel Files | Container path | Who writes |
+|---|---|---|
+| **Home → Music** | **`/music`** | **Lidarr Nightly only** (its root folder). Others read it: Aurral (same path as Lidarr), slskd (shared read-only), SoulSync, Explo. |
+| **Home → Downloads** | **`/downloads`** | Every downloader can read all downloads, but each writes only to its own folder: |
+| ↳ `Downloads/music/slskd/complete`, `…/incomplete` | `/downloads/music/slskd/…` | slskd. Lidarr (Tubifarry), Aurral, SoulSync and Explo each move **only the transfers they started**. |
+| ↳ `Downloads/music/lidarr` | `/downloads/music/lidarr` | Lidarr's non-Soulseek Tubifarry downloads (YouTube, Deezer…) before import |
+| ↳ `Downloads/music/aurral` | `/downloads/music/aurral` | Aurral (flows, playlists, its own albums) |
+| ↳ `Downloads/music/soulsync` | `/app/Transfer` in SoulSync | SoulSync (mirrored playlists) |
+| ↳ `Downloads/music/explo` | `/data` in Explo | Explo (weekly playlists, rotated) |
+
+Rules that keep apps from fighting:
+
+- Only Lidarr writes the library. Album and artist requests from Aurral go **through Lidarr**, and Aurral reuses Lidarr's files instead of downloading copies.
+- Playlist mirroring belongs to **SoulSync**, ListenBrainz discovery to **Explo**. Don't point Aurral's playlist import or flows at the same sources.
+- Nothing treats `slskd/complete` as a watch folder.
+- `Home/Music` doesn't exist on a fresh umbrelOS. Each app's `hooks/pre-start` creates it (and its download folder) owned by 1000:1000. Existing folders are never changed.
+- Each app declares the library as a **Music** folder slot, so you can point it somewhere else (e.g. an external drive) in the app's settings.
+
+## Recommended install order
+
+1. **Navidrome** (official store). Point its library at Home → Music, and add `Downloads/music/aurral`, `…/soulsync` and `…/explo` as extra libraries if you want those playable.
+2. **slskd**: set your Soulseek account under ⋯ → Settings → Advanced settings. Forward TCP 50310 on your router.
+3. **Lidarr Nightly**: add root folder `/music`, install the Tubifarry plugin, add slskd as a download client.
+4. **Koito**, then **Multi-Scrobbler** (Navidrome → Koito).
+5. **Aurral**, **SoulSync**, **Explo**, **AudioMuse-AI**.
+
+## Connecting apps
+
+Use the internal container hostnames: they work between Umbrel apps without leaving the device.
+
+| In app | Setting | Value |
+|---|---|---|
+| Lidarr Nightly | Root folder | `/music` |
+| Lidarr Nightly | Download client "Slskd" (Tubifarry) | `http://bionded-slskd_server_1:5030`, API key = slskd password¹, path `/downloads/music/slskd/complete` |
+| Aurral | Lidarr | `http://bionded-lidarr-nightly_server_1:8686` + Lidarr API key² |
+| Aurral | slskd | `http://bionded-slskd_server_1:5030` + slskd password¹ |
+| Aurral | Downloads Folder | `/downloads/music/aurral` (preset) |
+| Aurral | Navidrome | `http://navidrome_server_1:4533` + Navidrome user/password |
+| Aurral | Koito | `http://bionded-koito_server_1:4110` + Koito API key³ |
+| SoulSync | Soulseek | `http://bionded-slskd_server_1:5030` + slskd password¹; Downloads `/app/downloads`, Transfer `/app/Transfer` |
+| SoulSync | Media server | `http://navidrome_server_1:4533` |
+| SoulSync | Spotify redirect URI | `http://127.0.0.1:8888/callback` (see the app description for the one-time address swap) |
+| Explo | Music system | Subsonic `http://navidrome_server_1:4533` (preset) |
+| Explo | slskd / Lidarr | preset URLs + slskd password¹ / Lidarr API key² |
+| Explo | ListenBrainz | username + user token (listenbrainz.org → Settings) |
+| AudioMuse-AI | Setup Wizard → Navidrome | `http://navidrome_server_1:4533` |
+| Navidrome plugin | AudioMuse URL | `http://bionded-audiomuse-ai_flask_1:8000` + AudioMuse API token |
+| Multi-Scrobbler | App settings (env) | `SUBSONIC_*` (Navidrome), `KOITO_*` (URL preset, token³), optional `LZ_*` |
+| Any ListenBrainz scrobbler | Koito endpoint | `http://bionded-koito_server_1:4110/apis/listenbrainz/1` (LAN: `http://umbrel.local:4110/apis/listenbrainz/1`) |
+
+¹ slskd's web password, shown by umbrelOS for the slskd app, is also its API key (unique per Umbrel).
+² Lidarr → Settings → General → Security → API Key.
+³ Koito → Settings → API Keys.
+
+## Secrets
+
+No secrets are committed. Per-install secrets come from umbrelOS: `${APP_PASSWORD}` (shown to you as the
+app's password, `deterministicPassword: true`) for the slskd, Explo and Koito logins and the slskd API key,
+and `${APP_SEED}` for AudioMuse-AI's Postgres password.
+
+## Development
+
+```sh
+pip install requests pyyaml
+python3 scripts/validate_store.py --compose --check-images      # schema, compose, ports, assets, amd64+arm64
+git clone --depth 1 https://github.com/getumbrel/umbrel-apps /tmp/umbrel-apps
+python3 scripts/validate_store.py --official-store /tmp/umbrel-apps   # + port collisions with the official store
+```
+
+A packaging-only change (no new upstream version) must bump `version` with a `-patch.N` suffix,
+or existing installs won't receive it. umbrelOS offers an update whenever the `version` string changes.

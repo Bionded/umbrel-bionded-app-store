@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Create the shared library and this app's download folder as 1000:1000 so
+# Docker never creates them root-owned. Existing folders are left untouched.
+HOME_DIR="${UMBREL_ROOT}/home"
+[[ -d "${HOME_DIR}" ]] || HOME_DIR="${UMBREL_ROOT}/data/storage"
+DOWNLOADS="${HOME_DIR}/Downloads"
+[[ -d "${DOWNLOADS}" ]] || DOWNLOADS="${UMBREL_ROOT}/data/storage/downloads"
+
+for dir in "${HOME_DIR}/Music" "${DOWNLOADS}/music" "${DOWNLOADS}/music/explo" "${DOWNLOADS}/music/slskd" "${DOWNLOADS}/music/slskd/complete"; do
+	if [[ ! -d "${dir}" ]]; then
+		mkdir -p "${dir}"
+		chown 1000:1000 "${dir}"
+	fi
+done
+
+# Seed Explo's settings once with Umbrel addresses (no keys). The web UI edits
+# this file afterwards and it is never overwritten.
+ENV_FILE="${APP_DATA_DIR}/data/config/.env"
+if [[ ! -f "${ENV_FILE}" ]]; then
+	mkdir -p "$(dirname "${ENV_FILE}")"
+	cat > "${ENV_FILE}" <<'ENV'
+DISCOVERY_SERVICE=listenbrainz
+LISTENBRAINZ_USER=
+LISTENBRAINZ_USER_TOKEN=
+LISTENBRAINZ_DISCOVERY=playlist
+EXPLO_SYSTEM=subsonic
+SYSTEM_URL=http://navidrome_server_1:4533
+SYSTEM_USERNAME=
+SYSTEM_PASSWORD=
+DOWNLOAD_SERVICES=youtube
+USE_SUBDIRECTORY=true
+SLSKD_URL=http://bionded-slskd_server_1:5030
+SLSKD_API_KEY=
+SLSKD_MIGRATE_DOWNLOADS=true
+LIDARR_URL=http://bionded-lidarr-nightly_server_1:8686
+LIDARR_API_KEY=
+ENV
+	chown 1000:1000 "${ENV_FILE}"
+fi

@@ -1,0 +1,78 @@
+manifestVersion: 1.1
+id: bionded-explo
+storage:
+  dataRoot: data
+category: media
+name: Explo
+tagline: Weekly ListenBrainz discovery playlists, downloaded into your library
+version: "1.2.0"
+port: 7288
+description: >-
+  Explo brings Spotify-style "Discover Weekly" to your own server. Every week it
+  fetches your personal ListenBrainz recommendations (Weekly Exploration, Weekly
+  Jams, Daily Jams), downloads the tracks you don't have yet (YouTube, slskd or
+  Lidarr), and creates the playlist in Navidrome. Old discovery tracks are
+  rotated out. You can also import playlists from Spotify, Apple Music and
+  ListenBrainz. Schedules and settings live in its web UI.
+
+
+  🎵 WHERE IT FITS IN THE MUSIC STACK
+
+  Explo handles ListenBrainz discovery. Tracks go to Home → Downloads → music →
+  explo (/data inside Explo). Point Navidrome at that folder (for example as an
+  extra library) so the playlists can play. Your main library (Home → Music) is
+  mounted read-only at /music.
+
+
+  🛠️ FIRST-RUN SETUP
+
+  1. Open the app and sign in as explo with the password umbrelOS shows for this
+  app.
+
+  2. Settings → ListenBrainz: your username and user token
+  (listenbrainz.org → Settings → User token). Recommendations need some
+  listening history, which Multi-Scrobbler or Navidrome can submit to
+  ListenBrainz.
+
+  3. Settings → Music system: Subsonic at http://navidrome_server_1:4533 (preset)
+  with your Navidrome username and password.
+
+  4. Download services: YouTube works out of the box. For slskd add the API key
+  (the password umbrelOS shows for slskd); the URL is preset. For Lidarr add
+  Lidarr Nightly's API key.
+
+  5. Run a playlist once from the dashboard to test, then let the schedule take
+  over.
+
+
+  Requires Navidrome. Works on amd64 and arm64.
+developer: LumePart
+website: https://github.com/LumePart/Explo
+dependencies:
+  - navidrome
+repo: https://github.com/LumePart/Explo
+support: https://github.com/LumePart/Explo/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-explo/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-explo/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-explo/gallery-2.jpg
+path: ""
+defaultUsername: "explo"
+deterministicPassword: true
+folderAccess:
+  - id: music
+    name: Music
+    note: Your music library, read-only at /music (used to skip tracks you already own).
+    mounts:
+      - service: server
+        targetPath: /music
+        readOnly: true
+permissions:
+  - STORAGE_DOWNLOADS
+releaseNotes: >-
+  First release in the Music Stack store, packaging Explo 1.2.0.
+
+
+  Full release notes: https://github.com/LumePart/Explo/releases/tag/v1.2.0
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-music-app-store

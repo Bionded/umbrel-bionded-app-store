@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# Create the shared library and this app's download folder as 1000:1000 so
+# Docker never creates them root-owned. Existing folders are left untouched.
+HOME_DIR="${UMBREL_ROOT}/home"
+[[ -d "${HOME_DIR}" ]] || HOME_DIR="${UMBREL_ROOT}/data/storage"
+DOWNLOADS="${HOME_DIR}/Downloads"
+[[ -d "${DOWNLOADS}" ]] || DOWNLOADS="${UMBREL_ROOT}/data/storage/downloads"
+
+for dir in "${HOME_DIR}/Music" "${DOWNLOADS}/music" "${DOWNLOADS}/music/lidarr"; do
+	if [[ ! -d "${dir}" ]]; then
+		mkdir -p "${dir}"
+		chown 1000:1000 "${dir}"
+	fi
+done

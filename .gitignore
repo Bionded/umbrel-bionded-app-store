@@ -1,1 +1,10 @@
 .DS_Store
+__pycache__/
+*.pyc
+
+# Claude Code working files
+.claude/
+CLAUDE.md
+PLAN.md
+WORKLOG.md
+TEST_REPORT.md

@@ -1,0 +1,93 @@
+manifestVersion: 1.1
+id: bionded-soulsync
+storage:
+  dataRoot: data
+category: media
+name: SoulSync
+tagline: Mirror your Spotify, Tidal and Deezer playlists into your own library
+version: "3.5.4"
+port: 8018
+description: >-
+  SoulSync keeps your streaming playlists in sync with your own music library.
+  It reads playlists, liked songs and followed artists from Spotify, Tidal,
+  Deezer, YouTube and others, finds missing tracks on Soulseek (through slskd)
+  or other sources, downloads them in the quality you choose, tags them, and
+  files them as organised music. A watchlist grabs new releases from artists
+  you follow.
+
+
+  🎵 WHERE IT FITS IN THE MUSIC STACK
+
+  SoulSync handles playlist mirroring. It downloads through slskd and reads
+  slskd's finished files from Home → Downloads → music → slskd → complete
+  (/app/downloads inside SoulSync). Finished, tagged music goes to Home →
+  Downloads → music → soulsync (/app/Transfer); album and artist requests are
+  left to Lidarr. Your library (Home → Music) is also available at /music.
+
+
+  🛠️ FIRST-RUN SETUP
+
+  1. Open the app and follow the setup wizard.
+
+  2. Settings → Connections → Soulseek: URL http://bionded-slskd_server_1:5030,
+  API key = the password umbrelOS shows for slskd. Leave Downloads at
+  /app/downloads and Transfer at /app/Transfer.
+
+  3. Optional media server: Navidrome at http://navidrome_server_1:4533 with your
+  Navidrome user and password, so SoulSync skips tracks you already have.
+
+
+  🔐 SPOTIFY / TIDAL LOGIN (one-time manual step)
+
+  Spotify only accepts HTTPS or 127.0.0.1 redirect addresses, and Umbrel serves
+  apps over plain HTTP, so this app uses SoulSync's documented loopback flow:
+
+  1. Create an app at developer.spotify.com/dashboard and add the redirect URI
+  http://127.0.0.1:8888/callback (Tidal: http://127.0.0.1:8889/tidal/callback).
+
+  2. Paste the Client ID and Secret in Settings → Connections → Spotify and keep
+  the same redirect URI there.
+
+  3. Click Connect and approve. Your browser then shows a "can't connect"
+  page at http://127.0.0.1:8888/callback?code=… — in the address bar replace
+  127.0.0.1:8888 with umbrel.local:8018 (Tidal: 127.0.0.1:8889 →
+  umbrel.local:8018) and press Enter. SoulSync finishes the login and keeps the
+  token, so you only do this once.
+
+  Spotify is optional: without it SoulSync uses public Spotify data, Deezer and
+  Apple Music.
+
+
+  Requires the slskd app from this store. Works on amd64 and arm64.
+developer: Nezreka
+website: https://github.com/Nezreka/SoulSync
+dependencies:
+  - bionded-slskd
+repo: https://github.com/Nezreka/SoulSync
+support: https://github.com/Nezreka/SoulSync/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/gallery-4.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/gallery-5.jpg
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+folderAccess:
+  - id: music
+    name: Music
+    note: Your music library. Available inside SoulSync at /music.
+    mounts:
+      - service: server
+        targetPath: /music
+permissions:
+  - STORAGE_DOWNLOADS
+releaseNotes: >-
+  First release in the Music Stack store, packaging SoulSync 3.5.4.
+
+
+  Full release notes: https://github.com/Nezreka/SoulSync/releases/tag/3.5.4
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-music-app-store

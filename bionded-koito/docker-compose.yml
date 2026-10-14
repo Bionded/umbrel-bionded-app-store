@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: bionded-koito_server_1
+      APP_PORT: 4110
+      PROXY_AUTH_WHITELIST: "/apis/listenbrainz/*"
+
+  server:
+    image: gabehf/koito:v0.3.2@sha256:3011de405ba2a5c56270928c2b0391add8aa3b3ed68363531b3c64b61f238857
+    user: "1000:1000"
+    environment:
+      - TZ=Etc/UTC
+      - KOITO_DEFAULT_USERNAME=admin
+      - KOITO_DEFAULT_PASSWORD=${APP_PASSWORD}
+      - KOITO_CONFIG_DIR=/etc/koito
+    volumes:
+      - ${APP_DATA_DIR}/data/koito:/etc/koito
+    restart: on-failure

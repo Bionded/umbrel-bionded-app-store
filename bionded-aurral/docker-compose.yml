@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: bionded-aurral_server_1
+      APP_PORT: 3001
+      PROXY_AUTH_WHITELIST: "/rest/*"
+
+  server:
+    image: ghcr.io/lklynet/aurral:2.10.0@sha256:e15f05e525a7c9d4a97e36ff18b6a37904dda6c803e46f0fd87900a7021febae
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - DOWNLOAD_FOLDER=/downloads/music/aurral
+      - FILE_BROWSE_ROOTS=/music,/downloads,/config
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/config
+      - ${UMBREL_ROOT}/data/storage/Music:/music
+      - ${UMBREL_ROOT}/data/storage/downloads:/downloads
+    restart: on-failure

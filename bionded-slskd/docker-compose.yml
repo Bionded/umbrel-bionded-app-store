@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: bionded-slskd_server_1
+      APP_PORT: 5030
+
+  server:
+    image: slskd/slskd:0.26.1@sha256:588af49abc3088d639c8f1174d3bfad6e92c093a275a593140e3ac9311ebf6c4
+    init: true
+    user: "1000:1000"
+    environment:
+      - TZ=Etc/UTC
+      - SLSKD_REMOTE_CONFIGURATION=true
+      - SLSKD_HTTP_IP_ADDRESS=0.0.0.0
+      - SLSKD_USERNAME=slskd
+      - SLSKD_PASSWORD=${APP_PASSWORD}
+      - SLSKD_API_KEY=${APP_PASSWORD}
+      - SLSKD_SLSK_LISTEN_PORT=50310
+      - SLSKD_DOWNLOADS_DIR=/downloads/music/slskd/complete
+      - SLSKD_INCOMPLETE_DIR=/downloads/music/slskd/incomplete
+      - SLSKD_SHARED_DIR=/music
+    ports:
+      - "50310:50310/tcp"
+    volumes:
+      - ${APP_DATA_DIR}/data/app:/app
+      - ${UMBREL_ROOT}/data/storage/Music:/music:ro
+      - ${UMBREL_ROOT}/data/storage/downloads:/downloads
+    restart: on-failure

@@ -1,0 +1,86 @@
+manifestVersion: 1
+id: bionded-audiomuse-ai
+storage:
+  dataRoot: data
+category: media
+name: AudioMuse-AI
+tagline: Sonic analysis and smart playlists for your Navidrome library
+version: "3.6.3"
+port: 8044
+description: >-
+  AudioMuse-AI listens to your music. It analyses every track's sound (tempo,
+  key, energy, mood, timbre) with local AI models, without relying on metadata or
+  external APIs, then builds playlists that actually flow. Features include
+  clustering into mood playlists, Similar Song, song paths from track A to track
+  B, sonic "alchemy", a 2D music map, and text search ("calm piano at night").
+  An optional LLM (Ollama, OpenAI-compatible, Gemini…) names playlists and
+  powers a music chat.
+
+
+  🎵 WHERE IT FITS IN THE MUSIC STACK
+
+  AudioMuse-AI reads your library through Navidrome's Subsonic API: it needs no
+  access to your files and never changes them. Playlists it creates appear in
+  Navidrome. With the AudioMuse-AI Navidrome plugin, Navidrome's Instant Mix and
+  artist radio use AudioMuse's sonic similarity.
+
+
+  🛠️ FIRST-RUN SETUP
+
+  1. Open the app. The Setup Wizard starts: choose Navidrome, URL
+  http://navidrome_server_1:4533, and your Navidrome username and password.
+
+  2. In the authentication step, set the AudioMuse username and password (you
+  can use the password umbrelOS shows for this app) and an API token (needed by
+  the Navidrome plugin).
+
+  3. Run a first analysis from the main page and let it finish before using the
+  other features (this takes hours on a large library).
+
+
+  🔌 NAVIDROME PLUGIN
+
+  Download audiomuseai.ndp from
+  github.com/NeptuneHub/AudioMuse-AI-NV-plugin/releases into Navidrome's
+  /data/plugins folder and set these environment variables on Navidrome:
+  ND_PLUGINS_ENABLED=true, ND_PLUGINS_AUTORELOAD=true,
+  ND_AGENTS=audiomuseai,lastfm,deezer. In the plugin settings use
+  http://bionded-audiomuse-ai_flask_1:8000 and your API token. Keep Navidrome,
+  AudioMuse-AI and the plugin on their latest versions together; mismatches are
+  the most common cause of errors.
+
+
+  ⚠️ HARDWARE
+
+  On amd64 (Intel/AMD) the CPU must support AVX2 (most CPUs since 2015; check
+  for "avx2" in /proc/cpuinfo). arm64 (Raspberry Pi 5 and similar) is supported
+  natively. Upstream recommends 4 cores and 8 GB of RAM. Analysis is
+  CPU-heavy and can take hours on large libraries.
+
+
+  Requires Navidrome. Works on amd64 (AVX2) and arm64.
+developer: NeptuneHub
+website: https://neptunehub.github.io/AudioMuse-AI/
+dependencies:
+  - navidrome
+repo: https://github.com/NeptuneHub/AudioMuse-AI
+support: https://github.com/NeptuneHub/AudioMuse-AI/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/gallery-4.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/gallery-5.jpg
+path: ""
+defaultUsername: ""
+deterministicPassword: true
+releaseNotes: >-
+  First release in the Music Stack store, packaging AudioMuse-AI 3.6.3 (web,
+  worker and PostgreSQL 15; the task queue runs in PostgreSQL, so there is no
+  Redis).
+
+
+  Full release notes: https://github.com/NeptuneHub/AudioMuse-AI/releases/tag/v3.6.3
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-music-app-store

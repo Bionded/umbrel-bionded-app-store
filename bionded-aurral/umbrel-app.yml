@@ -1,0 +1,84 @@
+manifestVersion: 1.1
+id: bionded-aurral
+storage:
+  dataRoot: data
+category: media
+name: Aurral
+tagline: Music discovery and requests that feed Lidarr and slskd
+version: "2.10.0"
+port: 3041
+description: >-
+  Aurral is a self-hosted music discovery app. It recommends artists and albums
+  from your listening history, builds rotating discovery "flows" and playlists,
+  and lets you request music with one click. It has its own player and
+  Subsonic server, multiple user profiles, and scrobbling to Last.fm,
+  ListenBrainz and Koito.
+
+
+  🎵 WHERE IT FITS IN THE MUSIC STACK
+
+  Aurral is the front door for requests and discovery. With Lidarr Nightly
+  connected, Download album and Monitor artist go to Lidarr, which imports into
+  your library (Home → Music, /music). Aurral sees that library at the same
+  /music path, reuses Lidarr's files instead of downloading copies, and never
+  writes into it. Tracks Aurral fetches itself (flows, playlists, through
+  slskd or its built-in yt-dlp) go to Home → Downloads → music → aurral
+  (/downloads/music/aurral).
+
+
+  🛠️ FIRST-RUN SETUP
+
+  1. Open the app and create your admin account.
+
+  2. Settings → Connect → Lidarr: URL http://bionded-lidarr-nightly_server_1:8686,
+  Lidarr's API key (Lidarr → Settings → General), root folder /music.
+
+  3. Settings → Download clients → slskd: URL http://bionded-slskd_server_1:5030,
+  API key = the password umbrelOS shows for slskd.
+
+  4. Settings → Download clients → Downloads Folder is preset to
+  /downloads/music/aurral. Run Settings → Storage health → Run checks.
+
+  5. Optional: Navidrome at http://navidrome_server_1:4533 to publish playlists
+  (Navidrome must be able to see the folders above), Last.fm API key
+  (last.fm/api/account/create) for similar artists and tags, ListenBrainz user
+  token, or Koito at http://bionded-koito_server_1:4110.
+
+
+  Subsonic clients (Feishin, Symfonium…) can connect directly to
+  http://umbrel.local:3041 with an Aurral account.
+
+
+  Recommended apps: Lidarr Nightly and slskd from this store. Works on amd64 and
+  arm64.
+developer: lklynet
+website: https://docs.aurral.org/
+dependencies: []
+repo: https://github.com/lklynet/aurral
+support: https://github.com/lklynet/aurral/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-aurral/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-aurral/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-aurral/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-aurral/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-aurral/gallery-4.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-aurral/gallery-5.jpg
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+folderAccess:
+  - id: music
+    name: Music
+    note: Your music library (the same folder Lidarr manages). Available inside Aurral at /music.
+    mounts:
+      - service: server
+        targetPath: /music
+permissions:
+  - STORAGE_DOWNLOADS
+releaseNotes: >-
+  First release in the Music Stack store, packaging Aurral 2.10.0.
+
+
+  Full release notes: https://github.com/lklynet/aurral/releases/tag/v2.10.0
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-music-app-store
