@@ -5,7 +5,7 @@ storage:
 category: media
 name: Explo
 tagline: Weekly ListenBrainz discovery playlists, downloaded into your library
-version: "1.2.0"
+version: "1.2.0-patch.1"
 port: 7288
 description: >-
   Explo brings Spotify-style "Discover Weekly" to your own server. Every week it
@@ -60,6 +60,18 @@ path: ""
 defaultUsername: "explo"
 deterministicPassword: true
 folderAccess:
+  - id: explo-downloads
+    name: Explo downloads
+    note: Where Explo saves weekly discovery tracks (/data). Point Navidrome at this folder too.
+    mounts:
+      - service: server
+        targetPath: /data
+  - id: slskd-downloads
+    name: slskd downloads
+    note: slskd's finished downloads (/slskd), used only when slskd is one of Explo's download services.
+    mounts:
+      - service: server
+        targetPath: /slskd
   - id: music
     name: Music
     note: Your music library, read-only at /music (used to skip tracks you already own).
@@ -70,6 +82,9 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
+  Folder settings now have clear names (Explo downloads, slskd downloads).
+
+
   First release in the Music Stack store, packaging Explo 1.2.0.
 
 
