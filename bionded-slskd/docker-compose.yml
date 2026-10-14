@@ -17,11 +17,9 @@ services:
       - SLSKD_SLSK_LISTEN_PORT=50310
       - SLSKD_DOWNLOADS_DIR=/downloads/slskd/complete
       - SLSKD_INCOMPLETE_DIR=/downloads/slskd/incomplete
-      - SLSKD_SHARED_DIR=/music
     ports:
       - "50310:50310/tcp"
     volumes:
       - ${APP_DATA_DIR}/data/app:/app
-      - ${UMBREL_ROOT}/data/storage/Music:/music:ro
       - ${UMBREL_ROOT}/data/storage/downloads:/downloads
     restart: on-failure
