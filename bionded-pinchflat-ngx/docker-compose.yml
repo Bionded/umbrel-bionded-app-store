@@ -1,0 +1,24 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: bionded-pinchflat-ngx_server_1
+      APP_PORT: 8945
+
+  server:
+    image: ghcr.io/thebadfella/pinchflat-ngx:2026.9.28@sha256:b5e3b8098cf8a4478ea4e00e062d0657c68b4fd21efa8e63ae5b5c18ef472a23
+    user: "1000:1000"
+    environment:
+      - TZ=Etc/UTC
+      - SECRET_KEY_BASE=${APP_SEED}
+      - POT_PROVIDER_URL=http://bionded-pinchflat-ngx_pot_1:4416
+      - LOG_LEVEL=info
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/config
+      - ${UMBREL_ROOT}/data/storage/downloads/pinchflat:/downloads
+    restart: on-failure
+
+  pot:
+    image: brainicism/bgutil-ytdlp-pot-provider:2.0.0@sha256:ed86b6fdd5e430ddd7c8ce1adb55e1ab54db7c7dbc1bcbf3a82454a85b971164
+    restart: on-failure

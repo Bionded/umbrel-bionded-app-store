@@ -35,7 +35,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from registry import Registry  # noqa: E402
 
 ROOT = Path(__file__).resolve().parent.parent
-RAW_BASE = "https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master"
+RAW_BASE = "https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master"
 REQUIRED = ["manifestVersion", "id", "name", "tagline", "category", "version", "port",
             "description", "website", "support", "gallery"]
 NOTE_MAX = 300

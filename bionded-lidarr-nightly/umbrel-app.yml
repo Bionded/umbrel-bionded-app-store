@@ -60,11 +60,11 @@ website: https://lidarr.audio/
 dependencies: []
 repo: https://github.com/Lidarr/Lidarr
 support: https://github.com/Lidarr/Lidarr/issues
-icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-lidarr-nightly/icon.png
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-lidarr-nightly/icon.png
 gallery:
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-lidarr-nightly/gallery-1.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-lidarr-nightly/gallery-2.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-lidarr-nightly/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-lidarr-nightly/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-lidarr-nightly/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-lidarr-nightly/gallery-3.jpg
 path: ""
 defaultUsername: ""
 defaultPassword: ""
@@ -87,4 +87,4 @@ releaseNotes: >-
   First release in the Music Stack store: Lidarr nightly 3.1.6.5102 with plugin
   support (Tubifarry needs 3.1.3 or newer).
 submitter: Bionded
-submission: https://github.com/Bionded/umbrel-music-app-store
+submission: https://github.com/Bionded/umbrel-bionded-app-store

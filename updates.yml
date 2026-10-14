@@ -74,3 +74,10 @@ apps:
     image_tag: "v{version}"
     services: [server]
     hold: true                          # upstream is unstable: always review before updating
+
+  bionded-pinchflat-ngx:
+    source: github_release
+    repo: TheBadFella/Pinchflat-NGX
+    image: ghcr.io/thebadfella/pinchflat-ngx
+    image_tag: "{version}"
+    services: [server]

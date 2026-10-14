@@ -52,12 +52,12 @@ website: https://docs.multi-scrobbler.app/
 dependencies: []
 repo: https://github.com/FoxxMD/multi-scrobbler
 support: https://github.com/FoxxMD/multi-scrobbler/issues
-icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-multi-scrobbler/icon.png
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-multi-scrobbler/icon.png
 gallery:
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-multi-scrobbler/gallery-1.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-multi-scrobbler/gallery-2.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-multi-scrobbler/gallery-3.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-multi-scrobbler/gallery-4.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-multi-scrobbler/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-multi-scrobbler/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-multi-scrobbler/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-multi-scrobbler/gallery-4.jpg
 path: ""
 defaultUsername: ""
 defaultPassword: ""
@@ -116,4 +116,4 @@ releaseNotes: >-
 
   Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.19.2
 submitter: Bionded
-submission: https://github.com/Bionded/umbrel-music-app-store
+submission: https://github.com/Bionded/umbrel-bionded-app-store

@@ -1,0 +1,75 @@
+manifestVersion: 1.1
+id: bionded-pinchflat-ngx
+storage:
+  dataRoot: data
+category: media
+name: Pinchflat-NGX
+tagline: YouTube media manager that downloads channels and playlists automatically
+version: "2026.9.28"
+port: 8946
+description: >-
+  Pinchflat-NGX is an enhanced fork of Pinchflat, a self-hosted YouTube media
+  manager. Add a channel, playlist or single video, choose a media profile
+  (quality, format, file naming, subtitles, thumbnails, NFO files), and it keeps
+  downloading new uploads in the background with yt-dlp. It can also serve
+  sources as podcast RSS feeds.
+
+
+  Compared with the original Pinchflat it adds a Material 3 AMOLED interface,
+  channel discovery suggestions, worker concurrency controls, diagnostics,
+  optional OIDC single sign-on and download staging. It runs next to the
+  official Pinchflat app without touching it (own app id, port 8946 and data).
+
+
+  📁 WHERE FILES GO
+
+  Videos are saved to Home → Downloads → pinchflat (/downloads inside the app).
+  Point Jellyfin, Plex or Kodi at that folder to watch them.
+
+
+  🛠️ FIRST-RUN SETUP
+
+  1. Open the app (it is protected by your Umbrel login).
+
+  2. Media Profiles → New: pick the quality and the output path template.
+
+  3. Sources → New Source: paste a YouTube channel, playlist or video URL.
+
+  4. If YouTube blocks downloads ("sign in to confirm you're not a bot"), the
+  bundled PO-token provider is already connected; check Config → Diagnostics.
+  You can also upload a cookies file in Settings.
+
+
+  Works on amd64 and arm64.
+developer: TheBadFella
+website: https://github.com/TheBadFella/Pinchflat-NGX
+dependencies: []
+repo: https://github.com/TheBadFella/Pinchflat-NGX
+support: https://github.com/TheBadFella/Pinchflat-NGX/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-pinchflat-ngx/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-pinchflat-ngx/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-pinchflat-ngx/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-pinchflat-ngx/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-pinchflat-ngx/gallery-4.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-pinchflat-ngx/gallery-5.jpg
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+folderAccess:
+  - id: pinchflat-downloads
+    name: Pinchflat downloads
+    note: Where Pinchflat-NGX saves videos (/downloads inside the app).
+    mounts:
+      - service: server
+        targetPath: /downloads
+permissions:
+  - STORAGE_DOWNLOADS
+releaseNotes: >-
+  First release in this store, packaging Pinchflat-NGX 2026.9.28 (SQLite) with
+  the bgutil PO-token provider for yt-dlp.
+
+
+  Full release notes: https://github.com/TheBadFella/Pinchflat-NGX/releases/tag/2026.9.28
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-bionded-app-store

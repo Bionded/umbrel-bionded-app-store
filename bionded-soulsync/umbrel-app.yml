@@ -65,13 +65,13 @@ website: https://github.com/Nezreka/SoulSync
 dependencies: []
 repo: https://github.com/Nezreka/SoulSync
 support: https://github.com/Nezreka/SoulSync/issues
-icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/icon.png
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-soulsync/icon.png
 gallery:
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/gallery-1.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/gallery-2.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/gallery-3.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/gallery-4.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/gallery-5.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-soulsync/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-soulsync/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-soulsync/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-soulsync/gallery-4.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-soulsync/gallery-5.jpg
 path: ""
 defaultUsername: ""
 defaultPassword: ""
@@ -105,4 +105,4 @@ releaseNotes: >-
 
   Full release notes: https://github.com/Nezreka/SoulSync/releases/tag/3.5.4
 submitter: Bionded
-submission: https://github.com/Bionded/umbrel-music-app-store
+submission: https://github.com/Bionded/umbrel-bionded-app-store

@@ -5,7 +5,7 @@ storage:
 category: media
 name: slskd
 tagline: Soulseek client with a web UI and API for your music apps
-version: "0.26.1-patch.1"
+version: "0.26.1-patch.2"
 port: 5032
 description: >-
   slskd is a modern client for the Soulseek peer-to-peer network, with a web
@@ -16,9 +16,10 @@ description: >-
   ⚠️ CONFIGURE SHARING OR YOU WILL BE BANNED
 
   Soulseek is a sharing community. Many users ban or refuse to upload to people
-  who share nothing. By default this app shares your music library (Home →
-  Music, read-only). Keep at least that shared, check Options → Shares in the
-  web UI after the first scan, and leave upload slots enabled.
+  who share nothing, and this app shares nothing until you set it up. Add a
+  folder in Options → shares (only Home → Downloads is available inside slskd,
+  at /downloads, e.g. /downloads/slskd/complete) or set SLSKD_SHARED_DIR in the
+  app's settings, and leave upload slots enabled.
 
 
   🎵 WHERE IT FITS IN THE MUSIC STACK
@@ -58,22 +59,14 @@ website: https://github.com/slskd/slskd
 dependencies: []
 repo: https://github.com/slskd/slskd
 support: https://github.com/slskd/slskd/issues
-icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-slskd/icon.png
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-slskd/icon.png
 gallery:
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-slskd/gallery-1.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-slskd/gallery-2.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-slskd/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-slskd/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-slskd/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-slskd/gallery-3.jpg
 path: ""
 defaultUsername: "slskd"
 defaultPassword: "slskd"
-folderAccess:
-  - id: music
-    name: Music
-    note: Your music library, shared read-only with the Soulseek network at /music.
-    mounts:
-      - service: server
-        targetPath: /music
-        readOnly: true
 environment:
   - name: SLSKD_SLSK_USERNAME
     services:
@@ -86,11 +79,14 @@ environment:
   - name: SLSKD_SHARED_DIR
     services:
       - server
-    default: /music
-    note: Folders shared with the network, semicolon-separated, as seen inside the container. Share something or other users may ban you.
+    default: /downloads/slskd/complete
+    note: Folders shared with the network, semicolon-separated, as seen inside the container (Downloads is at /downloads). Share something or other users may ban you.
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
+  The music library is no longer mounted or shared by default: choose what to share in Options → shares or with SLSKD_SHARED_DIR.
+
+
   Downloads now go to Home → Downloads → slskd. The web login is slskd's default (slskd / slskd, change it in Options), and other apps use an API key you add in slskd's options.
 
 
@@ -102,4 +98,4 @@ releaseNotes: >-
 
   Full release notes: https://github.com/slskd/slskd/releases/tag/0.26.1
 submitter: Bionded
-submission: https://github.com/Bionded/umbrel-music-app-store
+submission: https://github.com/Bionded/umbrel-bionded-app-store

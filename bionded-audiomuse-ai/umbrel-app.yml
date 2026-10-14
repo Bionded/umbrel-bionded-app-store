@@ -64,13 +64,13 @@ website: https://neptunehub.github.io/AudioMuse-AI/
 dependencies: []
 repo: https://github.com/NeptuneHub/AudioMuse-AI
 support: https://github.com/NeptuneHub/AudioMuse-AI/issues
-icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/icon.png
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-audiomuse-ai/icon.png
 gallery:
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/gallery-1.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/gallery-2.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/gallery-3.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/gallery-4.jpg
-  - https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/gallery-5.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-audiomuse-ai/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-audiomuse-ai/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-audiomuse-ai/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-audiomuse-ai/gallery-4.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-audiomuse-ai/gallery-5.jpg
 path: ""
 defaultUsername: ""
 deterministicPassword: true
@@ -85,4 +85,4 @@ releaseNotes: >-
 
   Full release notes: https://github.com/NeptuneHub/AudioMuse-AI/releases/tag/v3.6.3
 submitter: Bionded
-submission: https://github.com/Bionded/umbrel-music-app-store
+submission: https://github.com/Bionded/umbrel-bionded-app-store

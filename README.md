@@ -5,20 +5,21 @@ downloads, discovery, playlist mirroring, sonic analysis and listening stats. Ev
 **linux/amd64 and linux/arm64**.
 
 **Add the store:** umbrelOS → App Store → ⋯ (top right) → Community App Stores → paste
-`https://github.com/Bionded/umbrel-music-app-store` → Add.
+`https://github.com/Bionded/umbrel-bionded-app-store` → Add.
 
 ## Apps
 
 | App | Id | Port | What it does |
 |---|---|---|---|
 | Lidarr Nightly | `bionded-lidarr-nightly` | 8687 | Library manager (nightly build with the plugin system, e.g. Tubifarry). Coexists with the official Lidarr. |
-| slskd | `bionded-slskd` | 5032 + **50310/tcp** | Soulseek client and API used by the other apps. Coexists with other slskd apps. |
+| slskd | `bionded-slskd` | 5032 + **50310/tcp** | Soulseek client and API used by the other apps. Shares nothing until you set it up. Coexists with other slskd apps. |
 | Aurral | `bionded-aurral` | 3041 | Artist/album requests and discovery. Sends requests to Lidarr; can download through slskd. |
 | SoulSync | `bionded-soulsync` | 8018 | Mirrors Spotify/Tidal/Deezer playlists through slskd. |
 | AudioMuse-AI | `bionded-audiomuse-ai` | 8044 | Sonic analysis and smart playlists for Navidrome (needs AVX2 on amd64). |
 | Explo | `bionded-explo` | 7288 | Weekly ListenBrainz discovery playlists. |
 | Multi-Scrobbler | `bionded-multi-scrobbler` | 9078 | Routes plays from Navidrome and others to Koito, ListenBrainz and Last.fm. |
 | Koito | `bionded-koito` | 4110 | Private ListenBrainz-compatible scrobbler with stats. |
+| Pinchflat-NGX | `bionded-pinchflat-ngx` | 8946 | YouTube channel/playlist downloader (enhanced Pinchflat fork, bundled PO-token provider). Coexists with the official Pinchflat. |
 
 Navidrome is the official Umbrel app (`navidrome`) and is configured by you.
 
@@ -36,13 +37,14 @@ Every app sees the same two folders at the same container paths:
 
 | Umbrel Files | Container path | Who writes |
 |---|---|---|
-| **Home → Music** | **`/music`** | **Lidarr Nightly only** (its root folder). Others read it: Aurral (same path as Lidarr), slskd (shared read-only), SoulSync, Explo. |
+| **Home → Music** | **`/music`** | **Lidarr Nightly only** (its root folder). Others read it: Aurral (same path as Lidarr), SoulSync, Explo. |
 | **Home → Downloads** | **`/downloads`** | Every downloader can read all downloads, but each writes only to its own folder: |
 | ↳ `Downloads/slskd/complete`, `…/incomplete` | `/downloads/slskd/…` | slskd. Lidarr (Tubifarry), Aurral, SoulSync and Explo each move **only the transfers they started**. |
 | ↳ `Downloads/lidarr` | `/downloads/lidarr` | Lidarr's non-Soulseek Tubifarry downloads (YouTube, Deezer…) before import |
 | ↳ `Downloads/aurral` | `/downloads/aurral` | Aurral (flows, playlists, its own albums) |
 | ↳ `Downloads/soulsync` | `/app/Transfer` in SoulSync | SoulSync (mirrored playlists) |
 | ↳ `Downloads/explo` | `/data` in Explo | Explo (weekly playlists, rotated) |
+| ↳ `Downloads/pinchflat` | `/downloads` in Pinchflat-NGX | Pinchflat-NGX (YouTube videos; it only sees this folder) |
 
 Rules that keep apps from fighting:
 
