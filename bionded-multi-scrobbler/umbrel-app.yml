@@ -15,7 +15,7 @@ description: >-
   metadata, and shows everything on a live dashboard.
 
 
-  🎵 WHERE IT FITS IN THE MUSIC STACK
+  🎵 HOW IT WORKS WITH THE OTHER MUSIC APPS
 
   Multi-Scrobbler is the listening-history router. It reads your plays from
   Navidrome and sends them to Koito (your private stats) and, if you like,
@@ -111,7 +111,7 @@ environment:
       - server
     note: Optional ListenBrainz username.
 releaseNotes: >-
-  First release in the Music Stack store, packaging Multi-Scrobbler 0.19.2.
+  First release in the Bionded Community store, packaging Multi-Scrobbler 0.19.2.
 
 
   Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.19.2

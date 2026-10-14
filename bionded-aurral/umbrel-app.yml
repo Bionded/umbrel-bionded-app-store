@@ -15,7 +15,7 @@ description: >-
   ListenBrainz and Koito.
 
 
-  🎵 WHERE IT FITS IN THE MUSIC STACK
+  🎵 HOW IT WORKS WITH THE OTHER MUSIC APPS
 
   Aurral is the front door for requests and discovery. With Lidarr Nightly
   connected, Download album and Monitor artist go to Lidarr, which imports into
@@ -79,7 +79,7 @@ releaseNotes: >-
   Aurral's Downloads Folder is now Home → Downloads → aurral (/downloads/aurral).
 
 
-  First release in the Music Stack store, packaging Aurral 2.10.0.
+  First release in the Bionded Community store, packaging Aurral 2.10.0.
 
 
   Full release notes: https://github.com/lklynet/aurral/releases/tag/v2.10.0

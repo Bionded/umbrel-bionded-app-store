@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Validate the Music Stack community store.
+"""Validate the Bionded Community app store.
 
 Checks every app folder against the umbrelOS manifest schema and this store's
 conventions:
