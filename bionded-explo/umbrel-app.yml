@@ -5,7 +5,7 @@ storage:
 category: media
 name: Explo
 tagline: Weekly ListenBrainz discovery playlists, downloaded into your library
-version: "1.2.0-patch.1"
+version: "1.2.0-patch.2"
 port: 7288
 description: >-
   Explo brings Spotify-style "Discover Weekly" to your own server. Every week it
@@ -45,11 +45,10 @@ description: >-
   over.
 
 
-  Requires Navidrome. Works on amd64 and arm64.
+  Installs on its own; connect Navidrome (or another Subsonic server) for playlists. Works on amd64 and arm64.
 developer: LumePart
 website: https://github.com/LumePart/Explo
-dependencies:
-  - navidrome
+dependencies: []
 repo: https://github.com/LumePart/Explo
 support: https://github.com/LumePart/Explo/issues
 icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-explo/icon.png
@@ -82,6 +81,9 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
+  No required apps any more: install it on its own and connect other apps in its settings.
+
+
   Folder settings now have clear names (Explo downloads, slskd downloads).
 
 

@@ -5,7 +5,7 @@ storage:
 category: media
 name: AudioMuse-AI
 tagline: Sonic analysis and smart playlists for your Navidrome library
-version: "3.6.3"
+version: "3.6.3-patch.1"
 port: 8044
 description: >-
   AudioMuse-AI listens to your music. It analyses every track's sound (tempo,
@@ -58,11 +58,10 @@ description: >-
   CPU-heavy and can take hours on large libraries.
 
 
-  Requires Navidrome. Works on amd64 (AVX2) and arm64.
+  Installs on its own; connect Navidrome (or Jellyfin, Plex, Emby, LMS, Lyrion) in the Setup Wizard. Works on amd64 (AVX2) and arm64.
 developer: NeptuneHub
 website: https://neptunehub.github.io/AudioMuse-AI/
-dependencies:
-  - navidrome
+dependencies: []
 repo: https://github.com/NeptuneHub/AudioMuse-AI
 support: https://github.com/NeptuneHub/AudioMuse-AI/issues
 icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-audiomuse-ai/icon.png
@@ -76,6 +75,9 @@ path: ""
 defaultUsername: ""
 deterministicPassword: true
 releaseNotes: >-
+  No required apps any more: install it on its own and connect other apps in its settings.
+
+
   First release in the Music Stack store, packaging AudioMuse-AI 3.6.3 (web,
   worker and PostgreSQL 15; the task queue runs in PostgreSQL, so there is no
   Redis).

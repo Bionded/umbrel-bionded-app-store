@@ -5,7 +5,7 @@ storage:
 category: media
 name: SoulSync
 tagline: Mirror your Spotify, Tidal and Deezer playlists into your own library
-version: "3.5.4-patch.1"
+version: "3.5.4-patch.2"
 port: 8018
 description: >-
   SoulSync keeps your streaming playlists in sync with your own music library.
@@ -58,11 +58,10 @@ description: >-
   Apple Music.
 
 
-  Requires the slskd app from this store. Works on amd64 and arm64.
+  Installs on its own; connect slskd (this store) for Soulseek downloads. Works on amd64 and arm64.
 developer: Nezreka
 website: https://github.com/Nezreka/SoulSync
-dependencies:
-  - bionded-slskd
+dependencies: []
 repo: https://github.com/Nezreka/SoulSync
 support: https://github.com/Nezreka/SoulSync/issues
 icon: https://raw.githubusercontent.com/Bionded/umbrel-music-app-store/master/bionded-soulsync/icon.png
@@ -97,6 +96,9 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
+  No required apps any more: install it on its own and connect other apps in its settings.
+
+
   Folder settings now have clear names (slskd downloads, SoulSync output).
 
 
