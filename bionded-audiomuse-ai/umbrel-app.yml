@@ -5,7 +5,7 @@ storage:
 category: media
 name: AudioMuse-AI
 tagline: Sonic analysis and smart playlists for your Navidrome library
-version: "3.6.3-patch.1"
+version: "3.6.3-patch.2"
 port: 8044
 description: >-
   AudioMuse-AI listens to your music. It analyses every track's sound (tempo,
@@ -50,6 +50,19 @@ description: >-
   the most common cause of errors.
 
 
+  🖥️ EXTRA WORKERS ON OTHER COMPUTERS
+
+  Analysis can be spread over more machines (for example a desktop with an
+  NVIDIA GPU). Run the AudioMuse-AI image with the same version
+  (3.6.3, or 3.6.3-nvidia for a GPU) and SERVICE_TYPE=worker, pointed at
+  this Umbrel: POSTGRES_HOST=umbrel.local (or its IP), POSTGRES_PORT=54320,
+  POSTGRES_USER=audiomuse, POSTGRES_DB=audiomusedb and POSTGRES_PASSWORD set
+  to the password umbrelOS shows for this app. The worker gets the Navidrome
+  address from AudioMuse's settings, so if you used
+  http://navidrome_server_1:4533, give the worker the extra host
+  navidrome_server_1 pointing at the Umbrel's IP.
+
+
   ⚠️ HARDWARE
 
   On amd64 (Intel/AMD) the CPU must support AVX2 (most CPUs since 2015; check
@@ -75,6 +88,11 @@ path: ""
 defaultUsername: ""
 deterministicPassword: true
 releaseNotes: >-
+  Workers on other computers can now join: the database is reachable on port 54320
+  with the password umbrelOS shows for this app (see "Extra workers" in the description).
+  Existing installs keep their old hidden database password: reinstall the app to use workers.
+
+
   No required apps any more: install it on its own and connect other apps in its settings.
 
 

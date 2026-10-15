@@ -12,9 +12,12 @@ services:
     environment:
       TZ: Etc/UTC
       POSTGRES_USER: audiomuse
-      POSTGRES_PASSWORD: ${APP_SEED}
+      POSTGRES_PASSWORD: ${APP_PASSWORD}
       POSTGRES_DB: audiomusedb
       PGDATA: /var/lib/postgresql/data/pgdata
+    # Published so AudioMuse-AI workers on other computers can join (see the app description)
+    ports:
+      - "54320:5432"
     volumes:
       - ${APP_DATA_DIR}/data/db:/var/lib/postgresql/data
     healthcheck:
@@ -30,7 +33,7 @@ services:
       SERVICE_TYPE: flask
       TZ: Etc/UTC
       POSTGRES_USER: audiomuse
-      POSTGRES_PASSWORD: ${APP_SEED}
+      POSTGRES_PASSWORD: ${APP_PASSWORD}
       POSTGRES_DB: audiomusedb
       POSTGRES_HOST: bionded-audiomuse-ai_db_1
       POSTGRES_PORT: "5432"
@@ -49,7 +52,7 @@ services:
       SERVICE_TYPE: worker
       TZ: Etc/UTC
       POSTGRES_USER: audiomuse
-      POSTGRES_PASSWORD: ${APP_SEED}
+      POSTGRES_PASSWORD: ${APP_PASSWORD}
       POSTGRES_DB: audiomusedb
       POSTGRES_HOST: bionded-audiomuse-ai_db_1
       POSTGRES_PORT: "5432"
