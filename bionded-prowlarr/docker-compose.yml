@@ -1,0 +1,25 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: bionded-prowlarr_server_1
+      APP_PORT: 9696
+      PROXY_AUTH_WHITELIST: "/api/*"
+
+  server:
+    image: linuxserver/prowlarr:version-2.6.5.5623@sha256:f9151e5bc1025c6d0a630d503210cdcb6bb55a7cc098562609d96a408d838902
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/config
+      - ${UMBREL_ROOT}/data/storage/downloads:/downloads
+    restart: on-failure
+
+  indexer_proxy:
+    image: flaresolverr/flaresolverr:v3.5.2@sha256:c80ae007ce2ccdcd217a12426e4f039ef763ff90738c808d38810c3e59323767
+    environment:
+      - TZ=Etc/UTC
+    restart: on-failure

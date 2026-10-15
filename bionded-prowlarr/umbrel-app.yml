@@ -1,0 +1,68 @@
+manifestVersion: 1
+id: bionded-prowlarr
+storage:
+  dataRoot: data
+category: media
+name: Prowlarr
+tagline: Indexer manager for Lidarr, Sonarr, Radarr and friends
+version: "2.6.5.5623"
+port: 9697
+description: >-
+  Prowlarr is an indexer manager and proxy for the *arr apps. Add your torrent
+  trackers and Usenet indexers once in Prowlarr and it keeps them in sync with
+  Lidarr, Sonarr, Radarr, Readarr, Mylar3 and others. No per-app indexer setup.
+
+
+  This is the same packaging as Prowlarr in the official Umbrel App Store
+  (linuxserver image, bundled FlareSolverr), but with no required apps and no
+  automatic wiring: install it on its own and connect what you use. It has its
+  own app id, port (9697) and data, so it can run next to the official
+  Prowlarr.
+
+
+  🛠️ SETUP INSTRUCTIONS
+
+  1. Open the app and pick a login (Settings → General → Authentication).
+
+  2. Indexers → Add Indexer: add your trackers and Usenet indexers.
+
+  3. Settings → Apps → +: connect the apps that should receive the indexers.
+  Prowlarr Server: http://bionded-prowlarr_server_1:9696. Examples:
+  Lidarr Nightly (this store) http://bionded-lidarr-nightly_server_1:8686,
+  Lidarr http://lidarr_server_1:8686, Sonarr http://sonarr_server_1:8989,
+  Radarr http://radarr_server_1:7878, Readarr http://readarr_server_1:8787,
+  each with that app's API key (Settings → General → API Key in the app).
+
+  4. FlareSolverr (for indexers behind Cloudflare) is included: Settings →
+  Indexers → + → FlareSolverr, Host http://bionded-prowlarr_indexer_proxy_1:8191,
+  Tag flaresolverr, then add the flaresolverr tag to the indexers that need it.
+
+  5. Optional download clients (Settings → Download Clients), e.g. qBittorrent
+  http://qbittorrent_server_1:8080, Transmission http://transmission_server_1:9091
+  or SABnzbd http://sabnzbd_web_1:8080.
+
+
+  Works on amd64 and arm64.
+developer: Prowlarr
+website: https://prowlarr.com/
+dependencies: []
+repo: https://github.com/Prowlarr/Prowlarr
+support: https://github.com/Prowlarr/Prowlarr/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-prowlarr/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-prowlarr/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-prowlarr/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-prowlarr/gallery-3.jpg
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+permissions:
+  - STORAGE_DOWNLOADS
+releaseNotes: >-
+  First release in the Bionded Community store: Prowlarr 2.6.5.5623 with
+  FlareSolverr 3.5.2, without required apps or automatic wiring.
+
+
+  Full release notes: https://github.com/Prowlarr/Prowlarr/releases/tag/v2.6.5.5623
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-bionded-app-store

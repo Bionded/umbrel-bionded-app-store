@@ -21,6 +21,7 @@ analysis and listening stats) and now also carries other media apps such as Pinc
 | Multi-Scrobbler | `bionded-multi-scrobbler` | 9078 | Routes plays from Navidrome and others to Koito, ListenBrainz and Last.fm. |
 | Koito | `bionded-koito` | 4110 | Private ListenBrainz-compatible scrobbler with stats. |
 | Pinchflat-NGX | `bionded-pinchflat-ngx` | 8946 | YouTube channel/playlist downloader (enhanced Pinchflat fork, bundled PO-token provider). Coexists with the official Pinchflat. |
+| Prowlarr | `bionded-prowlarr` | 9697 | Indexer manager for Lidarr/Sonarr/Radarr with bundled FlareSolverr, like the official app but with no required apps or auto-wiring. Coexists with the official Prowlarr. |
 
 Navidrome is the official Umbrel app (`navidrome`) and is configured by you.
 
@@ -70,6 +71,8 @@ Use the internal container hostnames: they work between Umbrel apps without leav
 | In app | Setting | Value |
 |---|---|---|
 | Lidarr Nightly | Root folder | `/music` |
+| Prowlarr | Settings → Apps → Lidarr | Prowlarr `http://bionded-prowlarr_server_1:9696`, Lidarr `http://bionded-lidarr-nightly_server_1:8686` + Lidarr API key² |
+| Prowlarr | FlareSolverr proxy (tag `flaresolverr`) | `http://bionded-prowlarr_indexer_proxy_1:8191` |
 | Lidarr Nightly | Download client "Slskd" (Tubifarry) | `http://bionded-slskd_server_1:5030`, slskd API key¹ (files are picked up from `/downloads/slskd/complete`) |
 | Aurral | Lidarr | `http://bionded-lidarr-nightly_server_1:8686` + Lidarr API key² |
 | Aurral | slskd | `http://bionded-slskd_server_1:5030` + slskd API key¹ |

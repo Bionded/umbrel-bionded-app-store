@@ -81,3 +81,11 @@ apps:
     image: ghcr.io/thebadfella/pinchflat-ngx
     image_tag: "{version}"
     services: [server]
+
+  bionded-prowlarr:
+    source: github_release
+    repo: Prowlarr/Prowlarr
+    release_regex: '^v?(\d+\.\d+\.\d+\.\d+)$'
+    image: linuxserver/prowlarr
+    image_tag: "version-{version}"
+    services: [server]
