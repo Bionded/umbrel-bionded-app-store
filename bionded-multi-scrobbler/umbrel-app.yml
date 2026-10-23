@@ -5,7 +5,7 @@ storage:
 category: media
 name: Multi-Scrobbler
 tagline: Collect plays from every player and scrobble them everywhere
-version: "0.19.2"
+version: "0.20.2"
 port: 9078
 description: >-
   Multi-Scrobbler watches what you play on Navidrome and other Subsonic servers,
@@ -111,9 +111,15 @@ environment:
       - server
     note: Optional ListenBrainz username.
 releaseNotes: >-
-  First release in the Bionded App Store, packaging Multi-Scrobbler 0.19.2.
+  Update to 0.20.2.
 
 
-  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.19.2
+  Highlights:
+    - > [!IMPORTANT]
+    - > This is security fix release with no other changes.
+    - This is another security fix that removes compromised eMudhra certificates from the base docker image.
+
+
+  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.20.2
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

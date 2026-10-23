@@ -5,7 +5,7 @@ storage:
 category: media
 name: Pinchflat-NGX
 tagline: YouTube media manager that downloads channels and playlists automatically
-version: "2026.9.28"
+version: "2026.10.20"
 port: 8946
 description: >-
   Pinchflat-NGX is an enhanced fork of Pinchflat, a self-hosted YouTube media
@@ -66,10 +66,16 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  First release in this store, packaging Pinchflat-NGX 2026.9.28 (SQLite) with
-  the bgutil PO-token provider for yt-dlp.
+  Update to 2026.10.20.
 
 
-  Full release notes: https://github.com/TheBadFella/Pinchflat-NGX/releases/tag/2026.9.28
+  Highlights:
+    - This release adds separate destinations for YouTube Shorts and fixes the placeholder names left by shared-video intake.
+    - This release adds two database fields. Downgrading to the previous release is not supported after upgrading.
+    - Source names used in output paths are now literal filename components. Slashes and reserved characters become underscores, and template expressions inside…
+    - Separate Shorts folders: set an optional Shorts template on a media profile or override it for a source. Blank fields keep the normal output path. Channel…
+
+
+  Full release notes: https://github.com/TheBadFella/Pinchflat-NGX/releases/tag/2026.10.20
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

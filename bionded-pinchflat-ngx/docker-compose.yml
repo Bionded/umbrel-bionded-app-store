@@ -7,7 +7,7 @@ services:
       APP_PORT: 8945
 
   server:
-    image: ghcr.io/thebadfella/pinchflat-ngx:2026.9.28@sha256:b5e3b8098cf8a4478ea4e00e062d0657c68b4fd21efa8e63ae5b5c18ef472a23
+    image: ghcr.io/thebadfella/pinchflat-ngx:2026.10.20@sha256:4d3f7450a8bcbf21ae5ddad353891381c8e62824930fb716cd7166864409eb96
     user: "1000:1000"
     environment:
       - TZ=Etc/UTC

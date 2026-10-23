@@ -5,7 +5,7 @@ storage:
 category: media
 name: SoulSync
 tagline: Mirror your Spotify, Tidal and Deezer playlists into your own library
-version: "3.5.4-patch.3"
+version: "3.5.9"
 port: 8018
 description: >-
   SoulSync keeps your streaming playlists in sync with your own music library.
@@ -91,18 +91,16 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  The whole Downloads folder is now available at /app/downloads (slskd files at /app/downloads/slskd/complete), and finished music goes to Home → Downloads → soulsync.
+  Update to 3.5.9.
 
 
-  No required apps any more: install it on its own and connect other apps in its settings.
+  Highlights:
+    - soulsync can answer as lidarr and as an mcp server now, first-run setup is rebuilt as a guided flow, the downloads page and the wishlist are rebuilt on both…
+    - lidarr compatible api. singarr and musicseerr 1.x only talk to lidarr, so point their lidarr url at http://<host>:8008/lidarr with an admin api key and they…
+    - mcp endpoint at /mcp, so an ai client can drive soulsync. 35 tools, almost all one /api/v1 call each, replayed with the caller's own key, so scopes, gates…
+    - choose what new sign-ups start with. settings > security has a new sign-ups block: the side a profile made by plex sign-in starts on (music, movies and tv,…
 
 
-  Folder settings now have clear names (slskd downloads, SoulSync output).
-
-
-  First release in the Bionded App Store, packaging SoulSync 3.5.4.
-
-
-  Full release notes: https://github.com/Nezreka/SoulSync/releases/tag/3.5.4
+  Full release notes: https://github.com/Nezreka/SoulSync/releases/tag/3.5.9
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

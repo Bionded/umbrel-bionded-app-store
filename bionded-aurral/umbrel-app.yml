@@ -5,7 +5,7 @@ storage:
 category: media
 name: Aurral
 tagline: Music discovery and requests that feed Lidarr and slskd
-version: "2.10.0-patch.1"
+version: "2.11.0"
 port: 3041
 description: >-
   Aurral is a self-hosted music discovery app. It recommends artists and albums
@@ -76,12 +76,16 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Aurral's Downloads Folder is now Home → Downloads → aurral (/downloads/aurral).
+  Update to 2.11.0.
 
 
-  First release in the Bionded App Store, packaging Aurral 2.10.0.
+  Highlights:
+    - 2.11.0 is a big one. Aurral can now manage your music without Lidarr, the player and mobile experience have had a major overhaul, and you can share music…
+    - Lidarr is optional. Aurral can monitor artists, download albums and individual tracks, and manage their files itself. Existing Lidarr setups still work, and…
+    - Bring your existing music into Aurral with Settings > Library files > Import a folder. Copy, move, or hardlink files into the Downloads Folder, fill in…
+    - Choose what a monitored artist downloads with Settings > Monitoring or an artist's Monitoring rules… menu. Rules cover back catalogue, new releases, release…
 
 
-  Full release notes: https://github.com/lklynet/aurral/releases/tag/v2.10.0
+  Full release notes: https://github.com/lklynet/aurral/releases/tag/v2.11.0
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

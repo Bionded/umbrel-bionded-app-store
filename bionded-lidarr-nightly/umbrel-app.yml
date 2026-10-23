@@ -5,7 +5,7 @@ storage:
 category: media
 name: Lidarr Nightly
 tagline: Plugin-ready Lidarr nightly that runs alongside the official Lidarr
-version: "3.1.6.5102-nightly.20261014-patch.2"
+version: "3.1.6.5102-nightly.20261023"
 port: 8687
 description: >-
   Lidarr is a music collection manager: it monitors your artists, finds new and
@@ -78,13 +78,9 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Downloads now go to Home → Downloads → lidarr (no longer Downloads → music).
+  Nightly build 3.1.6.5102 (nightly-3.1.6.5102-ls221).
 
 
-  Clearer setup steps for the slskd download client.
-
-
-  First release in the Bionded App Store: Lidarr nightly 3.1.6.5102 with plugin
-  support (Tubifarry needs 3.1.3 or newer).
+  Changes: https://github.com/Lidarr/Lidarr/commits/develop
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

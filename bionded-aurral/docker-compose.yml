@@ -8,7 +8,7 @@ services:
       PROXY_AUTH_WHITELIST: "/rest/*"
 
   server:
-    image: ghcr.io/lklynet/aurral:2.10.0@sha256:e15f05e525a7c9d4a97e36ff18b6a37904dda6c803e46f0fd87900a7021febae
+    image: ghcr.io/lklynet/aurral:2.11.0@sha256:a772c2d6c35dd9dd90128cf350bfc35b37bdd3c59ab5810374b7aa1a4063855c
     environment:
       - PUID=1000
       - PGID=1000
