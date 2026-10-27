@@ -6,7 +6,7 @@ category: media
 name: Maloja
 tagline: Self-hosted scrobble database with clear, long-term listening stats
 version: "3.2.9"
-port: 42010
+port: 4201
 description: >-
   Maloja is a simple, self-hosted scrobble database that turns your plays into
   personal listening statistics: top artists, tracks and albums for any day,
@@ -42,7 +42,7 @@ description: >-
   From other apps: http://bionded-maloja_server_1:42010/apis/listenbrainz/1
   (ListenBrainz-compatible) or /apis/mlj_1 (native).
 
-  From your phone or PC: http://umbrel.local:42010/apis/listenbrainz/1 (this
+  From your phone or PC: http://umbrel.local:4201/apis/listenbrainz/1 (this
   path is open without the Umbrel login and uses a Maloja API key).
 
 

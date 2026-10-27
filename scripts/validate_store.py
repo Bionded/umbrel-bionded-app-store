@@ -40,6 +40,7 @@ REQUIRED = ["manifestVersion", "id", "name", "tagline", "category", "version", "
             "description", "website", "support", "gallery"]
 NOTE_MAX = 300
 RESERVED_PORTS = {80, 443, 22, 53}
+MACHINES_PORTS = range(40_000, 50_000)  # umbreld reserves these for VM port forwards
 IMAGE_RE = re.compile(r"^[^@\s]+:[^@\s]+@sha256:[0-9a-f]{64}$")
 
 errors: list[str] = []
@@ -141,6 +142,8 @@ def check_app(app_dir: Path, store_id: str) -> tuple[dict, dict]:
         err(app, "port must be an integer")
     elif m["port"] in RESERVED_PORTS or m["port"] < 1024:
         err(app, f"port {m['port']} is reserved")
+    elif m["port"] in MACHINES_PORTS:
+        err(app, f"port {m['port']} is in umbrelOS's Machines range 40000-49999")
     for key in ("website", "support", "repo"):
         if m.get(key) and not str(m[key]).startswith("http"):
             err(app, f"{key} must be a URL")

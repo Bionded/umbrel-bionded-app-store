@@ -20,7 +20,7 @@ analysis and listening stats) and now also carries other media apps such as Pinc
 | Explo | `bionded-explo` | 7288 | Weekly ListenBrainz discovery playlists. |
 | Multi-Scrobbler | `bionded-multi-scrobbler` | 9078 | Routes plays from Navidrome and others to Koito, Maloja, ListenBrainz and Last.fm. |
 | Koito | `bionded-koito` | 4110 | Private ListenBrainz-compatible scrobbler with stats. |
-| Maloja | `bionded-maloja` | 42010 | Stable self-hosted scrobble database with long-term charts and pulse stats. |
+| Maloja | `bionded-maloja` | 4201 | Stable self-hosted scrobble database with long-term charts and pulse stats. |
 | Pinchflat-NGX | `bionded-pinchflat-ngx` | 8946 | YouTube channel/playlist downloader (enhanced Pinchflat fork, bundled PO-token provider). Coexists with the official Pinchflat. |
 | Prowlarr | `bionded-prowlarr` | 9697 | Indexer manager for Lidarr/Sonarr/Radarr with bundled FlareSolverr, like the official app but with no required apps or auto-wiring. Coexists with the official Prowlarr. |
 
@@ -90,7 +90,7 @@ Use the internal container hostnames: they work between Umbrel apps without leav
 | Navidrome plugin | AudioMuse URL | `http://bionded-audiomuse-ai_flask_1:8000` + AudioMuse API token |
 | Multi-Scrobbler | App settings (env) | `SUBSONIC_*` (Navidrome), `KOITO_*` (URL preset, token³), optional `MALOJA_*` (URL preset, key⁴), optional `LZ_*` |
 | Any ListenBrainz scrobbler | Koito endpoint | `http://bionded-koito_server_1:4110/apis/listenbrainz/1` (LAN: `http://umbrel.local:4110/apis/listenbrainz/1`) |
-| Any ListenBrainz scrobbler | Maloja endpoint | `http://bionded-maloja_server_1:42010/apis/listenbrainz/1` (LAN: `http://umbrel.local:42010/apis/listenbrainz/1`) |
+| Any ListenBrainz scrobbler | Maloja endpoint | `http://bionded-maloja_server_1:42010/apis/listenbrainz/1` (LAN: `http://umbrel.local:4201/apis/listenbrainz/1`) |
 
 ¹ Add an API key in slskd: Options → web → authentication → api_keys (16+ characters). slskd's web login starts as slskd / slskd; change it there too.
 ² Lidarr → Settings → General → Security → API Key.
