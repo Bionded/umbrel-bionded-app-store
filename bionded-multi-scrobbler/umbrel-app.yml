@@ -5,7 +5,7 @@ storage:
 category: media
 name: Multi-Scrobbler
 tagline: Collect plays from every player and scrobble them everywhere
-version: "0.20.2"
+version: "0.20.2-patch.1"
 port: 9078
 description: >-
   Multi-Scrobbler watches what you play on Navidrome and other Subsonic servers,
@@ -18,8 +18,8 @@ description: >-
   🎵 HOW IT WORKS WITH THE OTHER MUSIC APPS
 
   Multi-Scrobbler is the listening-history router. It reads your plays from
-  Navidrome and sends them to Koito (your private stats) and, if you like,
-  ListenBrainz. That ListenBrainz history is what Explo and Aurral use for
+  Navidrome and sends them to Koito and/or Maloja (your private stats) and, if
+  you like, ListenBrainz. That ListenBrainz history is what Explo and Aurral use for
   recommendations.
 
 
@@ -33,10 +33,14 @@ description: >-
   http://bionded-koito_server_1:4110), KOITO_USER (Koito username) and
   KOITO_TOKEN (Koito → Settings → API Keys).
 
-  3. Optional ListenBrainz client: LZ_ID (e.g. listenbrainz), LZ_TOKEN (listenbrainz.org → Settings → User
+  3. Optional Maloja client: MALOJA_ID (e.g. maloja), MALOJA_URL (preset
+  http://bionded-maloja_server_1:42010) and MALOJA_API_KEY (the Maloja app
+  password shown by umbrelOS, or a key from Maloja → Admin → API Keys).
+
+  4. Optional ListenBrainz client: LZ_ID (e.g. listenbrainz), LZ_TOKEN (listenbrainz.org → Settings → User
   token) and LZ_USER.
 
-  4. Open the dashboard and check that every source and client is green.
+  5. Open the dashboard and check that every source and client is green.
   Advanced setups (several users, Spotify or Last.fm sources) use JSON files in
   the app's config folder; see docs.multi-scrobbler.app.
 
@@ -98,6 +102,19 @@ environment:
     services:
       - server
     note: Koito API key (Koito → Settings → API Keys).
+  - name: MALOJA_ID
+    services:
+      - server
+    note: Optional. Name for the Maloja client, e.g. maloja. Setting it (with URL and API key) enables scrobbling to Maloja.
+  - name: MALOJA_URL
+    services:
+      - server
+    default: http://bionded-maloja_server_1:42010
+    note: Base address of Maloja as seen from this app.
+  - name: MALOJA_API_KEY
+    services:
+      - server
+    note: Maloja API key (the Maloja app password, or Maloja → Admin → API Keys).
   - name: LZ_ID
     services:
       - server
@@ -111,15 +128,8 @@ environment:
       - server
     note: Optional ListenBrainz username.
 releaseNotes: >-
-  Update to 0.20.2.
+  Adds optional Maloja client settings (MALOJA_ID, MALOJA_URL, MALOJA_API_KEY)
+  for the new Maloja app.
 
-
-  Highlights:
-    - > [!IMPORTANT]
-    - > This is security fix release with no other changes.
-    - This is another security fix that removes compromised eMudhra certificates from the base docker image.
-
-
-  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.20.2
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

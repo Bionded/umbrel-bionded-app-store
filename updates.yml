@@ -75,6 +75,14 @@ apps:
     services: [server]
     hold: true                          # upstream is unstable: always review before updating
 
+  bionded-maloja:
+    source: registry_tags                # upstream publishes tags, not GitHub releases
+    repo: krateng/maloja
+    image: krateng/maloja
+    tag_regex: '^(\d+\.\d+\.\d+)$'
+    image_tag: "{version}"
+    services: [server]
+
   bionded-pinchflat-ngx:
     source: github_release
     repo: TheBadFella/Pinchflat-NGX

@@ -1,0 +1,32 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: bionded-maloja_server_1
+      APP_PORT: 42010
+      PROXY_AUTH_WHITELIST: "/apis/listenbrainz/*,/apis/mlj_1/newscrobble*"
+
+  server:
+    image: krateng/maloja:3.2.9@sha256:313b58d282934b2e7dc27f794462eb2ceb1567db23806b49f78b706dd86afe09
+    # On first start, seed an API key named "multi-scrobbler" equal to the app password,
+    # so Multi-Scrobbler can be connected without visiting the admin panel.
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        if [ ! -s /mljdata/apikeys.yml ]; then
+          printf "multi-scrobbler: '%s'\n" "$$SEED_API_KEY" > /mljdata/apikeys.yml
+          chown 1000:1000 /mljdata/apikeys.yml
+        fi
+        exec /init
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/UTC
+      - MALOJA_DATA_DIRECTORY=/mljdata
+      - MALOJA_FORCE_PASSWORD=${APP_PASSWORD}
+      - SEED_API_KEY=${APP_PASSWORD}
+    volumes:
+      - ${APP_DATA_DIR}/data/maloja:/mljdata
+    restart: on-failure

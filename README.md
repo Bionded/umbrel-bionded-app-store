@@ -18,8 +18,9 @@ analysis and listening stats) and now also carries other media apps such as Pinc
 | SoulSync | `bionded-soulsync` | 8018 | Mirrors Spotify/Tidal/Deezer playlists through slskd. |
 | AudioMuse-AI | `bionded-audiomuse-ai` | 8044 | Sonic analysis and smart playlists for Navidrome (needs AVX2 on amd64). |
 | Explo | `bionded-explo` | 7288 | Weekly ListenBrainz discovery playlists. |
-| Multi-Scrobbler | `bionded-multi-scrobbler` | 9078 | Routes plays from Navidrome and others to Koito, ListenBrainz and Last.fm. |
+| Multi-Scrobbler | `bionded-multi-scrobbler` | 9078 | Routes plays from Navidrome and others to Koito, Maloja, ListenBrainz and Last.fm. |
 | Koito | `bionded-koito` | 4110 | Private ListenBrainz-compatible scrobbler with stats. |
+| Maloja | `bionded-maloja` | 42010 | Stable self-hosted scrobble database with long-term charts and pulse stats. |
 | Pinchflat-NGX | `bionded-pinchflat-ngx` | 8946 | YouTube channel/playlist downloader (enhanced Pinchflat fork, bundled PO-token provider). Coexists with the official Pinchflat. |
 | Prowlarr | `bionded-prowlarr` | 9697 | Indexer manager for Lidarr/Sonarr/Radarr with bundled FlareSolverr, like the official app but with no required apps or auto-wiring. Coexists with the official Prowlarr. |
 
@@ -27,7 +28,7 @@ Navidrome is the official Umbrel app (`navidrome`) and is configured by you.
 
 ```
            requests / discovery                       listening history
- Aurral ──────────────┐                    Navidrome ──► Multi-Scrobbler ──► Koito
+ Aurral ──────────────┐                    Navidrome ──► Multi-Scrobbler ──► Koito / Maloja
  Explo  ──┐           ▼                        ▲   ▲            └──► ListenBrainz ──► Explo / Aurral
  SoulSync ┼──► slskd  Lidarr Nightly ──► /music┘   └── AudioMuse-AI (Subsonic API, plugin)
           └──(Soulseek)──► Downloads/<app> ───────┘
@@ -61,7 +62,7 @@ Rules that keep apps from fighting:
 1. **Navidrome** (official store). Point its library at Home → Music, and add `Downloads/aurral`, `Downloads/soulsync` and `Downloads/explo` as extra libraries if you want those playable.
 2. **slskd**: set your Soulseek account under ⋯ → Settings → Advanced settings. Forward TCP 50310 on your router.
 3. **Lidarr Nightly**: add root folder `/music`, install the Tubifarry plugin, add slskd as a download client.
-4. **Koito**, then **Multi-Scrobbler** (Navidrome → Koito).
+4. **Koito** and/or **Maloja**, then **Multi-Scrobbler** (Navidrome → Koito / Maloja).
 5. **Aurral**, **SoulSync**, **Explo**, **AudioMuse-AI**.
 
 ## Connecting apps
@@ -87,17 +88,19 @@ Use the internal container hostnames: they work between Umbrel apps without leav
 | Explo | ListenBrainz | username + user token (listenbrainz.org → Settings) |
 | AudioMuse-AI | Setup Wizard → Navidrome | `http://navidrome_server_1:4533` |
 | Navidrome plugin | AudioMuse URL | `http://bionded-audiomuse-ai_flask_1:8000` + AudioMuse API token |
-| Multi-Scrobbler | App settings (env) | `SUBSONIC_*` (Navidrome), `KOITO_*` (URL preset, token³), optional `LZ_*` |
+| Multi-Scrobbler | App settings (env) | `SUBSONIC_*` (Navidrome), `KOITO_*` (URL preset, token³), optional `MALOJA_*` (URL preset, key⁴), optional `LZ_*` |
 | Any ListenBrainz scrobbler | Koito endpoint | `http://bionded-koito_server_1:4110/apis/listenbrainz/1` (LAN: `http://umbrel.local:4110/apis/listenbrainz/1`) |
+| Any ListenBrainz scrobbler | Maloja endpoint | `http://bionded-maloja_server_1:42010/apis/listenbrainz/1` (LAN: `http://umbrel.local:42010/apis/listenbrainz/1`) |
 
 ¹ Add an API key in slskd: Options → web → authentication → api_keys (16+ characters). slskd's web login starts as slskd / slskd; change it there too.
 ² Lidarr → Settings → General → Security → API Key.
 ³ Koito → Settings → API Keys.
+⁴ Maloja creates a key named `multi-scrobbler` on first start that equals the Maloja app password; more under Admin → API Keys.
 
 ## Secrets
 
 No secrets are committed. Per-install secrets come from umbrelOS: `${APP_PASSWORD}` (shown to you as the
-app's password, `deterministicPassword: true`) for the Explo and Koito logins,
+app's password, `deterministicPassword: true`) for the Explo, Koito and Maloja logins (also Maloja's first API key),
 and `${APP_SEED}` for AudioMuse-AI's Postgres password.
 
 ## Development

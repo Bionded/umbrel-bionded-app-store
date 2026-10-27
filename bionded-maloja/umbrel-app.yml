@@ -1,0 +1,73 @@
+manifestVersion: 1
+id: bionded-maloja
+storage:
+  dataRoot: data
+category: media
+name: Maloja
+tagline: Self-hosted scrobble database with clear, long-term listening stats
+version: "3.2.9"
+port: 42010
+description: >-
+  Maloja is a simple, self-hosted scrobble database that turns your plays into
+  personal listening statistics: top artists, tracks and albums for any day,
+  week, month or year, "pulse" charts of how much you listen over time, chart
+  positions and their history, and gold, platinum and diamond medals for your
+  favourites. It is a mature, stable alternative or companion to Koito.
+
+
+  🎵 HOW IT WORKS WITH THE OTHER MUSIC APPS
+
+  Multi-Scrobbler sends Maloja every play from Navidrome, alongside Koito and
+  ListenBrainz if you use them. You can import older history from Last.fm,
+  ListenBrainz, Spotify or another Maloja instance.
+
+
+  🛠️ FIRST-RUN SETUP
+
+  1. Open the app. Statistics pages need no Maloja login; for the admin panel (cog,
+  top right) use the password umbrelOS shows for this app.
+
+  2. An API key named "multi-scrobbler" is created on first start and equals
+  this app's password. In Multi-Scrobbler (⋯ → Settings → Advanced settings)
+  set MALOJA_API_KEY to that password and restart it. More keys can be made
+  under Admin → API Keys.
+
+  3. Optional: set your time zone with MALOJA_LOCATION_TIMEZONE (e.g.
+  Europe/Kyiv) in this app's Advanced settings so days and weeks start at your
+  local midnight.
+
+
+  🔌 SCROBBLE ENDPOINTS
+
+  From other apps: http://bionded-maloja_server_1:42010/apis/listenbrainz/1
+  (ListenBrainz-compatible) or /apis/mlj_1 (native).
+
+  From your phone or PC: http://umbrel.local:42010/apis/listenbrainz/1 (this
+  path is open without the Umbrel login and uses a Maloja API key).
+
+
+  Works on amd64 and arm64.
+developer: krateng
+website: https://github.com/krateng/maloja
+dependencies: []
+repo: https://github.com/krateng/maloja
+support: https://github.com/krateng/maloja/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-maloja/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-maloja/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-maloja/gallery-2.jpg
+path: ""
+defaultUsername: ""
+deterministicPassword: true
+environment:
+  - name: MALOJA_LOCATION_TIMEZONE
+    services:
+      - server
+    note: Optional time zone for statistics, e.g. Europe/Kyiv. Empty means UTC.
+releaseNotes: >-
+  First release in the Bionded App Store, packaging Maloja 3.2.9.
+
+
+  Full changelog: https://github.com/krateng/maloja/tree/v3.2.9
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-bionded-app-store
