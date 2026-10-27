@@ -5,7 +5,7 @@ storage:
 category: media
 name: Multi-Scrobbler
 tagline: Collect plays from every player and scrobble them everywhere
-version: "0.20.2-patch.1"
+version: "0.20.2-patch.2"
 port: 9078
 description: >-
   Multi-Scrobbler watches what you play on Navidrome and other Subsonic servers,
@@ -29,16 +29,20 @@ description: >-
   (preset http://navidrome_server_1:4533), SUBSONIC_USER and SUBSONIC_PASSWORD
   of your Navidrome account.
 
-  2. Koito client: KOITO_ID (e.g. koito), KOITO_URL (preset
-  http://bionded-koito_server_1:4110), KOITO_USER (Koito username) and
+  2. Koito client: KOITO_ID (e.g. koito), KOITO_URL
+  (http://bionded-koito_server_1:4110), KOITO_USER (Koito username) and
   KOITO_TOKEN (Koito → Settings → API Keys).
 
-  3. Optional Maloja client: MALOJA_ID (e.g. maloja), MALOJA_URL (preset
-  http://bionded-maloja_server_1:42010) and MALOJA_API_KEY (the Maloja app
+  3. Maloja client: MALOJA_ID (e.g. maloja), MALOJA_URL
+  (http://bionded-maloja_server_1:42010) and MALOJA_API_KEY (the Maloja app
   password shown by umbrelOS, or a key from Maloja → Admin → API Keys).
 
-  4. Optional ListenBrainz client: LZ_ID (e.g. listenbrainz), LZ_TOKEN (listenbrainz.org → Settings → User
-  token) and LZ_USER.
+  4. Other scrobblers (ListenBrainz LZ_*, Last.fm LASTFM_*, Libre.fm LIBREFM_*,
+  Rocksky ROCKSKY_*, teal.fm TEALFM_*, Discord DISCORD_*, Tuneshine TUNE_*) are
+  all listed in Advanced settings and start empty. A client is enabled once
+  its _ID and required fields are set. Between apps on this Umbrel, always use
+  the internal addresses above, not umbrel.local or the IP: those go through
+  the Umbrel login.
 
   5. Open the dashboard and check that every source and client is green.
   Advanced setups (several users, Spotify or Last.fm sources) use JSON files in
@@ -87,49 +91,249 @@ environment:
   - name: KOITO_ID
     services:
       - server
-    default: koito
-    note: Name for the Koito client. Setting it (with URL, user and token) enables scrobbling to Koito.
+    note: "Koito client: unique name, e.g. koito. Setting it (with URL, user and token) enables scrobbling to Koito."
+  - name: KOITO_NAME
+    services:
+      - server
+    note: "Koito client: optional display name (defaults to KOITO_ID)."
+  - name: KOITO_ENABLE
+    services:
+      - server
+    note: "Koito client: optional true/false (default true)."
   - name: KOITO_URL
     services:
       - server
-    default: http://bionded-koito_server_1:4110
-    note: Base address of Koito as seen from this app (no /apis path).
+    note: "Koito client: base address as seen from this app (no /apis path), e.g. http://bionded-koito_server_1:4110."
   - name: KOITO_USER
     services:
       - server
-    note: Your Koito username.
+    note: "Koito client: your Koito username."
   - name: KOITO_TOKEN
     services:
       - server
-    note: Koito API key (Koito → Settings → API Keys).
+    note: "Koito client: Koito API key (Koito → Settings → API Keys)."
+  - name: KOITO_ALLOW_DEVICE_LIST
+    services:
+      - server
+    note: "Koito client: optional comma-separated match:label list used as media_play when none is sent."
   - name: MALOJA_ID
     services:
       - server
-    note: Optional. Name for the Maloja client, e.g. maloja. Setting it (with URL and API key) enables scrobbling to Maloja.
+    note: "Maloja client: unique name, e.g. maloja. Setting it (with URL and API key) enables scrobbling to Maloja."
+  - name: MALOJA_NAME
+    services:
+      - server
+    note: "Maloja client: optional display name (defaults to MALOJA_ID)."
+  - name: MALOJA_ENABLE
+    services:
+      - server
+    note: "Maloja client: optional true/false (default true)."
   - name: MALOJA_URL
     services:
       - server
-    default: http://bionded-maloja_server_1:42010
-    note: Base address of Maloja as seen from this app.
+    note: "Maloja client: base address as seen from this app, e.g. http://bionded-maloja_server_1:42010."
   - name: MALOJA_API_KEY
     services:
       - server
-    note: Maloja API key (the Maloja app password, or Maloja → Admin → API Keys).
+    note: "Maloja client: API key (the Maloja app password, or Maloja → Admin → API Keys)."
   - name: LZ_ID
     services:
       - server
-    note: Optional. Name for the ListenBrainz client, e.g. listenbrainz. Setting it (with token and user) enables scrobbling to ListenBrainz.
+    note: "ListenBrainz client: unique name, e.g. listenbrainz. Setting it (with token and user) enables scrobbling to ListenBrainz."
+  - name: LZ_NAME
+    services:
+      - server
+    note: "ListenBrainz client: optional display name (defaults to LZ_ID)."
+  - name: LZ_ENABLE
+    services:
+      - server
+    note: "ListenBrainz client: optional true/false (default true)."
+  - name: LZ_URL
+    services:
+      - server
+    note: "ListenBrainz client: optional server URL if not listenbrainz.org (default https://api.listenbrainz.org/)."
   - name: LZ_TOKEN
     services:
       - server
-    note: Optional ListenBrainz user token (listenbrainz.org → Settings → User token).
+    note: "ListenBrainz client: user token (listenbrainz.org → Settings → User token)."
   - name: LZ_USER
     services:
       - server
-    note: Optional ListenBrainz username.
+    note: "ListenBrainz client: your ListenBrainz username."
+  - name: LZ_CONTACT
+    services:
+      - server
+    note: "ListenBrainz client: optional contact website or email (only for forked builds)."
+  - name: LZ_ALLOW_DEVICE_LIST
+    services:
+      - server
+    note: "ListenBrainz client: optional comma-separated match:label list used as media_play when none is sent."
+  - name: LASTFM_ID
+    services:
+      - server
+    note: "Last.fm client: unique name, e.g. lastfm. Setting it (with API key and secret) enables scrobbling to Last.fm; then authorise it from the dashboard."
+  - name: LASTFM_NAME
+    services:
+      - server
+    note: "Last.fm client: optional display name (defaults to LASTFM_ID)."
+  - name: LASTFM_ENABLE
+    services:
+      - server
+    note: "Last.fm client: optional true/false (default true)."
+  - name: LASTFM_API_KEY
+    services:
+      - server
+    note: "Last.fm client: API key from last.fm/api/account/create."
+  - name: LASTFM_SECRET
+    services:
+      - server
+    note: "Last.fm client: shared secret from the same Last.fm API account."
+  - name: LASTFM_REDIRECT_URI
+    services:
+      - server
+    note: "Last.fm client: optional callback URL, e.g. http://umbrel.local:9078/lastfm/callback."
+  - name: LASTFM_SESSION
+    services:
+      - server
+    note: "Last.fm client: optional session id from a completed auth flow."
+  - name: LIBREFM_ID
+    services:
+      - server
+    note: "Libre.fm client: unique name, e.g. librefm. Setting it enables scrobbling to Libre.fm; then authorise it from the dashboard."
+  - name: LIBREFM_NAME
+    services:
+      - server
+    note: "Libre.fm client: optional display name (defaults to LIBREFM_ID)."
+  - name: LIBREFM_ENABLE
+    services:
+      - server
+    note: "Libre.fm client: optional true/false (default true)."
+  - name: LIBREFM_API_KEY
+    services:
+      - server
+    note: "Libre.fm client: optional API key."
+  - name: LIBREFM_SECRET
+    services:
+      - server
+    note: "Libre.fm client: optional secret."
+  - name: LIBREFM_REDIRECT_URI
+    services:
+      - server
+    note: "Libre.fm client: optional callback URL, e.g. http://umbrel.local:9078/librefm/callback."
+  - name: LIBREFM_SESSION
+    services:
+      - server
+    note: "Libre.fm client: optional session id from a completed auth flow."
+  - name: LIBREFM_URLBASE
+    services:
+      - server
+    note: "Libre.fm client: optional host and path of your instance (default https://libre.fm/2.0/)."
+  - name: ROCKSKY_ID
+    services:
+      - server
+    note: "Rocksky client: unique name, e.g. rocksky. Setting it (with handle) enables scrobbling to Rocksky."
+  - name: ROCKSKY_NAME
+    services:
+      - server
+    note: "Rocksky client: optional display name (defaults to ROCKSKY_ID)."
+  - name: ROCKSKY_ENABLE
+    services:
+      - server
+    note: "Rocksky client: optional true/false (default true)."
+  - name: ROCKSKY_HANDLE
+    services:
+      - server
+    note: "Rocksky client: fully-qualified Atmosphere (Bluesky) handle, e.g. you.bsky.social."
+  - name: ROCKSKY_APP_PW
+    services:
+      - server
+    note: "Rocksky client: App Password of your Atmosphere account."
+  - name: ROCKSKY_TOKEN
+    services:
+      - server
+    note: "Rocksky client: deprecated access token from rocksky.app/access-tokens."
+  - name: TEALFM_ID
+    services:
+      - server
+    note: "teal.fm client: unique name, e.g. tealfm. Setting it (with identifier and app password) enables scrobbling to teal.fm."
+  - name: TEALFM_NAME
+    services:
+      - server
+    note: "teal.fm client: optional display name (defaults to TEALFM_ID)."
+  - name: TEALFM_ENABLE
+    services:
+      - server
+    note: "teal.fm client: optional true/false (default true)."
+  - name: TEALFM_IDENTIFIER
+    services:
+      - server
+    note: "teal.fm client: fully-qualified Atmosphere (Bluesky) handle, e.g. you.bsky.social."
+  - name: TEALFM_APP_PW
+    services:
+      - server
+    note: "teal.fm client: App Password of your Atmosphere account."
+  - name: DISCORD_ID
+    services:
+      - server
+    note: "Discord client: unique name, e.g. discord. Setting it (with token) shows what you play as Discord status."
+  - name: DISCORD_NAME
+    services:
+      - server
+    note: "Discord client: optional display name (defaults to DISCORD_ID)."
+  - name: DISCORD_ENABLE
+    services:
+      - server
+    note: "Discord client: optional true/false (default true)."
+  - name: DISCORD_TOKEN
+    services:
+      - server
+    note: "Discord client: Discord user token."
+  - name: DISCORD_APPLICATION_ID
+    services:
+      - server
+    note: "Discord client: optional Discord application id."
+  - name: DISCORD_ARTWORK
+    services:
+      - server
+    note: "Discord client: optional artwork setting (true/false or allowed sources)."
+  - name: DISCORD_ARTWORK_DEFAULT_URL
+    services:
+      - server
+    note: "Discord client: optional fallback artwork URL."
+  - name: DISCORD_IPC_LOCATIONS
+    services:
+      - server
+    note: "Discord client: optional Discord IPC socket locations."
+  - name: DISCORD_STATUS_OVERRIDE_ALLOW
+    services:
+      - server
+    note: "Discord client: optional list of statuses that may be overridden."
+  - name: DISCORD_LISTENING_ACTIVITY_ALLOW
+    services:
+      - server
+    note: "Discord client: optional list of listening activities that may be overridden."
+  - name: TUNE_ID
+    services:
+      - server
+    note: "Tuneshine client: unique name, e.g. tuneshine. Setting it (with host) sends now-playing to a Tuneshine display."
+  - name: TUNE_NAME
+    services:
+      - server
+    note: "Tuneshine client: optional display name (defaults to TUNE_ID)."
+  - name: TUNE_ENABLE
+    services:
+      - server
+    note: "Tuneshine client: optional true/false (default true)."
+  - name: TUNE_HOST
+    services:
+      - server
+    note: "Tuneshine client: IP or http(s)://hostname of the Tuneshine device."
 releaseNotes: >-
-  Adds optional Maloja client settings (MALOJA_ID, MALOJA_URL, MALOJA_API_KEY)
-  for the new Maloja app.
+  All Multi-Scrobbler clients can now be set up from Advanced settings:
+  Koito, Maloja, ListenBrainz, Last.fm, Libre.fm, Rocksky, teal.fm, Discord and
+  Tuneshine, including their optional fields. Every client setting starts empty;
+  the Koito and Maloja URLs are no longer prefilled (the internal addresses are
+  in the description). Your saved settings are kept.
 
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

@@ -88,7 +88,7 @@ Use the internal container hostnames: they work between Umbrel apps without leav
 | Explo | ListenBrainz | username + user token (listenbrainz.org → Settings) |
 | AudioMuse-AI | Setup Wizard → Navidrome | `http://navidrome_server_1:4533` |
 | Navidrome plugin | AudioMuse URL | `http://bionded-audiomuse-ai_flask_1:8000` + AudioMuse API token |
-| Multi-Scrobbler | App settings (env) | `SUBSONIC_*` (Navidrome), `KOITO_*` (URL preset, token³), optional `MALOJA_*` (URL preset, key⁴), optional `LZ_*` |
+| Multi-Scrobbler | App settings (env) | `SUBSONIC_*` (Navidrome, URL preset); clients start empty: `KOITO_*` (`http://bionded-koito_server_1:4110` + token³), `MALOJA_*` (`http://bionded-maloja_server_1:42010` + key⁴), `LZ_*`, `LASTFM_*`, `LIBREFM_*`, `ROCKSKY_*`, `TEALFM_*`, `DISCORD_*`, `TUNE_*` |
 | Any ListenBrainz scrobbler | Koito endpoint | `http://bionded-koito_server_1:4110/apis/listenbrainz/1` (LAN: `http://umbrel.local:4110/apis/listenbrainz/1`) |
 | Any ListenBrainz scrobbler | Maloja endpoint | `http://bionded-maloja_server_1:42010/apis/listenbrainz/1` (LAN: `http://umbrel.local:4201/apis/listenbrainz/1`) |
 
