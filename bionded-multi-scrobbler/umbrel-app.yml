@@ -25,9 +25,18 @@ description: >-
 
   🛠️ FIRST-RUN SETUP (⋯ → Settings → Advanced settings, then restart)
 
-  1. Navidrome source: SUBSONIC_ID (any name, e.g. navidrome), SUBSONIC_URL
-  (preset http://navidrome_server_1:4533), SUBSONIC_USER and SUBSONIC_PASSWORD
-  of your Navidrome account.
+  1. Navidrome source, either:
+
+  a) Recommended, catches every play (also offline or late ones): set LZE_ID
+  (e.g. navidrome_lz) and LZE_TOKEN (any string). In Navidrome add the custom
+  environment variable ND_LISTENBRAINZ_BASEURL =
+  http://bionded-multi-scrobbler_server_1:9078/1/ and, under your Navidrome
+  profile, enable ListenBrainz with that same token.
+
+  b) Polling: SUBSONIC_ID (any name, e.g. navidrome), SUBSONIC_URL (preset
+  http://navidrome_server_1:4533), SUBSONIC_USER and SUBSONIC_PASSWORD. This
+  only sees tracks a player reports as "now playing". Don't use a) and b) for
+  the same plays.
 
   2. Koito client: KOITO_ID (e.g. koito), KOITO_URL
   (http://bionded-koito_server_1:4110), KOITO_USER (Koito username) and
@@ -88,6 +97,42 @@ environment:
     services:
       - server
     note: Password of that Navidrome user.
+  - name: SUBSONIC_NAME
+    services:
+      - server
+    note: "Navidrome source: optional display name (defaults to SUBSONIC_ID)."
+  - name: SUBSONIC_ENABLE
+    services:
+      - server
+    note: "Navidrome source: optional true/false (default true). Set false when Navidrome forwards plays through the ListenBrainz endpoint (LZE_*) instead."
+  - name: LZE_ID
+    services:
+      - server
+    note: "ListenBrainz endpoint source: unique name, e.g. navidrome_lz. Lets Navidrome and other players send plays here as if this app were ListenBrainz (base URL http://bionded-multi-scrobbler_server_1:9078/1/)."
+  - name: LZE_NAME
+    services:
+      - server
+    note: "ListenBrainz endpoint source: optional display name (defaults to LZE_ID)."
+  - name: LZE_ENABLE
+    services:
+      - server
+    note: "ListenBrainz endpoint source: optional true/false (default true)."
+  - name: LZE_TOKEN
+    services:
+      - server
+    note: "ListenBrainz endpoint source: any token you choose; use the same token as the ListenBrainz token in the sending player (e.g. Navidrome)."
+  - name: LZE_USERNAME
+    services:
+      - server
+    note: "ListenBrainz endpoint source: optional ListenBrainz username to report for this source."
+  - name: LZE_SLUG
+    services:
+      - server
+    note: "ListenBrainz endpoint source: optional custom path (/api/listenbrainz/<slug>) for several sources without tokens."
+  - name: LZE_EXTRACT_ARTISTS
+    services:
+      - server
+    note: "ListenBrainz endpoint source: optional true/false (default true); split comma-separated artists."
   - name: KOITO_ID
     services:
       - server
@@ -329,6 +374,11 @@ environment:
       - server
     note: "Tuneshine client: IP or http(s)://hostname of the Tuneshine device."
 releaseNotes: >-
+  Navidrome can now forward every play through Multi-Scrobbler's ListenBrainz
+  endpoint (new LZE_* settings), which also catches offline and late plays.
+  SUBSONIC_NAME and SUBSONIC_ENABLE were added for the polling source.
+
+
   All Multi-Scrobbler clients can now be set up from Advanced settings:
   Koito, Maloja, ListenBrainz, Last.fm, Libre.fm, Rocksky, teal.fm, Discord and
   Tuneshine, including their optional fields. Every client setting starts empty;

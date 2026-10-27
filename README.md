@@ -26,6 +26,11 @@ analysis and listening stats) and now also carries other media apps such as Pinc
 
 Navidrome is the official Umbrel app (`navidrome`) and is configured by you.
 
+**Scrobbling from Navidrome:** use Navidrome's built-in ListenBrainz scrobbler pointed at Multi-Scrobbler, so every play
+(including offline or late ones) is forwarded. In Navidrome add the custom env `ND_LISTENBRAINZ_BASEURL=http://bionded-multi-scrobbler_server_1:9078/1/`,
+in Multi-Scrobbler set `LZE_ID` + `LZE_TOKEN`, then enable ListenBrainz in your Navidrome profile with that token. The
+Subsonic polling source (`SUBSONIC_*`) only sees tracks a player reports as "now playing".
+
 ```
            requests / discovery                       listening history
  Aurral ──────────────┐                    Navidrome ──► Multi-Scrobbler ──► Koito / Maloja
