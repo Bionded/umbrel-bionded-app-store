@@ -5,7 +5,7 @@ storage:
 category: media
 name: SoulSync
 tagline: Mirror your Spotify, Tidal and Deezer playlists into your own library
-version: "3.5.9"
+version: "3.6.0"
 port: 8018
 description: >-
   SoulSync keeps your streaming playlists in sync with your own music library.
@@ -91,16 +91,16 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Update to 3.5.9.
+  Update to 3.6.0.
 
 
   Highlights:
-    - soulsync can answer as lidarr and as an mcp server now, first-run setup is rebuilt as a guided flow, the downloads page and the wishlist are rebuilt on both…
-    - lidarr compatible api. singarr and musicseerr 1.x only talk to lidarr, so point their lidarr url at http://<host>:8008/lidarr with an admin api key and they…
-    - mcp endpoint at /mcp, so an ai client can drive soulsync. 35 tools, almost all one /api/v1 call each, replayed with the caller's own key, so scopes, gates…
-    - choose what new sign-ups start with. settings > security has a new sign-ups block: the side a profile made by plex sign-in starts on (music, movies and tv,…
+    - metasync lands: soulsync installs can now share anonymous taste signals through SIN and get weekly charts back as ready-to-open playlists. also sign in with…
+    - links: metasync · metasync portal (pool keys) · soulsync companion browser extension
+    - metasync is an optional companion app that runs next to soulsync. its first network is SIN, the soulsync intelligence network. once a week your node tells…
+    - charts on the dashboard and discover. a new system automation, refresh metasync charts, pulls the node's charts once a day. every chart is matched in the…
 
 
-  Full release notes: https://github.com/Nezreka/SoulSync/releases/tag/3.5.9
+  Full release notes: https://github.com/Nezreka/SoulSync/releases/tag/3.6.0
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

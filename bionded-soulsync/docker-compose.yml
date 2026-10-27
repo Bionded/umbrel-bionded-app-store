@@ -7,7 +7,7 @@ services:
       APP_PORT: 8008
 
   server:
-    image: boulderbadgedad/soulsync:3.5.9@sha256:4f9b5a3d39f0585228020045da088098773371582f80e91c5c6ba52ce5036404
+    image: boulderbadgedad/soulsync:3.6.0@sha256:518b1bbbe1153b40b5591943fd0f1e062d0b5215421c2332791a8ffcf3761f42
     environment:
       - PUID=1000
       - PGID=1000
