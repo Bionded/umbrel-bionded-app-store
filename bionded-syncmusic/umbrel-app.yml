@@ -5,7 +5,7 @@ storage:
 category: media
 name: SyncMusic (Experimental)
 tagline: "EXPERIMENTAL: sync your library to iPods, Rockbox players and USB drives"
-version: "0.2.0"
+version: "0.2.0-patch.1"
 port: 8766
 description: >-
   ⚠️ EXPERIMENTAL. This app has full access to the hardware of your Umbrel: it
@@ -44,9 +44,10 @@ description: >-
 
   🛠️ FIRST-RUN SETUP
 
-  1. Libraries → Add library: Navidrome with URL http://127.0.0.1:4533 and
-  your Navidrome user and password (Audiobookshelf: http://127.0.0.1:13378,
-  Jellyfin: http://127.0.0.1:8096).
+  1. Libraries → Add library: Navidrome with URL
+  http://navidrome_server_1:4533 and your Navidrome user and password
+  (Audiobookshelf: http://audiobookshelf_web_1:80, Jellyfin:
+  http://jellyfin_server_1:8096).
 
   2. Plug a player into a USB port of the Umbrel. It appears on the Dashboard as
   an unknown drive: register it (name, type, templates, processors).
@@ -55,10 +56,9 @@ description: >-
   SyncMusic before unplugging it.
 
 
-  SyncMusic runs in the host network, so it reaches other apps at
-  http://127.0.0.1:<app port> (container names like navidrome_server_1 do not
-  resolve here). That works for apps without the Umbrel login, such as
-  Navidrome, Audiobookshelf and Jellyfin.
+  Use internal addresses for other apps (http://<app>_server_1:<port>):
+  SyncMusic reaches them through a small built-in proxy. umbrel.local and the
+  Umbrel's IP do not work from inside this app.
 
 
   Works on amd64 and arm64.
@@ -75,9 +75,10 @@ gallery:
   - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-syncmusic/gallery-4.jpg
 path: ""
 releaseNotes: >-
-  First release in the Bionded App Store (experimental), packaging SyncMusic
-  0.2.0 with USB device support: the app runs privileged with /dev, udev and
-  the host network so it can detect, mount and write plugged-in players.
+  Libraries on other Umbrel apps now work by their internal address (e.g.
+  http://navidrome_server_1:4533): SyncMusic runs in the host network, where
+  those names do not resolve and the Umbrel's own IP is refused, so its HTTP
+  traffic now goes through a small built-in proxy.
 
 
   Full release notes: https://github.com/Bionded/SyncMusic/releases/tag/v0.2.0

@@ -95,7 +95,7 @@ Use the internal container hostnames: they work between Umbrel apps without leav
 | AudioMuse-AI | Setup Wizard → Navidrome | `http://navidrome_server_1:4533` |
 | Navidrome plugin | AudioMuse URL | `http://bionded-audiomuse-ai_flask_1:8000` + AudioMuse API token |
 | Multi-Scrobbler | App settings (env) | `SUBSONIC_*` (Navidrome, URL preset); clients start empty: `KOITO_*` (`http://bionded-koito_server_1:4110` + token³), `MALOJA_*` (`http://bionded-maloja_server_1:42010` + key⁴), `LZ_*`, `LASTFM_*`, `LIBREFM_*`, `ROCKSKY_*`, `TEALFM_*`, `DISCORD_*`, `TUNE_*` |
-| SyncMusic | Libraries → Navidrome | `http://127.0.0.1:4533` + Navidrome user/password (host network: container names don't resolve; ABS `http://127.0.0.1:13378`, Jellyfin `http://127.0.0.1:8096`) |
+| SyncMusic | Libraries → Navidrome | `http://navidrome_server_1:4533` + Navidrome user/password (ABS `http://audiobookshelf_web_1:80`, Jellyfin `http://jellyfin_server_1:8096`). The app is on the host network; its HTTP goes through a bundled proxy, so `umbrel.local`/the IP don't work there |
 | Any ListenBrainz scrobbler | Koito endpoint | `http://bionded-koito_server_1:4110/apis/listenbrainz/1` (LAN: `http://umbrel.local:4110/apis/listenbrainz/1`) |
 | Any ListenBrainz scrobbler | Maloja endpoint | `http://bionded-maloja_server_1:42010/apis/listenbrainz/1` (LAN: `http://umbrel.local:4201/apis/listenbrainz/1`) |
 

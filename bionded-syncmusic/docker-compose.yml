@@ -18,6 +18,22 @@ services:
       - host.docker.internal:host-gateway
     restart: on-failure
 
+  # In the host namespace container names (navidrome_server_1) do not resolve
+  # and umbrelOS does not loop the host's own traffic back to published ports.
+  # SyncMusic's HTTP clients (httpx) use this proxy instead: it sits on the
+  # Umbrel network with a fixed address, so http://<app>_server_1:<port> works.
+  egress:
+    image: kalaksi/tinyproxy:1.7@sha256:5a65354cbb5f9c0fdcc8de3d3af8dd1c5ea072b3a1f52e5961a9a5cce6eba227
+    environment:
+      PORT: "8888"
+      DISABLE_VIA_HEADER: "yes"
+      ALLOWED_NETWORKS: "127.0.0.1 10.21.0.0/16"
+      LOG_LEVEL: Warning
+    networks:
+      default:
+        ipv4_address: 10.21.250.21
+    restart: on-failure
+
   server:
     image: ghcr.io/bionded/syncmusic:v0.2.0@sha256:b323a864d6499594e444cfcef9c63e333d41a50ac385c9ce6ec00958aa0e9346
     # EXPERIMENTAL: to mount, format and write USB players the container needs
@@ -41,6 +57,12 @@ services:
       - SYNCMUSIC_DETECT_DEVICES=true
       - SYNCMUSIC_MOUNT_ROOT=/run/syncmusic
       - SYNCMUSIC_UPDATE_REPO=none
+      - HTTP_PROXY=http://10.21.250.21:8888
+      - HTTPS_PROXY=http://10.21.250.21:8888
+      - http_proxy=http://10.21.250.21:8888
+      - https_proxy=http://10.21.250.21:8888
+      - NO_PROXY=localhost,127.0.0.1,::1
+      - no_proxy=localhost,127.0.0.1,::1
     healthcheck:
       disable: true
     volumes:
