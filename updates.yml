@@ -97,3 +97,10 @@ apps:
     image: linuxserver/prowlarr
     image_tag: "version-{version}"
     services: [server]
+
+  bionded-syncmusic:
+    source: github_release
+    repo: Bionded/SyncMusic
+    image: ghcr.io/bionded/syncmusic
+    image_tag: "v{version}"
+    services: [server]

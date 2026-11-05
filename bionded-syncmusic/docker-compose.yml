@@ -1,0 +1,53 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: bionded-syncmusic_relay_1
+      APP_PORT: 18765
+
+  # SyncMusic runs in the host's network namespace (udev hot-plug events only
+  # reach the host namespace). It listens only on the docker0 address, so it is
+  # never open on the LAN: this relay carries the Umbrel-authenticated traffic
+  # from app_proxy to it.
+  relay:
+    image: alpine/socat:1.8.1.1@sha256:7f9a06753033f2b7de18edc2353f2c15153413d95a039163c6db270fc7a6c3b0
+    user: "1000:1000"
+    command: TCP-LISTEN:18765,fork,reuseaddr TCP:host.docker.internal:18765
+    extra_hosts:
+      - host.docker.internal:host-gateway
+    restart: on-failure
+
+  server:
+    image: ghcr.io/bionded/syncmusic:v0.2.0@sha256:b323a864d6499594e444cfcef9c63e333d41a50ac385c9ce6ec00958aa0e9346
+    # EXPERIMENTAL: to mount, format and write USB players the container needs
+    # every host device, the udev database and the host network (hot-plug).
+    # Privileged = root on the host; SyncMusic's own safety checks still apply.
+    privileged: true
+    network_mode: host
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        # bind to docker0 (what host-gateway resolves to), never 0.0.0.0
+        SYNCMUSIC_HOST=$$(python3 -c 'import fcntl,socket,struct; s=socket.socket(socket.AF_INET,socket.SOCK_DGRAM); print(socket.inet_ntoa(fcntl.ioctl(s.fileno(),0x8915,struct.pack("256s",b"docker0"))[20:24]))') || exit 1
+        export SYNCMUSIC_HOST
+        mkdir -p "$$SYNCMUSIC_MOUNT_ROOT"
+        exec syncmusic-entrypoint run
+    environment:
+      - TZ=Etc/UTC
+      - SYNCMUSIC_PORT=18765
+      - SYNCMUSIC_ALLOWED_HOSTS=*
+      - SYNCMUSIC_DETECT_DEVICES=true
+      - SYNCMUSIC_MOUNT_ROOT=/run/syncmusic
+      - SYNCMUSIC_UPDATE_REPO=none
+    healthcheck:
+      disable: true
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/config
+      - ${APP_DATA_DIR}/data/data:/data
+      - ${APP_DATA_DIR}/data/cache:/cache
+      - /dev:/dev
+      - /run/udev:/run/udev:ro
+    stop_grace_period: 30s
+    restart: on-failure

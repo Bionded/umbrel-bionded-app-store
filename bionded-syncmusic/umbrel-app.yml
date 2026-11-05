@@ -1,0 +1,85 @@
+manifestVersion: 1
+id: bionded-syncmusic
+storage:
+  dataRoot: data
+category: media
+name: SyncMusic (Experimental)
+tagline: "EXPERIMENTAL: sync your library to iPods, Rockbox players and USB drives"
+version: "0.2.0"
+port: 8766
+description: >-
+  ⚠️ EXPERIMENTAL. This app has full access to the hardware of your Umbrel: it
+  runs privileged with every device (/dev) and the host network, because it has
+  to detect, mount, format and write the USB players you plug in. That is the
+  same as running as root on the Umbrel. SyncMusic only touches USB disks and
+  has its own safety checks, but a container cannot protect your internal
+  disks from it. Install it only if you accept that, and keep backups.
+
+
+  SyncMusic keeps portable music players in sync with your media server. It
+  copies music, podcasts and audiobooks from your libraries onto your devices,
+  converting and tagging every file on the way, and sends what you listened to
+  on the device (play counts, ratings, podcast and audiobook positions) back
+  to the library.
+
+
+  Libraries: Navidrome, a plain folder, Audiobookshelf and Jellyfin (beta).
+
+  Devices: iPods with Apple's firmware (Classic, video, mini, nano 1G-4G),
+  Rockbox players, HiBy R1, USB flash drives and memory cards (vfat, exFAT,
+  ext4, NTFS), FTP servers, SMB shares and Android players over MTP (beta).
+
+  Rules decide what goes onto a device (compatible with Navidrome smart
+  playlists); processors transcode (e.g. FLAC to AAC/MP3), retag, add covers
+  and lyrics.
+
+
+  🎵 HOW IT WORKS WITH THE OTHER MUSIC APPS
+
+  SyncMusic pulls your library from Navidrome (or Audiobookshelf, Jellyfin)
+  and writes only to the players you plug in. Plugged-in
+  players are mounted inside the app (under /run/syncmusic), not in the Umbrel
+  Files app.
+
+
+  🛠️ FIRST-RUN SETUP
+
+  1. Libraries → Add library: Navidrome with URL http://127.0.0.1:4533 and
+  your Navidrome user and password (Audiobookshelf: http://127.0.0.1:13378,
+  Jellyfin: http://127.0.0.1:8096).
+
+  2. Plug a player into a USB port of the Umbrel. It appears on the Dashboard as
+  an unknown drive: register it (name, type, templates, processors).
+
+  3. Adjust its rules, look at the plan and apply it. Eject the device from
+  SyncMusic before unplugging it.
+
+
+  SyncMusic runs in the host network, so it reaches other apps at
+  http://127.0.0.1:<app port> (container names like navidrome_server_1 do not
+  resolve here). That works for apps without the Umbrel login, such as
+  Navidrome, Audiobookshelf and Jellyfin.
+
+
+  Works on amd64 and arm64.
+developer: Bionded
+website: https://github.com/Bionded/SyncMusic
+dependencies: []
+repo: https://github.com/Bionded/SyncMusic
+support: https://github.com/Bionded/SyncMusic/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-syncmusic/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-syncmusic/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-syncmusic/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-syncmusic/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-syncmusic/gallery-4.jpg
+path: ""
+releaseNotes: >-
+  First release in the Bionded App Store (experimental), packaging SyncMusic
+  0.2.0 with USB device support: the app runs privileged with /dev, udev and
+  the host network so it can detect, mount and write plugged-in players.
+
+
+  Full release notes: https://github.com/Bionded/SyncMusic/releases/tag/v0.2.0
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-bionded-app-store

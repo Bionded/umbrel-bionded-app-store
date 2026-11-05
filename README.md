@@ -22,6 +22,7 @@ analysis and listening stats) and now also carries other media apps such as Pinc
 | Koito | `bionded-koito` | 4110 | Private ListenBrainz-compatible scrobbler with stats. |
 | Maloja | `bionded-maloja` | 4201 | Stable self-hosted scrobble database with long-term charts and pulse stats. |
 | Pinchflat-NGX | `bionded-pinchflat-ngx` | 8946 | YouTube channel/playlist downloader (enhanced Pinchflat fork, bundled PO-token provider). Coexists with the official Pinchflat. |
+| SyncMusic ⚠️ *experimental* | `bionded-syncmusic` | 8766 | Syncs Navidrome/Audiobookshelf/Jellyfin to iPods, Rockbox players, USB drives and MTP players. Runs **privileged** with `/dev`, udev and the host network so it can mount plugged-in devices. |
 | Prowlarr | `bionded-prowlarr` | 9697 | Indexer manager for Lidarr/Sonarr/Radarr with bundled FlareSolverr, like the official app but with no required apps or auto-wiring. Coexists with the official Prowlarr. |
 
 Navidrome is the official Umbrel app (`navidrome`) and is configured by you.
@@ -94,6 +95,7 @@ Use the internal container hostnames: they work between Umbrel apps without leav
 | AudioMuse-AI | Setup Wizard → Navidrome | `http://navidrome_server_1:4533` |
 | Navidrome plugin | AudioMuse URL | `http://bionded-audiomuse-ai_flask_1:8000` + AudioMuse API token |
 | Multi-Scrobbler | App settings (env) | `SUBSONIC_*` (Navidrome, URL preset); clients start empty: `KOITO_*` (`http://bionded-koito_server_1:4110` + token³), `MALOJA_*` (`http://bionded-maloja_server_1:42010` + key⁴), `LZ_*`, `LASTFM_*`, `LIBREFM_*`, `ROCKSKY_*`, `TEALFM_*`, `DISCORD_*`, `TUNE_*` |
+| SyncMusic | Libraries → Navidrome | `http://127.0.0.1:4533` + Navidrome user/password (host network: container names don't resolve; ABS `http://127.0.0.1:13378`, Jellyfin `http://127.0.0.1:8096`) |
 | Any ListenBrainz scrobbler | Koito endpoint | `http://bionded-koito_server_1:4110/apis/listenbrainz/1` (LAN: `http://umbrel.local:4110/apis/listenbrainz/1`) |
 | Any ListenBrainz scrobbler | Maloja endpoint | `http://bionded-maloja_server_1:42010/apis/listenbrainz/1` (LAN: `http://umbrel.local:4201/apis/listenbrainz/1`) |
 
