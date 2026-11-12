@@ -5,7 +5,7 @@ storage:
 category: media
 name: Prowlarr
 tagline: Indexer manager for Lidarr, Sonarr, Radarr and friends
-version: "2.6.5.5623"
+version: "2.7.0.5723"
 port: 9697
 description: >-
   Prowlarr is an indexer manager and proxy for the *arr apps. Add your torrent
@@ -59,10 +59,18 @@ defaultPassword: ""
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  First release in the Bionded Community store: Prowlarr 2.6.5.5623 with
-  FlareSolverr 3.5.2, without required apps or automatic wiring.
+  Update to 2.7.0.5723.
 
 
-  Full release notes: https://github.com/Prowlarr/Prowlarr/releases/tag/v2.6.5.5623
+  Highlights:
+    - *To receive further updates for a non-docker installation, please change the branch to master. (Settings -> General (Show Advanced Settings) -> Updates ->…
+    - If you are using docker you will need to update the container image.  *Do not attempt to update Prowlarr within an existing docker container.*
+    - Multiple Translations updated by Weblate
+    - Fixed: Wildcard IP addresses in Allowed Hosts
+    - Fixed: Increase AvistaZ indexer rate limit to 6.1 seconds
+    - Fixed: (BroadcasTheNet) Add imdb search support
+
+
+  Full release notes: https://github.com/Prowlarr/Prowlarr/releases/tag/v2.7.0.5723
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

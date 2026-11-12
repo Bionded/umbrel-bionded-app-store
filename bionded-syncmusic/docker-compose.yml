@@ -35,7 +35,7 @@ services:
     restart: on-failure
 
   server:
-    image: ghcr.io/bionded/syncmusic:v0.2.0@sha256:b323a864d6499594e444cfcef9c63e333d41a50ac385c9ce6ec00958aa0e9346
+    image: ghcr.io/bionded/syncmusic:v0.2.3@sha256:ec99963cf3cc71972ad049d889b999cb35892cca9a0fac767d76ab67186c9702
     # EXPERIMENTAL: to mount, format and write USB players the container needs
     # every host device, the udev database and the host network (hot-plug).
     # Privileged = root on the host; SyncMusic's own safety checks still apply.

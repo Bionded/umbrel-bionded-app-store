@@ -5,7 +5,7 @@ storage:
 category: media
 name: Pinchflat-NGX
 tagline: YouTube media manager that downloads channels and playlists automatically
-version: "2026.10.20"
+version: "2026.11.2"
 port: 8946
 description: >-
   Pinchflat-NGX is an enhanced fork of Pinchflat, a self-hosted YouTube media
@@ -66,16 +66,17 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Update to 2026.10.20.
+  Update to 2026.11.2.
 
 
   Highlights:
-    - This release adds separate destinations for YouTube Shorts and fixes the placeholder names left by shared-video intake.
-    - This release adds two database fields. Downgrading to the previous release is not supported after upgrading.
-    - Source names used in output paths are now literal filename components. Slashes and reserved characters become underscores, and template expressions inside…
-    - Separate Shorts folders: set an optional Shorts template on a media profile or override it for a source. Blank fields keep the normal output path. Channel…
+    - ﻿# Pinchflat-ngx 2026.11.2
+    - This release adds bulk retries for failed downloads and fixes PostgreSQL downloads that fail when progress counters exceed 2 GiB. It also improves…
+    - Thanks to @funar for highlighting the need for bulk permanent retries in, @Dav-Git for the detailed task-counter overflow report in, @cbrookins for…
+    - Bulk retry permanent failures and discarded jobs. A dedicated Force Retry Permanent button is now available on Media History > Failed and individual source…
+    - PostgreSQL 64-bit progress counters. Downloaded bytes, total bytes, and download speed columns in PostgreSQL are widened to bigint (int8). Downloads larger…
 
 
-  Full release notes: https://github.com/TheBadFella/Pinchflat-NGX/releases/tag/2026.10.20
+  Full release notes: https://github.com/TheBadFella/Pinchflat-NGX/releases/tag/2026.11.2
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

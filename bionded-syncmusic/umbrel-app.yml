@@ -5,7 +5,7 @@ storage:
 category: media
 name: SyncMusic (Experimental)
 tagline: "EXPERIMENTAL: sync your library to iPods, Rockbox players and USB drives"
-version: "0.2.0-patch.1"
+version: "0.2.3"
 port: 8766
 description: >-
   ⚠️ EXPERIMENTAL. This app has full access to the hardware of your Umbrel: it
@@ -75,12 +75,16 @@ gallery:
   - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-syncmusic/gallery-4.jpg
 path: ""
 releaseNotes: >-
-  Libraries on other Umbrel apps now work by their internal address (e.g.
-  http://navidrome_server_1:4533): SyncMusic runs in the host network, where
-  those names do not resolve and the Umbrel's own IP is refused, so its HTTP
-  traffic now goes through a small built-in proxy.
+  Update to 0.2.3.
 
 
-  Full release notes: https://github.com/Bionded/SyncMusic/releases/tag/v0.2.0
+  Highlights:
+    - HiBy R1: a *Split genres* device setting (use the player's setting, off, or on with the chosen separators and a live example); the sync report warns when it…
+    - *Undo these changes* in a sync's History entry sends the library's previous favourites and ratings back when a sync changed them by mistake.
+    - HiBy R1: a "Tips for this player" card on the device page with the recommended habits and player settings (eject, Detect changes, split settings, file system).
+    - A player whose database lost its favourites (reset, repaired or rewritten) no longer removes them from the library: when ten or more and over half of the…
+
+
+  Full release notes: https://github.com/Bionded/SyncMusic/releases/tag/v0.2.3
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

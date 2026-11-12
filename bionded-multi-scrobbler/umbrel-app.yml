@@ -5,7 +5,7 @@ storage:
 category: media
 name: Multi-Scrobbler
 tagline: Collect plays from every player and scrobble them everywhere
-version: "0.20.2-patch.2"
+version: "0.21.0"
 port: 9078
 description: >-
   Multi-Scrobbler watches what you play on Navidrome and other Subsonic servers,
@@ -374,16 +374,18 @@ environment:
       - server
     note: "Tuneshine client: IP or http(s)://hostname of the Tuneshine device."
 releaseNotes: >-
-  Navidrome can now forward every play through Multi-Scrobbler's ListenBrainz
-  endpoint (new LZE_* settings), which also catches offline and late plays.
-  SUBSONIC_NAME and SUBSONIC_ENABLE were added for the polling source.
+  Update to 0.21.0.
 
 
-  All Multi-Scrobbler clients can now be set up from Advanced settings:
-  Koito, Maloja, ListenBrainz, Last.fm, Libre.fm, Rocksky, teal.fm, Discord and
-  Tuneshine, including their optional fields. Every client setting starts empty;
-  the Koito and Maloja URLs are no longer prefilled (the internal addresses are
-  in the description). Your saved settings are kept.
+  Highlights:
+    - This is a huge release that hardens Multi-Scrobbler deployments so that you can use it in a public environment.
+    - Included in this release:
+    - A new, hardened Docker Image
+    - Single-User Authentication
+    - Public Dashboard :eyes:
+    - Improved Service ID UI
 
+
+  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.21.0
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store
