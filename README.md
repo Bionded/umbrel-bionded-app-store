@@ -129,14 +129,17 @@ releases, registry tags, or a moving nightly tag) and for every app with a newer
 
 1. checks that the image publishes **linux/amd64 and linux/arm64** (otherwise the app is skipped and reported),
 2. pins `tag@sha256:digest` in `docker-compose.yml`,
-3. bumps `version` and writes short `releaseNotes` from the upstream release in `umbrel-app.yml`.
+3. bumps `version` and writes short `releaseNotes` from the upstream release in `umbrel-app.yml`,
+4. commits the updated apps' files in one commit whose message lists each version change and its highlights.
 
-It only edits files. Review with `git diff`, then commit and push.
+It never pushes. Review with `git show`, then push. Apps whose files already had uncommitted changes are
+updated but left out of the commit; `--no-commit` only edits the files.
 
 ```sh
 pip install requests pyyaml
 python3 scripts/check_updates.py --dry-run              # what's new?
 python3 scripts/check_updates.py                        # update every app that has a new version
+python3 scripts/check_updates.py --no-commit            # update the files, don't commit
 python3 scripts/check_updates.py --app bionded-koito    # one app; Koito is `hold` and only updates this way
 ```
 

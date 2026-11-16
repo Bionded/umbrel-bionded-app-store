@@ -8,11 +8,14 @@ For every app in updates.yml:
   3. pin the new `tag@sha256:digest` in docker-compose.yml, bump `version` in
      umbrel-app.yml and write short `releaseNotes` from the upstream release body
 
-Nothing is committed or pushed: review with `git diff`, then commit and push yourself.
+The updated files are committed (one commit, a message listing every version change and its
+highlights); nothing is pushed. Apps whose files already had uncommitted changes are updated but
+left out of the commit. Use --no-commit to only edit the files.
 
 Usage:
   python3 scripts/check_updates.py --dry-run          # only show what is new
-  python3 scripts/check_updates.py                    # update every app that has a new version
+  python3 scripts/check_updates.py                    # update every app that has a new version and commit
+  python3 scripts/check_updates.py --no-commit        # update the files, don't commit
   python3 scripts/check_updates.py --app bionded-koito  # one app (also needed for `hold` apps)
 
 Environment: GITHUB_TOKEN (optional, avoids GitHub API rate limits).
@@ -24,6 +27,7 @@ import argparse
 import datetime as dt
 import os
 import re
+import subprocess
 import sys
 from dataclasses import dataclass
 from pathlib import Path
@@ -230,12 +234,55 @@ def apply_update(u: Update) -> None:
     manifest_path.write_text(text)
 
 
+# ---------------------------------------------------------------- committing
+
+def app_files(app: str) -> list[str]:
+    return [f"{app}/docker-compose.yml", f"{app}/umbrel-app.yml"]
+
+
+def git(*args: str) -> str:
+    return subprocess.run(["git", *args], cwd=ROOT, check=True, capture_output=True, text=True).stdout
+
+
+def is_dirty(app: str) -> bool:
+    return bool(git("status", "--porcelain", "--", *app_files(app)).strip())
+
+
+def short_name(app: str) -> str:
+    return app.removeprefix("bionded-")
+
+
+def commit_message(updates: list[Update]) -> str:
+    if len(updates) == 1:
+        u = updates[0]
+        subject = f"Update {short_name(u.app)} {u.current_version} → {u.new_version}"
+    else:
+        subject = f"Update {len(updates)} apps: " + ", ".join(short_name(u.app) for u in updates)
+    body = []
+    for u in updates:
+        body.append(f"{u.app}: {u.current_version} → {u.new_version} ({u.image}:{u.tag})")
+        body += [f"  - {line.strip()[2:]}" for line in u.notes.splitlines() if line.strip().startswith("- ")]
+        if u.changelog:
+            body.append(f"  {u.changelog}")
+        body.append("")
+    return subject + "\n\n" + "\n".join(body).rstrip() + "\n"
+
+
+def commit(updates: list[Update]) -> str:
+    """Commit only the files of these apps (other staged changes stay staged) and return the short sha."""
+    paths = [f for u in updates for f in app_files(u.app)]
+    subprocess.run(["git", "commit", "--quiet", "-F", "-", "--", *paths], cwd=ROOT, check=True,
+                   input=commit_message(updates), text=True)
+    return git("rev-parse", "--short", "HEAD").strip()
+
+
 # ---------------------------------------------------------------- main
 
 def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--dry-run", action="store_true", help="only report, don't change files")
     ap.add_argument("--app", action="append", help="limit to these app ids (repeatable)")
+    ap.add_argument("--no-commit", action="store_true", help="edit the files but don't commit them")
     ap.add_argument("--force", action="store_true", help="ignore min_interval_days (Lidarr nightly)")
     ap.add_argument("--today", help="override today's date (YYYY-MM-DD), for testing")
     args = ap.parse_args()
@@ -244,6 +291,8 @@ def main() -> int:
     checker = Checker(cfg)
     today = dt.date.fromisoformat(args.today) if args.today else dt.date.today()
     rows, changed, failures = [], [], 0
+    commit_enabled = not args.dry_run and not args.no_commit
+    dirty: list[str] = []
 
     for app, app_cfg in cfg["apps"].items():
         if args.app and app not in args.app:
@@ -260,8 +309,10 @@ def main() -> int:
             elif args.dry_run:
                 rows.append((app, f"new {u.current_version} → {u.new_version}", f"{u.image}:{u.tag}"))
             else:
+                if commit_enabled and is_dirty(app):
+                    dirty.append(app)
                 apply_update(u)
-                changed.append(app)
+                changed.append(u)
                 rows.append((app, f"UPDATED {u.current_version} → {u.new_version}", u.changelog))
         except Exception as exc:  # keep going with the other apps
             failures += 1
@@ -270,8 +321,24 @@ def main() -> int:
     width = max(len(r[0]) for r in rows) if rows else 0
     for app, status, detail in rows:
         print(f"{app:<{width}}  {status:<45}  {detail}")
-    if changed:
+    if not changed:
+        return 1 if failures else 0
+    if not commit_enabled:
         print(f"\nUpdated {len(changed)} app(s). Review with `git diff`, then commit and push.")
+        return 1 if failures else 0
+
+    to_commit = [u for u in changed if u.app not in dirty]
+    if dirty:
+        print(f"\nNot committed (had uncommitted changes before the update): {', '.join(dirty)}")
+    if to_commit:
+        try:
+            sha = commit(to_commit)
+        except subprocess.CalledProcessError:
+            print("\ngit commit failed (see the git output above); the files are updated but not committed.")
+            return 1
+        print(f"\nCommitted {len(to_commit)} app(s) as {sha}:\n")
+        print(git("log", "-1", "--format=%B").rstrip())
+        print("\nReview with `git show`, then push.")
     return 1 if failures else 0
 
 
