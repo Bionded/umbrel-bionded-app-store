@@ -5,7 +5,7 @@ storage:
 category: media
 name: SyncMusic (Experimental)
 tagline: "EXPERIMENTAL: sync your library to iPods, Rockbox players and USB drives"
-version: "0.2.3"
+version: "0.2.5"
 port: 8766
 description: >-
   ⚠️ EXPERIMENTAL. This app has full access to the hardware of your Umbrel: it
@@ -75,16 +75,15 @@ gallery:
   - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-syncmusic/gallery-4.jpg
 path: ""
 releaseNotes: >-
-  Update to 0.2.3.
+  Update to 0.2.5.
 
 
   Highlights:
-    - HiBy R1: a *Split genres* device setting (use the player's setting, off, or on with the chosen separators and a live example); the sync report warns when it…
-    - *Undo these changes* in a sync's History entry sends the library's previous favourites and ratings back when a sync changed them by mistake.
-    - HiBy R1: a "Tips for this player" card on the device page with the recommended habits and player settings (eject, Detect changes, split settings, file system).
-    - A player whose database lost its favourites (reset, repaired or rewritten) no longer removes them from the library: when ten or more and over half of the…
+    - The SonixOS device type is now called *HiBy R1 - SonixOS*, like *HiBy R1 - Compás*.
+    - USB SSDs and USB hard-disk enclosures registered as a device (for example as a backup disk) were refused with "not removable and not an iPod"; registered…
+    - HiBy R1: *Switch to Compás* (and back to SonixOS) failed with "invalid settings"; the switch now keeps the settings the other firmware understands and uses…
 
 
-  Full release notes: https://github.com/Bionded/SyncMusic/releases/tag/v0.2.3
+  Full release notes: https://github.com/Bionded/SyncMusic/releases/tag/v0.2.5
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

@@ -5,7 +5,7 @@ storage:
 category: media
 name: SoulSync
 tagline: Mirror your Spotify, Tidal and Deezer playlists into your own library
-version: "3.6.4"
+version: "3.6.6"
 port: 8018
 description: >-
   SoulSync keeps your streaming playlists in sync with your own music library.
@@ -91,16 +91,16 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Update to 3.6.4.
+  Update to 3.6.6.
 
 
   Highlights:
-    - a big one. your own video libraries with their own sources, indexers and quality profiles, one release ranking that says why, delete a show or movie and…
-    - your own movie and tv libraries (thanks SeadogsBooty,. make as many libraries as you like and pick what goes in each by hand, by rules or by default. each…
-    - one release ranking, and why (thanks SeadogsBooty,. quality first, then custom formats, then tie-breaks, the same order everywhere a release is picked.…
-    - sabnzbd and nzbget get the nzb file, not the prowlarr link (thanks SeadogsBooty,. soulsync fetches the nzb itself and sends the file, so the client never…
+    - the video library becomes a real library manager. the library page is a table of titles and a table of files as well as posters, with bulk operations,…
+    - the library page is a manager. posters, a sortable table of titles with the columns you pick, and a table of the files themselves. filters for what needs a…
+    - bulk operations on a selection or on everything a filter matches: rename with a preview, move to another drive or library, quality profile, look for…
+    - history and undo. every rename, move, delete and re-file made by hand is listed and one click puts it back, a whole bulk run at once.
 
 
-  Full release notes: https://github.com/Nezreka/SoulSync/releases/tag/3.6.4
+  Full release notes: https://github.com/Nezreka/SoulSync/releases/tag/3.6.6
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store
