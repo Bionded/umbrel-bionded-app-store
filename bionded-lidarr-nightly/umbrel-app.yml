@@ -5,7 +5,7 @@ storage:
 category: media
 name: Lidarr Nightly
 tagline: Plugin-ready Lidarr nightly that runs alongside the official Lidarr
-version: "3.2.1.5196-nightly.20261112"
+version: "4.0.0.5227-nightly.20261120"
 port: 8687
 description: >-
   Lidarr is a music collection manager: it monitors your artists, finds new and
@@ -78,7 +78,7 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Nightly build 3.2.1.5196 (nightly-3.2.1.5196-ls225).
+  Nightly build 4.0.0.5227 (nightly-4.0.0.5227-ls227).
 
 
   Changes: https://github.com/Lidarr/Lidarr/commits/develop

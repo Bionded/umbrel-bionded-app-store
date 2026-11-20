@@ -5,7 +5,7 @@ storage:
 category: media
 name: AudioMuse-AI
 tagline: Sonic analysis and smart playlists for your Navidrome library
-version: "3.7.2"
+version: "3.7.3"
 port: 8044
 description: >-
   AudioMuse-AI listens to your music. It analyses every track's sound (tempo,
@@ -88,16 +88,16 @@ path: ""
 defaultUsername: ""
 deterministicPassword: true
 releaseNotes: >-
-  Update to 3.7.2.
+  Update to 3.7.3.
 
 
   Highlights:
     - 💛 Give AudioMuse-AI a gift this Christmas
     - AudioMuse-AI will always remain free and open source, because everyone deserves the chance to rediscover their music, regardless of their resources. But…
-    - Right now, we have 2,521 users on Navidrome alone, based on the users who have anonymous data collection enabled on Navidrome. If just 20% of them donate…
+    - Right now, we have 2,725 users on Navidrome alone, based on the users who have anonymous data collection enabled on Navidrome. If just 20% of them donate…
     - Your donation helps cover the AI subscriptions needed for development (~€220/month), homelab electricity for testing (~€20/month) and further improvements…
 
 
-  Full release notes: https://github.com/NeptuneHub/AudioMuse-AI/releases/tag/v3.7.2
+  Full release notes: https://github.com/NeptuneHub/AudioMuse-AI/releases/tag/v3.7.3
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

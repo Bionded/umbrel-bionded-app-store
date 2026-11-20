@@ -8,7 +8,7 @@ services:
       PROXY_AUTH_WHITELIST: "/api/*"
 
   server:
-    image: linuxserver/lidarr:nightly-3.2.1.5196-ls225@sha256:5618a549ba6ef21318d24f869764fa58f51629b063a1a1ebf11cf8f32d1f5b8a
+    image: linuxserver/lidarr:nightly-4.0.0.5227-ls227@sha256:969a82b8374db468eb9f68ce3cec88c747b5a9cda28f00fa617ee45c9e8e76c0
     environment:
       - PUID=1000
       - PGID=1000

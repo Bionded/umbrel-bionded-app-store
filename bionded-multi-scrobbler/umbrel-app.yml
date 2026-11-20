@@ -5,7 +5,7 @@ storage:
 category: media
 name: Multi-Scrobbler
 tagline: Collect plays from every player and scrobble them everywhere
-version: "0.21.0"
+version: "0.21.1"
 port: 9078
 description: >-
   Multi-Scrobbler watches what you play on Navidrome and other Subsonic servers,
@@ -374,18 +374,16 @@ environment:
       - server
     note: "Tuneshine client: IP or http(s)://hostname of the Tuneshine device."
 releaseNotes: >-
-  Update to 0.21.0.
+  Update to 0.21.1.
 
 
   Highlights:
-    - This is a huge release that hardens Multi-Scrobbler deployments so that you can use it in a public environment.
-    - Included in this release:
-    - A new, hardened Docker Image
-    - Single-User Authentication
-    - Public Dashboard :eyes:
-    - Improved Service ID UI
+    - A new Client, Blackbox, is available that can be used as a glorified "webhook" for scrobble/now playing activity from MS.
+    - This client can be configured to POST a json payload (scrobble and/or now playing) to *any* URL you give it. It can optionally be configured with headers…
+    - The payload can be either a Full MS Play object which contains a ton of information, or a normal Listenbrainz submit-listens payload.
+    - This client is generally useful to feed your own app, script, or home automation with listening activity from any of your Sources.
 
 
-  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.21.0
+  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.21.1
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

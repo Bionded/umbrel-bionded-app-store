@@ -5,7 +5,7 @@ storage:
 category: media
 name: Aurral
 tagline: Music discovery and requests that feed Lidarr and slskd
-version: "2.13.0"
+version: "3.0.0"
 port: 3041
 description: >-
   Aurral is a self-hosted music discovery app. It recommends artists and albums
@@ -76,16 +76,16 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Update to 2.13.0.
+  Update to 3.0.0.
 
 
   Highlights:
-    - 2.13.0 is another big one. Discover now shows what's charting and explains why each recommendation is there. Aurral has one consistent look and one Settings…
-    - Open Trending from Discover for a charts page with top songs, albums, artists, and a chart for each genre. It needs no account or API key, follows your…
-    - Recommended has its own page. For you groups picks by why they showed up, like "Because you like" an artist, "Close to home", and "Further out". All is one…
-    - New users get a full Discover on day one, seeded from the charts until their own taste takes over. Import your Spotify listening history in Settings >…
+    - 3.0.0 is the biggest Aurral release yet. You can see what your friends are playing and make Blends with them, publish playlists to Community, and open your…
+    - Please update before December 1. That's when the Last.fm API starts needing Last.fm Pro, and 2.x uses it for discovery and Wrapped wherever a key is set.…
+    - Aurral 3 opens databases that finished upgrading on 2.x. If yours is older, Aurral 3 stops without changing anything and tells you so. Start…
+    - Mount your data at /config. If the database is only in /app/backend/data, Aurral 3 stops and asks you to move the mount.
 
 
-  Full release notes: https://github.com/lklynet/aurral/releases/tag/v2.13.0
+  Full release notes: https://github.com/lklynet/aurral/releases/tag/v3.0.0
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

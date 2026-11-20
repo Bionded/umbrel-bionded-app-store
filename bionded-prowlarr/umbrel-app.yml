@@ -5,7 +5,7 @@ storage:
 category: media
 name: Prowlarr
 tagline: Indexer manager for Lidarr, Sonarr, Radarr and friends
-version: "2.7.0.5723"
+version: "3.0.2.5780"
 port: 9697
 description: >-
   Prowlarr is an indexer manager and proxy for the *arr apps. Add your torrent
@@ -59,18 +59,18 @@ defaultPassword: ""
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Update to 2.7.0.5723.
+  Update to 3.0.2.5780.
 
 
   Highlights:
     - *To receive further updates for a non-docker installation, please change the branch to master. (Settings -> General (Show Advanced Settings) -> Updates ->…
     - If you are using docker you will need to update the container image.  *Do not attempt to update Prowlarr within an existing docker container.*
     - Multiple Translations updated by Weblate
-    - Fixed: Wildcard IP addresses in Allowed Hosts
-    - Fixed: Increase AvistaZ indexer rate limit to 6.1 seconds
-    - Fixed: (BroadcasTheNet) Add imdb search support
+    - Fixed: Report a rejected grab when qBittorrent already has the release [ ]
+    - New: Add Anthelion as a default torznab preset
+    - Multiple Translations updated by Weblate
 
 
-  Full release notes: https://github.com/Prowlarr/Prowlarr/releases/tag/v2.7.0.5723
+  Full release notes: https://github.com/Prowlarr/Prowlarr/releases/tag/v3.0.2.5780
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store
