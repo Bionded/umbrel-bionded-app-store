@@ -23,6 +23,7 @@ analysis and listening stats) and now also carries other media apps such as Pinc
 | Maloja | `bionded-maloja` | 4201 | Stable self-hosted scrobble database with long-term charts and pulse stats. |
 | Pinchflat-NGX | `bionded-pinchflat-ngx` | 8946 | YouTube channel/playlist downloader (enhanced Pinchflat fork, bundled PO-token provider). Coexists with the official Pinchflat. |
 | SyncMusic ⚠️ *experimental* | `bionded-syncmusic` | 8766 | Syncs Navidrome/Audiobookshelf/Jellyfin to iPods, Rockbox players, USB drives and MTP players. Runs **privileged** with `/dev`, udev and the host network so it can mount plugged-in devices. |
+| HolyArrs | `bionded-holyarrs` | 6262 | One app for shows, movies and music: requests, indexers, release picking, subtitles and import (does the job of Sonarr, Radarr, Lidarr, Prowlarr, Bazarr and Seerr). Uses your download client. |
 | Prowlarr | `bionded-prowlarr` | 9697 | Indexer manager for Lidarr/Sonarr/Radarr with bundled FlareSolverr, like the official app but with no required apps or auto-wiring. Coexists with the official Prowlarr. |
 
 Navidrome is the official Umbrel app (`navidrome`) and is configured by you.
@@ -53,6 +54,7 @@ Every app sees the same two folders at the same container paths:
 | ↳ `Downloads/aurral` | `/downloads/aurral` | Aurral (flows, playlists, its own albums) |
 | ↳ `Downloads/soulsync` | `/app/Transfer` in SoulSync | SoulSync (mirrored playlists) |
 | ↳ `Downloads/explo` | `/data` in Explo | Explo (weekly playlists, rotated) |
+| ↳ `Downloads/movies`, `Downloads/tv` | `/downloads/movies`, `/downloads/tv` | HolyArrs movie and TV libraries (same place as the official Sonarr/Radarr, so Jellyfin and Plex see them) |
 | ↳ `Downloads/pinchflat` | `/downloads` in Pinchflat-NGX | Pinchflat-NGX (YouTube videos; it only sees this folder) |
 
 Rules that keep apps from fighting:
@@ -78,6 +80,9 @@ Use the internal container hostnames: they work between Umbrel apps without leav
 | In app | Setting | Value |
 |---|---|---|
 | Lidarr Nightly | Root folder | `/music` |
+| HolyArrs | Library folders | Movies `/downloads/movies`, TV `/downloads/tv`; music `/music` only if Lidarr Nightly doesn't manage it |
+| HolyArrs | Download client | qBittorrent `http://qbittorrent_server_1:8080`, Transmission `http://transmission_server_1:9091`, SABnzbd `http://sabnzbd_web_1:8080` |
+| HolyArrs | Source (Prowlarr) | `http://bionded-prowlarr_server_1:9696` + Prowlarr API key |
 | Prowlarr | Settings → Apps → Lidarr | Prowlarr `http://bionded-prowlarr_server_1:9696`, Lidarr `http://bionded-lidarr-nightly_server_1:8686` + Lidarr API key² |
 | Prowlarr | FlareSolverr proxy (tag `flaresolverr`) | `http://bionded-prowlarr_indexer_proxy_1:8191` |
 | Lidarr Nightly | Download client "Slskd" (Tubifarry) | `http://bionded-slskd_server_1:5030`, slskd API key¹ (files are picked up from `/downloads/slskd/complete`) |

@@ -104,3 +104,10 @@ apps:
     image: ghcr.io/bionded/syncmusic
     image_tag: "v{version}"
     services: [server]
+
+  bionded-holyarrs:
+    source: github_release
+    repo: HolyArrs/HolyArrs
+    image: holyarrs/holyarrs
+    image_tag: "{version}"
+    services: [server]

@@ -1,0 +1,22 @@
+version: "3.7"
+
+services:
+  app_proxy:
+    environment:
+      APP_HOST: bionded-holyarrs_server_1
+      APP_PORT: 6262
+      # HolyArrs has its own accounts and API keys; these paths are for other
+      # apps (Seerr, Homepage, scripts) and its Sonarr/Radarr-compatible API.
+      PROXY_AUTH_WHITELIST: "/api/*,/sonarr/*,/radarr/*"
+
+  server:
+    image: holyarrs/holyarrs:1.2.0@sha256:169d2c90773011fcdce576e44ff40f71e1ddef18408fc367d870bfa57325323e
+    user: "1000:1000"
+    environment:
+      - TZ=Etc/UTC
+      - HOLYARRS_ALLOWED_HOSTS=${DEVICE_DOMAIN_NAME},bionded-holyarrs_server_1
+    volumes:
+      - ${APP_DATA_DIR}/data/config:/config
+      - ${UMBREL_ROOT}/data/storage/downloads:/downloads
+      - ${UMBREL_ROOT}/data/storage/Music:/music
+    restart: on-failure

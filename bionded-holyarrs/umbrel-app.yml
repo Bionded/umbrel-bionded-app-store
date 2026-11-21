@@ -1,0 +1,120 @@
+manifestVersion: 1.1
+id: bionded-holyarrs
+storage:
+  dataRoot: data
+category: media
+name: HolyArrs
+tagline: One app for your shows, movies and music instead of six *arr apps
+version: "1.2.0"
+port: 6262
+description: >-
+  HolyArrs does the job of Sonarr, Radarr, Lidarr, Prowlarr, Bazarr and Seerr in
+  one small app with one login. Browse like a streaming app (hover a title and
+  the trailer plays), ask for a show, a season or a movie, and HolyArrs searches
+  your indexers, picks the best release with your rules, sends it to your
+  download client, fetches subtitles and files it into your library. Friends and
+  family can make requests that you approve. A calendar shows what airs next, and
+  alerts go to Discord, Telegram, ntfy, email and more.
+
+
+  HolyArrs is young and moves fast, so back up before big updates. It does not
+  download by itself: it uses the download client you already run
+  (qBittorrent, Transmission, SABnzbd…).
+
+
+  📁 FOLDERS
+
+  Like the official Sonarr, Radarr, Jellyfin and Plex apps, HolyArrs sees Home →
+  Downloads at /downloads. Keep your movie and TV libraries there so imports are
+  instant moves and your media server sees them:
+
+  - Movies: /downloads/movies
+
+  - TV shows: /downloads/tv
+
+  - Music: /music (Home → Music, can be changed in the app's settings)
+
+
+  ⚠️ If you use Lidarr Nightly, let only one app manage music: don't add /music
+  as a HolyArrs music library while Lidarr manages it. Music imports from
+  /downloads to /music are copies, not moves.
+
+
+  🛠️ FIRST-RUN SETUP
+
+  1. Open the app right after installing and create the owner account. The first
+  person to open it becomes the owner.
+
+  2. The setup asks for library folders (see above), a download client and a
+  Source (indexer).
+
+  3. Download clients on this Umbrel: qBittorrent http://qbittorrent_server_1:8080,
+  Transmission http://transmission_server_1:9091, SABnzbd
+  http://sabnzbd_web_1:8080. They all see the same /downloads folder.
+
+  4. Sources: any Torznab or Newznab indexer, or connect Prowlarr
+  (http://bionded-prowlarr_server_1:9696 or the official
+  http://prowlarr_server_1:9696).
+
+  5. Media servers: Jellyfin http://jellyfin_server_1:8096, Emby
+  http://emby_server_1:8096, Plex http://<your Umbrel IP>:32400.
+
+
+  🚚 MOVING FROM SONARR / RADARR / LIDARR
+
+  Settings → Import from other apps reads your existing apps (address + API key)
+  and brings over library folders, titles, quality profiles, indexers and
+  download clients. It never changes the old apps, so you can run both side by
+  side.
+
+
+  🔑 MASTER KEY
+
+  Passwords and API keys are encrypted with a key stored in the app data. Backups
+  don't include it: as the owner, open Settings → Backups → Download key kit and
+  keep it somewhere safe.
+
+
+  Titles, artwork and trailers come from the HolyArrs metadata server by default
+  (no API keys needed); you can use your own TMDB key instead under Settings →
+  Metadata.
+
+
+  Works on amd64 and arm64.
+developer: CoderLuii
+website: https://holyarrs.com/
+dependencies: []
+repo: https://github.com/HolyArrs/HolyArrs
+support: https://github.com/HolyArrs/HolyArrs/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-holyarrs/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-holyarrs/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-holyarrs/gallery-2.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-holyarrs/gallery-3.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-holyarrs/gallery-4.jpg
+path: ""
+defaultUsername: ""
+defaultPassword: ""
+folderAccess:
+  - id: music
+    name: Music
+    note: Your music library. Available inside HolyArrs at /music.
+    mounts:
+      - service: server
+        targetPath: /music
+permissions:
+  - STORAGE_DOWNLOADS
+releaseNotes: >-
+  First release in the Bionded App Store, packaging HolyArrs 1.2.0.
+
+
+  Highlights:
+    - Tap the red dot to see what needs attention. Fixed warnings clear.
+    - Connection tests name the exact problem and what a name became.
+    - Plex labels requested titles with your own label text.
+    - The owner's requests can wait for approval too.
+
+
+  Full release notes: https://github.com/HolyArrs/HolyArrs/releases/tag/1.2.0
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-bionded-app-store
