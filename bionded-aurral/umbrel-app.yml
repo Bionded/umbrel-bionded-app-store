@@ -5,7 +5,7 @@ storage:
 category: media
 name: Aurral
 tagline: Music discovery and requests that feed Lidarr and slskd
-version: "3.0.0"
+version: "3.0.1"
 port: 3041
 description: >-
   Aurral is a self-hosted music discovery app. It recommends artists and albums
@@ -76,16 +76,16 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Update to 3.0.0.
+  Update to 3.0.1.
 
 
   Highlights:
-    - 3.0.0 is the biggest Aurral release yet. You can see what your friends are playing and make Blends with them, publish playlists to Community, and open your…
-    - Please update before December 1. That's when the Last.fm API starts needing Last.fm Pro, and 2.x uses it for discovery and Wrapped wherever a key is set.…
-    - Aurral 3 opens databases that finished upgrading on 2.x. If yours is older, Aurral 3 stops without changing anything and tells you so. Start…
-    - Mount your data at /config. If the database is only in /app/backend/data, Aurral 3 stops and asks you to move the mount.
+    - 3.0.1 gets metadata and search working again. BrainzMash's public relay stopped answering Aurral, which broke search and every artist or album page Aurral…
+    - Search, artist pages, and album pages load again. Aurral now uses brainzmash.kell.ly, a BrainzMash server run by the Aurral maintainers. Everything Aurral…
+    - Older installs saved the relay's address as their metadata Base URL. Aurral clears it, so they move to the new server too. A server you set yourself stays…
+    - Flows, playlists, and single-track requests no longer go to Lidarr. The Lidarr plugin only downloads whole albums, so a single flow track sent to it added…
 
 
-  Full release notes: https://github.com/lklynet/aurral/releases/tag/v3.0.0
+  Full release notes: https://github.com/lklynet/aurral/releases/tag/v3.0.1
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store
