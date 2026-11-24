@@ -10,7 +10,7 @@ services:
       PROXY_AUTH_WHITELIST: "/api/*,/sonarr/*,/radarr/*"
 
   server:
-    image: holyarrs/holyarrs:1.2.0@sha256:169d2c90773011fcdce576e44ff40f71e1ddef18408fc367d870bfa57325323e
+    image: holyarrs/holyarrs:1.3.0@sha256:0c15e13f3d96c6f39325188b5e90a7c99181a0dcdb1069db30f3441168840722
     user: "1000:1000"
     environment:
       - TZ=Etc/UTC

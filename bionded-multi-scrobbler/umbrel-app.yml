@@ -5,7 +5,7 @@ storage:
 category: media
 name: Multi-Scrobbler
 tagline: Collect plays from every player and scrobble them everywhere
-version: "0.21.1"
+version: "0.21.2"
 port: 9078
 description: >-
   Multi-Scrobbler watches what you play on Navidrome and other Subsonic servers,
@@ -374,16 +374,16 @@ environment:
       - server
     note: "Tuneshine client: IP or http(s)://hostname of the Tuneshine device."
 releaseNotes: >-
-  Update to 0.21.1.
+  Update to 0.21.2.
 
 
   Highlights:
-    - A new Client, Blackbox, is available that can be used as a glorified "webhook" for scrobble/now playing activity from MS.
-    - This client can be configured to POST a json payload (scrobble and/or now playing) to *any* URL you give it. It can optionally be configured with headers…
-    - The payload can be either a Full MS Play object which contains a ton of information, or a normal Listenbrainz submit-listens payload.
-    - This client is generally useful to feed your own app, script, or home automation with listening activity from any of your Sources.
+    - If you haven't already seen the news, Last.fm made an announcement that all new and existing API keys for non-pro (non-paid) accounts will stop working…
+    - Multi-Scrobbler users with Last.fm Sources or Clients will now see a logged warning about this deadline. The docs have also been updated with this…
+    - Multi-Scrobbler now supports importing scrobbles from Last.fm and exporting to any configured Clients. 🚀
+    - You can import directly from a Last.fm Source/Client, or use one of the supported, third-party file export tools mentioned in the docs.
 
 
-  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.21.1
+  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.21.2
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

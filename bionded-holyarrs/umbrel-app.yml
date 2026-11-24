@@ -5,7 +5,7 @@ storage:
 category: media
 name: HolyArrs
 tagline: One app for your shows, movies and music instead of six *arr apps
-version: "1.2.0"
+version: "1.3.0"
 port: 6262
 description: >-
   HolyArrs does the job of Sonarr, Radarr, Lidarr, Prowlarr, Bazarr and Seerr in
@@ -105,16 +105,18 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  First release in the Bionded App Store, packaging HolyArrs 1.2.0.
+  Update to 1.3.0.
 
 
   Highlights:
-    - Tap the red dot to see what needs attention. Fixed warnings clear.
-    - Connection tests name the exact problem and what a name became.
-    - Plex labels requested titles with your own label text.
-    - The owner's requests can wait for approval too.
+    - A plugin system: add features in a sandbox. Tailscale is first.
+    - Sign in with Trakt, and see IMDb, Rotten Tomatoes and Metacritic scores.
+    - Hands-off mode: HolyArrs sends the download and never touches a single file.
+    - Skip downloads on your streaming services, and spot ones to remove.
+    - Requests say when releases were found but none fit the Pick rules.
+    - Outside lists can follow Trakt charts like trending and box office.
 
 
-  Full release notes: https://github.com/HolyArrs/HolyArrs/releases/tag/1.2.0
+  Full release notes: https://github.com/HolyArrs/HolyArrs/releases/tag/1.3.0
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store
