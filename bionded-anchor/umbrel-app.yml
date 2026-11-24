@@ -1,0 +1,40 @@
+manifestVersion: 1
+id: bionded-anchor
+storage:
+  dataRoot: data
+category: productivity
+name: Anchor
+tagline: Private offline-first notes with sync across your devices
+version: "0.18.1"
+port: 3015
+description: >-
+  Anchor is a self-hosted, offline-first notes app. Write and edit notes on
+  the web or your phone, then sync them across devices. Organize notes with
+  tags, checklists and archives, add images and audio, share notes, and restore
+  earlier versions. Anchor also supports Markdown and Google Keep imports.
+
+
+  Create your Anchor account when you first open the app. Anchor manages its
+  own accounts; the app is accessible without an Umbrel login so that its
+  mobile clients can connect. Review registration settings in the admin panel.
+
+
+  For the mobile app, enter your Umbrel's address and port, for example
+  http://umbrel.local:3015. Android downloads and the iOS beta are linked from
+  the Anchor project. The database and attachments are stored in the app's
+  data directory.
+developer: ZhFahim
+website: https://github.com/zhfahim/anchor
+dependencies: []
+repo: https://github.com/zhfahim/anchor
+support: https://github.com/zhfahim/anchor/issues
+icon: https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-anchor/icon.png
+gallery:
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-anchor/gallery-1.jpg
+  - https://raw.githubusercontent.com/Bionded/umbrel-bionded-app-store/master/bionded-anchor/gallery-2.jpg
+path: ""
+releaseNotes: >-
+  First release in the Bionded App Store, packaging Anchor 0.18.1.
+  https://github.com/zhfahim/anchor/releases/tag/v0.18.1
+submitter: Bionded
+submission: https://github.com/Bionded/umbrel-bionded-app-store

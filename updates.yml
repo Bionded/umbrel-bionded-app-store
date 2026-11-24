@@ -111,3 +111,10 @@ apps:
     image: holyarrs/holyarrs
     image_tag: "{version}"
     services: [server]
+
+  bionded-anchor:
+    source: github_release
+    repo: zhfahim/anchor
+    image: ghcr.io/zhfahim/anchor
+    image_tag: "{version}"
+    services: [server]

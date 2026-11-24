@@ -23,6 +23,7 @@ analysis and listening stats) and now also carries other media apps such as Pinc
 | Maloja | `bionded-maloja` | 4201 | Stable self-hosted scrobble database with long-term charts and pulse stats. |
 | Pinchflat-NGX | `bionded-pinchflat-ngx` | 8946 | YouTube channel/playlist downloader (enhanced Pinchflat fork, bundled PO-token provider). Coexists with the official Pinchflat. |
 | SyncMusic ⚠️ *experimental* | `bionded-syncmusic` | 8766 | Syncs Navidrome/Audiobookshelf/Jellyfin to iPods, Rockbox players, USB drives and MTP players. Runs **privileged** with `/dev`, udev and the host network so it can mount plugged-in devices. |
+| Anchor | `bionded-anchor` | 3015 | Offline-first notes with web and mobile sync. |
 | HolyArrs | `bionded-holyarrs` | 6262 | One app for shows, movies and music: requests, indexers, release picking, subtitles and import (does the job of Sonarr, Radarr, Lidarr, Prowlarr, Bazarr and Seerr). Uses your download client. |
 | Prowlarr | `bionded-prowlarr` | 9697 | Indexer manager for Lidarr/Sonarr/Radarr with bundled FlareSolverr, like the official app but with no required apps or auto-wiring. Coexists with the official Prowlarr. |
 
