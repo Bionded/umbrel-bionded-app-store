@@ -5,7 +5,7 @@ storage:
 category: media
 name: HolyArrs
 tagline: One app for your shows, movies and music instead of six *arr apps
-version: "1.3.0"
+version: "1.3.1"
 port: 6262
 description: >-
   HolyArrs does the job of Sonarr, Radarr, Lidarr, Prowlarr, Bazarr and Seerr in
@@ -105,18 +105,16 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Update to 1.3.0.
+  Update to 1.3.1.
 
 
   Highlights:
-    - A plugin system: add features in a sandbox. Tailscale is first.
-    - Sign in with Trakt, and see IMDb, Rotten Tomatoes and Metacritic scores.
-    - Hands-off mode: HolyArrs sends the download and never touches a single file.
-    - Skip downloads on your streaming services, and spot ones to remove.
-    - Requests say when releases were found but none fit the Pick rules.
-    - Outside lists can follow Trakt charts like trending and box office.
+    - Plugins can be told when titles are added, downloaded or requested.
+    - Developer mode runs the plugin you're building from a folder.
+    - Test versions let you try a plugin's next version first.
+    - A Cover art changed Alert, off until you turn it on.
 
 
-  Full release notes: https://github.com/HolyArrs/HolyArrs/releases/tag/1.3.0
+  Full release notes: https://github.com/HolyArrs/HolyArrs/releases/tag/1.3.1
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

@@ -5,7 +5,7 @@ storage:
 category: media
 name: Multi-Scrobbler
 tagline: Collect plays from every player and scrobble them everywhere
-version: "0.21.2"
+version: "0.21.3"
 port: 9078
 description: >-
   Multi-Scrobbler watches what you play on Navidrome and other Subsonic servers,
@@ -374,16 +374,18 @@ environment:
       - server
     note: "Tuneshine client: IP or http(s)://hostname of the Tuneshine device."
 releaseNotes: >-
-  Update to 0.21.2.
+  Update to 0.21.3.
 
 
   Highlights:
-    - If you haven't already seen the news, Last.fm made an announcement that all new and existing API keys for non-pro (non-paid) accounts will stop working…
-    - Multi-Scrobbler users with Last.fm Sources or Clients will now see a logged warning about this deadline. The docs have also been updated with this…
-    - Multi-Scrobbler now supports importing scrobbles from Last.fm and exporting to any configured Clients. 🚀
-    - You can import directly from a Last.fm Source/Client, or use one of the supported, third-party file export tools mentioned in the docs.
+    - Play Transforms includes two new features that enable you to filter out, or flag, Plays that should not be automatically scrobbled.
+    - Play State Control adds additional configuration next to Stage Flow Control on your stages. It allows you to set the state of a Play based on the outcome of…
+    - In plain terms, you can now do this:
+    - if the Musicbrainz Stage matches your Play data, use its corrected data (and continue as normal)
+    - If the Musicbrainz Stage fails to match your Play data, set the Play state as Needs Review and do not forward it to a Client (or scrobble it)
+    - with this configuration:
 
 
-  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.21.2
+  Full release notes: https://github.com/FoxxMD/multi-scrobbler/releases/tag/0.21.3
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

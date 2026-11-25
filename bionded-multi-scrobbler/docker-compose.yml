@@ -8,7 +8,7 @@ services:
       PROXY_AUTH_WHITELIST: "/api/listenbrainz*,/api/lastfm*,/2.0*,/1/*"
 
   server:
-    image: foxxmd/multi-scrobbler:0.21.2@sha256:a8ff2d0ae1dc6984fea0481863f29a9647a8f5b705f6e44cbf6791e0c0fb88e5
+    image: foxxmd/multi-scrobbler:0.21.3@sha256:73f8aa6cf475f841e0d21ffc191f66e74ac8e6d652c68b9dd187b65aedbb5395
     environment:
       - PUID=1000
       - PGID=1000
