@@ -5,7 +5,7 @@ storage:
 category: media
 name: HolyArrs
 tagline: One app for your shows, movies and music instead of six *arr apps
-version: "1.3.1"
+version: "1.3.6"
 port: 6262
 description: >-
   HolyArrs does the job of Sonarr, Radarr, Lidarr, Prowlarr, Bazarr and Seerr in
@@ -105,16 +105,16 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Update to 1.3.1.
+  Update to 1.3.6.
 
 
   Highlights:
-    - Plugins can be told when titles are added, downloaded or requested.
-    - Developer mode runs the plugin you're building from a folder.
-    - Test versions let you try a plugin's next version first.
-    - A Cover art changed Alert, off until you turn it on.
+    - Plugin lists update again after the signing key change.
+    - Discord
+    - FlareSolverr
+    - Language Checker
 
 
-  Full release notes: https://github.com/HolyArrs/HolyArrs/releases/tag/1.3.1
+  Full release notes: https://github.com/HolyArrs/HolyArrs/releases/tag/1.3.6
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

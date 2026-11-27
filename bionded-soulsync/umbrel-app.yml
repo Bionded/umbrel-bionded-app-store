@@ -5,7 +5,7 @@ storage:
 category: media
 name: SoulSync
 tagline: Mirror your Spotify, Tidal and Deezer playlists into your own library
-version: "3.6.9"
+version: "3.7.0"
 port: 8018
 description: >-
   SoulSync keeps your streaming playlists in sync with your own music library.
@@ -91,16 +91,16 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Update to 3.6.9.
+  Update to 3.7.0.
 
 
   Highlights:
-    - soulsync has its own player now: open the player from the sidebar and everything you own plays in one full-screen app, music, movies, tv, youtube,…
-    - heads up, behaviour change: if you sign people in with an auth proxy header (authelia, authentik, oauth2-proxy), soulsync now ignores that header until you…
-    - open the player sits under the audio / video toggle in the sidebar, on both sides, and lives at /player. it's full screen over the manager, with its own…
-    - home shows what you own: a billboard of new episodes and the newest films (a muted trailer if trailers are on), continue watching, your watchlist, top 10…
+    - soulsync now has its own player. it's a watch-and-listen app built into soulsync, like a plex or jellyfin player: your movies, tv, music, youtube,…
+    - around it: video can run with no media server at all, or with plex and jellyfin as one library. backups get their own page, cover every database, and a…
+    - player setup. an admin gets a short setup the first time: name the server, sort folders into libraries, set the sidebar order and what is hidden for…
+    - libraries. a library is a named group of folders. you start with Movies and TV Shows, and can move a drive into a new library (4K, Kids, Anime), rename it,…
 
 
-  Full release notes: https://github.com/Nezreka/SoulSync/releases/tag/3.6.9
+  Full release notes: https://github.com/Nezreka/SoulSync/releases/tag/3.7.0
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store

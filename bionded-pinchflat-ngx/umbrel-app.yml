@@ -5,7 +5,7 @@ storage:
 category: media
 name: Pinchflat-NGX
 tagline: YouTube media manager that downloads channels and playlists automatically
-version: "2026.11.2"
+version: "2026.11.3"
 port: 8946
 description: >-
   Pinchflat-NGX is an enhanced fork of Pinchflat, a self-hosted YouTube media
@@ -66,17 +66,17 @@ folderAccess:
 permissions:
   - STORAGE_DOWNLOADS
 releaseNotes: >-
-  Update to 2026.11.2.
+  Update to 2026.11.3.
 
 
   Highlights:
-    - ﻿# Pinchflat-ngx 2026.11.2
-    - This release adds bulk retries for failed downloads and fixes PostgreSQL downloads that fail when progress counters exceed 2 GiB. It also improves…
-    - Thanks to @funar for highlighting the need for bulk permanent retries in, @Dav-Git for the detailed task-counter overflow report in, @cbrookins for…
-    - Bulk retry permanent failures and discarded jobs. A dedicated Force Retry Permanent button is now available on Media History > Failed and individual source…
-    - PostgreSQL 64-bit progress counters. Downloaded bytes, total bytes, and download speed columns in PostgreSQL are widened to bigint (int8). Downloads larger…
+    - > [!IMPORTANT]
+    - > If any of your friends are still using the original Pinchflat, please let them know that its dependencies are affected by multiple CVEs. It was last…
+    - I was planning to keep this iteration small, but when you inherit a project with 200 open issues there is no time to rest. We are getting there, one step at…
+    - This release refreshes Sources, library views, and global search, overhauls long settings forms with section navigation and setting search, and expands…
+    - The Sources page has been completely overhauled. Special thanks to @Asinin3 for the suggestions behind it and for the PRs that made it possible,,. If you…
 
 
-  Full release notes: https://github.com/TheBadFella/Pinchflat-NGX/releases/tag/2026.11.2
+  Full release notes: https://github.com/TheBadFella/Pinchflat-NGX/releases/tag/2026.11.3
 submitter: Bionded
 submission: https://github.com/Bionded/umbrel-bionded-app-store
